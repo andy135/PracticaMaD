@@ -17,7 +17,7 @@ using System.Reflection;
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Tests
 {
     [TestClass()]
-    public class IUserServiceTest
+    public class IUserServiceTests
     {
 
         private static IUnityContainer container;

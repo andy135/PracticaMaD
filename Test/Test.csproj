@@ -96,7 +96,8 @@
   <ItemGroup>
     <Compile Include="TestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserService\IUserServiceTest.cs" />
+    <Compile Include="UserGroupService\UserGroupServiceTests.cs" />
+    <Compile Include="UserService\IUserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
