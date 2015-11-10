@@ -12,6 +12,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao;
 using System.Transactions;
 using System.Reflection;
 using Es.Udc.DotNet.PracticaMaD.Test;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 {
@@ -32,6 +33,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             get { return testContextInstance; }
             set { testContextInstance = value; }
         }
+
+        // Variables used in several tests initialize here
+        private const long NON_EXISTENT_USER_ID = -1;
 
         //Use ClassInitialize to run code before running the first test in the class
         [ClassInitialize()]
@@ -68,6 +72,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         }
 
 
+        private UserProfile GetValidUserProfile()
+        {
+            long userId = userService.RegisterUser("andy.qmelo", "Password",
+               new UserProfileDetails("Andy", "Quintero", "andy.qmelo@udc.es", "es", "ES"));
+
+            return userProfileDao.Find(userId);
+        }
+
+
         // -------------------------- TESTS ----------------------------
 
         [TestMethod()]
@@ -76,6 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             UserGroup g = new UserGroup();
             g.groupName = "Amigos";
             g.description = "Grupo de mis amigos";
+            
             UserGroup result = userGroupService.CreateGroup(g);
 
             UserGroup result2 = userGroupDao.Find(result.groupId);
@@ -87,25 +101,88 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         [TestMethod()]
         public void GetAllGroupsTest()
         {
-            Assert.Fail();
+            UserGroup g = new UserGroup();
+            g.groupName = "Amigos";
+            g.description = "Grupo de mis amigos";
+            UserGroup result = userGroupService.CreateGroup(g);
+
+            GroupBlock block = userGroupService.GetAllGroups(0, 10);
+
+            Assert.IsTrue(block.Groups.Count > 0);
+            Assert.IsTrue(block.Groups.ElementAt(0).Name == result.groupName);
         }
 
         [TestMethod()]
         public void GetGroupsByUserTest()
         {
-            Assert.Fail();
+
+            UserProfile u = GetValidUserProfile();
+            UserGroup g = new UserGroup();
+            g.groupName = "Amigos";
+            g.description = "Grupo de mis amigos";
+            g.UserProfile.Add(u);
+            userGroupService.CreateGroup(g);
+
+            UserGroup g2 = new UserGroup();
+            g2.groupName = "Familia";
+            g2.description = "Grupo de mi familia";
+            g2.UserProfile.Add(u);
+            userGroupService.CreateGroup(g2);
+            GroupBlock result = userGroupService.GetGroupsByUser(u.usrId,0,10);
+
+            Assert.IsTrue(result.Groups.Count == 2);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void GetGroupsOfInvalidUserTest()
+        {
+
+            userGroupService.GetGroupsByUser(NON_EXISTENT_USER_ID, 0, 10);
+
         }
 
         [TestMethod()]
         public void SubscribeUserToGroupTest()
         {
-            Assert.Fail();
+            UserProfile u = GetValidUserProfile();
+
+            UserGroup g = new UserGroup();
+            g.groupName = "Amigos";
+            g.description = "Grupo de mis amigos";
+            userGroupService.CreateGroup(g);
+
+            userGroupService.SubscribeUserToGroup(u.usrId, g.groupId);
+
+            UserGroup result = userGroupDao.Find(g.groupId);
+
+            Assert.AreEqual(result.UserProfile.ElementAt(0), u);
+
         }
 
         [TestMethod()]
         public void UnsubscribeUserToGroupTest()
         {
-            Assert.Fail();
+            UserProfile u = GetValidUserProfile();
+
+            UserGroup g = new UserGroup();
+            g.groupName = "Amigos";
+            g.description = "Grupo de mis amigos";
+            userGroupDao.Create(g);
+
+            UserGroup result;
+
+            userGroupService.SubscribeUserToGroup(u.usrId, g.groupId);
+
+            result = userGroupDao.Find(g.groupId);
+
+            Assert.IsTrue(result.UserProfile.Count == 1);
+
+            userGroupService.UnsubscribeUserToGroup(u.usrId, g.groupId);
+
+            result = userGroupDao.Find(g.groupId);
+
+            Assert.IsTrue(result.UserProfile.Count == 0);
         }
     }
 }

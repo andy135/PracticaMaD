@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,6 +15,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
         public List<UserGroup> FindGroupsByUserId(long userId, int startIndex, int count)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
+            DbSet<UserProfile> users = Context.Set<UserProfile>();
+
+            int user =
+                (from u in users
+                 where u.usrId == userId
+                 select u).Count();
+
+            if (user == 0)
+                throw new InstanceNotFoundException(userId,
+                    typeof(UserProfile).FullName);
+
 
             List<UserGroup> result =
                 (from g in groups
@@ -34,18 +46,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
                 (from g in groups
                  orderby g.groupId
                  select g).Skip(startIndex).Take(count).ToList();
-
-            return result;
-        }
-
-        public long GetUsersByGroupId(long groupId)
-        {
-            DbSet<UserGroup> groups = Context.Set<UserGroup>();
-
-            long result =
-                (from g in groups
-                 where g.groupId==groupId
-                 select g.UserProfile).Count();
 
             return result;
         }

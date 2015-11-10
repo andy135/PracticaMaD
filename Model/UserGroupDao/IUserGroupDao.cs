@@ -12,8 +12,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
 
         List<UserGroup> FindGroupsByUserId(long userId, int startIndex, int count);
 
-        long GetUsersByGroupId(long groupId);
-
         void SubscribeUserInGroup(long userId, long groupId);
 
         void UnsubscribeUserInGroup(long userId, long groupId);
