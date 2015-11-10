@@ -12,6 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{8
 		{780A8D2B-F59C-4324-81CE-8EACE34D532D} = {780A8D2B-F59C-4324-81CE-8EACE34D532D}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{B3E29828-8B2B-4888-95CB-E1619597149D}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\ModelUtil.dll = Lib\ModelUtil.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
