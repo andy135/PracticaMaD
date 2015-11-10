@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2c38efbe14d9483f9ee6c7def8996d23" Name="Diagram1">
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Recomendation" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserGroup" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_CommentEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_CommentUser" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_RecomendedEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.GroupMember" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.RecomendationToGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

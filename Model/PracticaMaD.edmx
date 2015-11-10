@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usrId" Type="bigint" Nullable="false" />
+          <Property Name="eventId" Type="bigint" Nullable="false" />
+          <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="texto" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="review" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="category" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="usrId" />
+            <PropertyRef Name="groupId" />
+          </Key>
+          <Property Name="usrId" Type="bigint" Nullable="false" />
+          <Property Name="groupId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recomendation">
+          <Key>
+            <PropertyRef Name="recomendationId" />
+          </Key>
+          <Property Name="recomendationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="eventId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecomendationToGroup">
+          <Key>
+            <PropertyRef Name="groupId" />
+            <PropertyRef Name="recomendationId" />
+          </Key>
+          <Property Name="groupId" Type="bigint" Nullable="false" />
+          <Property Name="recomendationId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="groupId" />
+          </Key>
+          <Property Name="groupId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="usrId" />
+          </Key>
+          <Property Name="usrId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loginName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="enPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="language" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentEvent">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentUser">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="usrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupGuser">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GroupMember" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="groupId" />
+            </Principal>
+            <Dependent Role="GroupMember">
+              <PropertyRef Name="groupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GroupMember" Type="Self.GroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="GroupMember">
+              <PropertyRef Name="usrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecomendedEvent">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="Recomendation">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RecomendationToGroup" Type="Self.RecomendationToGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="groupId" />
+            </Principal>
+            <Dependent Role="RecomendationToGroup">
+              <PropertyRef Name="groupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToRecomendation">
+          <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="1" />
+          <End Role="RecomendationToGroup" Type="Self.RecomendationToGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recomendation">
+              <PropertyRef Name="recomendationId" />
+            </Principal>
+            <Dependent Role="RecomendationToGroup">
+              <PropertyRef Name="recomendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EsUdcDotNetPracticaMaDModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupMember" EntityType="Self.GroupMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recomendation" EntityType="Self.Recomendation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecomendationToGroup" EntityType="Self.RecomendationToGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Category" Association="Self.FK_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentEvent" Association="Self.FK_CommentEvent">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentUser" Association="Self.FK_CommentUser">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupGuser" Association="Self.FK_GroupGuser">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="GroupMember" EntitySet="GroupMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member" Association="Self.FK_Member">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="GroupMember" EntitySet="GroupMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecomendedEvent" Association="Self.FK_RecomendedEvent">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Recomendation" EntitySet="Recomendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToGroup" Association="Self.FK_ToGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="RecomendationToGroup" EntitySet="RecomendationToGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToRecomendation" Association="Self.FK_ToRecomendation">
+            <End Role="Recomendation" EntitySet="Recomendation" />
+            <End Role="RecomendationToGroup" EntitySet="RecomendationToGroup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Category" FromRole="Category" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usrId" Type="Int64" Nullable="false" />
+          <Property Name="eventId" Type="Int64" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="texto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_CommentEvent" FromRole="Comment" ToRole="Event" />
+          <NavigationProperty Name="UserProfile" Relationship="Self.FK_CommentUser" FromRole="Comment" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="review" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="category" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Category" FromRole="Event" ToRole="Category" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_CommentEvent" FromRole="Event" ToRole="Comment" />
+          <NavigationProperty Name="Recomendation" Relationship="Self.FK_RecomendedEvent" FromRole="Event" ToRole="Recomendation" />
+        </EntityType>
+        <EntityType Name="Recomendation">
+          <Key>
+            <PropertyRef Name="recomendationId" />
+          </Key>
+          <Property Name="recomendationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eventId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_RecomendedEvent" FromRole="Recomendation" ToRole="Event" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.RecomendationToGroup" FromRole="Recomendation" ToRole="UserGroup" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="groupId" />
+          </Key>
+          <Property Name="groupId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="Self.GroupMember" FromRole="UserGroup" ToRole="UserProfile" />
+          <NavigationProperty Name="Recomendation" Relationship="Self.RecomendationToGroup" FromRole="UserGroup" ToRole="Recomendation" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="usrId" />
+          </Key>
+          <Property Name="usrId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loginName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="enPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="language" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_CommentUser" FromRole="UserProfile" ToRole="Comment" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.GroupMember" FromRole="UserProfile" ToRole="UserGroup" />
+        </EntityType>
+        <Association Name="FK_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentEvent">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentUser">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="usrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecomendedEvent">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="Recomendation">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GroupMember">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="RecomendationToGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+          <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="madEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="Recomendation" EntityType="Self.Recomendation" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+          <AssociationSet Name="FK_Category" Association="Self.FK_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentEvent" Association="Self.FK_CommentEvent">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentUser" Association="Self.FK_CommentUser">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecomendedEvent" Association="Self.FK_RecomendedEvent">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Recomendation" EntitySet="Recomendation" />
+          </AssociationSet>
+          <AssociationSet Name="GroupMember" Association="Self.GroupMember">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="RecomendationToGroup" Association="Self.RecomendationToGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="Recomendation" EntitySet="Recomendation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="madEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
+                <ScalarProperty Name="usrId" ColumnName="usrId" />
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="eventName" ColumnName="eventName" />
+                <ScalarProperty Name="review" ColumnName="review" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recomendation">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Recomendation">
+              <MappingFragment StoreEntitySet="Recomendation">
+                <ScalarProperty Name="recomendationId" ColumnName="recomendationId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroup">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="usrId" ColumnName="usrId" />
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="enPassword" ColumnName="enPassword" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GroupMember" TypeName="Es.Udc.DotNet.PracticaMaD.Model.GroupMember" StoreEntitySet="GroupMember">
+            <EndProperty Name="UserGroup">
+              <ScalarProperty Name="groupId" ColumnName="groupId" />
+            </EndProperty>
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="usrId" ColumnName="usrId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RecomendationToGroup" TypeName="Es.Udc.DotNet.PracticaMaD.Model.RecomendationToGroup" StoreEntitySet="RecomendationToGroup">
+            <EndProperty Name="UserGroup">
+              <ScalarProperty Name="groupId" ColumnName="groupId" />
+            </EndProperty>
+            <EndProperty Name="Recomendation">
+              <ScalarProperty Name="recomendationId" ColumnName="recomendationId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

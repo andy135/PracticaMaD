@@ -1,0 +1,25 @@
+﻿using Es.Udc.DotNet.ModelUtil.Dao;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
+{
+    public interface IUserGroupDao : IGenericDao<UserGroup, Int64>
+    {
+
+        List<UserGroup> FindGroupsByUserId(long userId, int startIndex, int count);
+
+        long GetUsersByGroupId(long groupId);
+
+        void SubscribeUserInGroup(long userId, long groupId);
+
+        void UnsubscribeUserInGroup(long userId, long groupId);
+
+        List<UserGroup> GetGroups(int startIndex, int count);
+
+   
+    }
+}
