@@ -60,9 +60,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
                  where g.groupId == groupId
                  select g).Single();
 
-            group.UserProfile.Add((from u in users
-                                   where u.usrId==userId
-                                   select u).Single());
+            UserProfile user = (from u in users
+                                where u.usrId == userId
+                                select u).Single();
+           
+
+            group.UserProfile.Add(user);
 
             /*No sabemos si aqui habra que añadir mas mierda*/
 

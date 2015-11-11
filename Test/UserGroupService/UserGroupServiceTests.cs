@@ -36,6 +36,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 
         // Variables used in several tests initialize here
         private const long NON_EXISTENT_USER_ID = -1;
+        private const String GROUP_NAME = "Grupo";
+        private const String GROUP_DESCRIPTION = "Descripcion cutre";
 
         //Use ClassInitialize to run code before running the first test in the class
         [ClassInitialize()]
@@ -86,51 +88,43 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         [TestMethod()]
         public void CreateGroupTest()
         {
-            UserGroup g = new UserGroup();
-            g.groupName = "Amigos";
-            g.description = "Grupo de mis amigos";
-            
-            UserGroup result = userGroupService.CreateGroup(g);
+                        
+            long result = userGroupService.CreateGroup(GetValidUserProfile().usrId,GROUP_NAME, GROUP_DESCRIPTION);
 
-            UserGroup result2 = userGroupDao.Find(result.groupId);
+            UserGroup result2 = userGroupDao.Find(result);
 
-            Assert.IsTrue(result.groupId > 0);
-            Assert.AreEqual(result2.groupId, result.groupId);
+            Assert.IsTrue(result >= 0);
+            Assert.AreEqual(result2.groupId, result);
+            Assert.AreEqual(result2.groupName, GROUP_NAME);
+            Assert.AreEqual(result2.description, GROUP_DESCRIPTION);
         }
 
         [TestMethod()]
         public void GetAllGroupsTest()
         {
-            UserGroup g = new UserGroup();
-            g.groupName = "Amigos";
-            g.description = "Grupo de mis amigos";
-            UserGroup result = userGroupService.CreateGroup(g);
+            long result = userGroupService.CreateGroup(GetValidUserProfile().usrId, GROUP_NAME, GROUP_DESCRIPTION);
 
             GroupBlock block = userGroupService.GetAllGroups(0, 10);
 
             Assert.IsTrue(block.Groups.Count > 0);
-            Assert.IsTrue(block.Groups.ElementAt(0).Name == result.groupName);
+            Assert.IsTrue(block.Groups.ElementAt(0).GroupId == result);
         }
 
         [TestMethod()]
         public void GetGroupsByUserTest()
         {
 
-            UserProfile u = GetValidUserProfile();
-            UserGroup g = new UserGroup();
-            g.groupName = "Amigos";
-            g.description = "Grupo de mis amigos";
-            g.UserProfile.Add(u);
-            userGroupService.CreateGroup(g);
+            long user = GetValidUserProfile().usrId;
 
-            UserGroup g2 = new UserGroup();
-            g2.groupName = "Familia";
-            g2.description = "Grupo de mi familia";
-            g2.UserProfile.Add(u);
-            userGroupService.CreateGroup(g2);
-            GroupBlock result = userGroupService.GetGroupsByUser(u.usrId,0,10);
+            long result = userGroupService.CreateGroup(user, GROUP_NAME, GROUP_DESCRIPTION);
 
-            Assert.IsTrue(result.Groups.Count == 2);
+            long result2 = userGroupService.CreateGroup(user, GROUP_NAME, GROUP_DESCRIPTION);
+
+            long result3 = userGroupService.CreateGroup(GetValidUserProfile().usrId, GROUP_NAME, GROUP_DESCRIPTION);
+
+            GroupBlock block = userGroupService.GetGroupsByUser(user, 0, 10);
+
+            Assert.IsTrue(block.Groups.Count == 2);
         }
 
         [TestMethod()]
@@ -147,16 +141,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         {
             UserProfile u = GetValidUserProfile();
 
-            UserGroup g = new UserGroup();
-            g.groupName = "Amigos";
-            g.description = "Grupo de mis amigos";
-            userGroupService.CreateGroup(g);
+            long result = userGroupService.CreateGroup(u.usrId, GROUP_NAME, GROUP_DESCRIPTION);
 
-            userGroupService.SubscribeUserToGroup(u.usrId, g.groupId);
+            userGroupService.SubscribeUserToGroup(u.usrId, result);
 
-            UserGroup result = userGroupDao.Find(g.groupId);
+            UserGroup group = userGroupDao.Find(result);
 
-            Assert.AreEqual(result.UserProfile.ElementAt(0), u);
+            Assert.AreEqual(group.UserProfile.ElementAt(0), u);
 
         }
 
@@ -165,24 +156,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         {
             UserProfile u = GetValidUserProfile();
 
-            UserGroup g = new UserGroup();
-            g.groupName = "Amigos";
-            g.description = "Grupo de mis amigos";
-            userGroupDao.Create(g);
+            long result = userGroupService.CreateGroup(u.usrId, GROUP_NAME, GROUP_DESCRIPTION);
 
-            UserGroup result;
+            userGroupService.UnsubscribeUserToGroup(u.usrId, result);
 
-            userGroupService.SubscribeUserToGroup(u.usrId, g.groupId);
+            UserGroup group = userGroupDao.Find(result);
 
-            result = userGroupDao.Find(g.groupId);
-
-            Assert.IsTrue(result.UserProfile.Count == 1);
-
-            userGroupService.UnsubscribeUserToGroup(u.usrId, g.groupId);
-
-            result = userGroupDao.Find(g.groupId);
-
-            Assert.IsTrue(result.UserProfile.Count == 0);
+            Assert.IsTrue(group.UserProfile.Count == 0);
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
         /// Creates a new group.
         /// </summary>
         /// <param name="group">Group to create.</param>
-        /// <exception cref="DuplicateInstanceException"/>
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        UserGroup CreateGroup(UserGroup group);
+        long CreateGroup(long userId, String name, String description);
 
         /// <summary>
         /// Find all groups.
@@ -38,6 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
         /// object to return.</param>
         /// <param name="count">The maximum number of objects to return.</param>
         /// <param name="userId">Identifier of the user.</param>
+        /// <exception cref="InstanceNotFoundException"
         [Transactional]
         GroupBlock GetGroupsByUser(long userId, int startIndex, int count);
 
@@ -46,6 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
         /// </summary>
         /// <param name="userId">Identifier of the user.</param>
         /// <param name="groupId">Identifier of the group.</param>
+        /// <exception cref="InstanceNotFoundException"
         [Transactional]
         void SubscribeUserToGroup(long userId, long groupId);
 
@@ -54,6 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
         /// </summary>
         /// <param name="userId">Identifier of the user.</param>
         /// <param name="groupId">Identifier of the group.</param>
+        /// <exception cref="InstanceNotFoundException"
         [Transactional]
         void UnsubscribeUserToGroup(long userId, long groupId);
     }
