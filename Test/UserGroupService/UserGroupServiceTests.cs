@@ -36,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 
         // Variables used in several tests initialize here
         private const long NON_EXISTENT_USER_ID = -1;
+        private const long NON_EXISTENT_GROUP_ID = -1;
         private const String GROUP_NAME = "Grupo";
         private const String GROUP_DESCRIPTION = "Descripcion cutre";
 
@@ -120,11 +121,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 
             long result2 = userGroupService.CreateGroup(user, GROUP_NAME, GROUP_DESCRIPTION);
 
-            long result3 = userGroupService.CreateGroup(GetValidUserProfile().usrId, GROUP_NAME, GROUP_DESCRIPTION);
+            long result3 = userGroupService.CreateGroup(user, GROUP_NAME, GROUP_DESCRIPTION);
 
             GroupBlock block = userGroupService.GetGroupsByUser(user, 0, 10);
 
-            Assert.IsTrue(block.Groups.Count == 2);
+            Assert.IsTrue(block.Groups.Count == 3);
         }
 
         [TestMethod()]
@@ -152,6 +153,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         }
 
         [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void SubscribeInvalidUserToGroupTest()
+        {
+            UserProfile u = GetValidUserProfile();
+
+            long result = userGroupService.CreateGroup(u.usrId, GROUP_NAME, GROUP_DESCRIPTION);
+
+            userGroupService.SubscribeUserToGroup(NON_EXISTENT_USER_ID, result);
+
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void SubscribeUserToInvalidGroupTest()
+        {
+            UserProfile u = GetValidUserProfile();
+            userGroupService.SubscribeUserToGroup(u.usrId, NON_EXISTENT_GROUP_ID);
+
+        }
+
+        [TestMethod()]
         public void UnsubscribeUserToGroupTest()
         {
             UserProfile u = GetValidUserProfile();
@@ -163,6 +185,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             UserGroup group = userGroupDao.Find(result);
 
             Assert.IsTrue(group.UserProfile.Count == 0);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void UnsubscribeInvalidUserToGroupTest()
+        {
+            UserProfile u = GetValidUserProfile();
+
+            long result = userGroupService.CreateGroup(u.usrId, GROUP_NAME, GROUP_DESCRIPTION);
+
+            userGroupService.UnsubscribeUserToGroup(NON_EXISTENT_USER_ID, result);
+
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void UnsubscribeUserToInvalidGroupTest()
+        {
+            UserProfile u = GetValidUserProfile();
+            userGroupService.UnsubscribeUserToGroup(u.usrId, NON_EXISTENT_GROUP_ID);
+
         }
     }
 }

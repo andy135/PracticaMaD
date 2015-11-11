@@ -55,17 +55,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
             DbSet<UserProfile> users = Context.Set<UserProfile>();
 
-            UserGroup group =
-                (from g in groups
-                 where g.groupId == groupId
-                 select g).Single();
+            UserGroup group;
+            UserProfile user;
 
-            UserProfile user = (from u in users
-                                where u.usrId == userId
-                                select u).Single();
-           
+            try {
+                group =
+                    (from g in groups
+                        where g.groupId == groupId
+                        select g).Single();
+            }catch(Exception)
+            {
+                throw new InstanceNotFoundException(groupId, typeof(UserGroup).FullName);
+            }
+
+            try
+            {
+                user = (from u in users
+                                    where u.usrId == userId
+                                    select u).Single();
+                
+            }
+            catch(Exception)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserProfile).FullName);
+            }
+
 
             group.UserProfile.Add(user);
+
 
             /*No sabemos si aqui habra que añadir mas mierda*/
 
@@ -78,14 +95,31 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
             DbSet<UserProfile> users = Context.Set<UserProfile>();
 
-            UserGroup group =
-                (from g in groups
-                 where g.groupId == groupId
-                 select g).Single();
+            UserGroup group;
+            UserProfile user;
 
-            group.UserProfile.Remove((from u in users
-                                    where u.usrId == userId
-                                    select u).Single());
+            try {
+                group =
+                    (from g in groups
+                     where g.groupId == groupId
+                     select g).Single();
+            }catch(Exception)
+            {
+                throw new InstanceNotFoundException(groupId, typeof(UserGroup).FullName);
+            }
+
+            try
+            {
+                user = (from u in users
+                        where u.usrId == userId
+                        select u).Single();
+            }
+            catch(Exception)
+            {
+                throw new InstanceNotFoundException(userId, typeof(UserProfile).FullName);
+            }
+
+            group.UserProfile.Remove(user);
 
             /*No sabemos si aqui habra que añadir mas mierda*/
 
