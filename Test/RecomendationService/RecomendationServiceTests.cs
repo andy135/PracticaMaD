@@ -50,7 +50,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
         private const long NON_EXISTENT_GROUP_ID = -1;
         private const String GROUP_NAME = "Grupo";
         private const String GROUP_DESCRIPTION = "Descripcion cutre";
-        private const String EVENT_NAME = "Evento 1";
         private const String EVENT_REVIEW = "Mejor evento del curso";
         private const String RECOMENDATION_DESCRIPTION = "Es genial, lo recomiendo";
 
@@ -110,10 +109,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
             return c.categoryId;
         }
 
-        private Event GetValidEvent()
+        private Event GetValidEvent(String name)
         {
             Event e = new Event();
-            e.eventName = EVENT_NAME;
+            e.eventName = name;
             e.date = DateTime.Now;
             e.review = EVENT_REVIEW;
             e.categoryId = GetValidCategory();
@@ -135,7 +134,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
         [TestMethod()]
         public void CreateRecomendationTest()
         {
-            Event e = GetValidEvent();
+            Event e = GetValidEvent("Evento 1");
             UserGroup g = GetValidUserGroup();
             long rId = recomendationService.CreateRecomendation(e.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
 
@@ -150,7 +149,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
         [TestMethod()]
         public void GetRecomendationsByUserTest()
         {
-            Assert.Fail();
+            Event e = GetValidEvent("Evento 1");
+            Event e2 = GetValidEvent("Evento 2");
+            UserGroup g = GetValidUserGroup();
+            long rId = recomendationService.CreateRecomendation(e.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
+            long rId2 = recomendationService.CreateRecomendation(e2.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
+
+            RecomendationBlock result = recomendationService.GetRecomendationsByUser(g.UserProfile.ElementAt(0).usrId, 0, 10);
+
+            Assert.IsTrue(result.Recomendations.Count == 2);
         }
     }
 }
