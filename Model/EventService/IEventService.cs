@@ -14,6 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         [Dependency]
         IEventDao EventDao { set; }
 
+
         EventBlock FindEvents(List<String> keywords, long? categoryId, int startIndex, int count);
     }
 }
