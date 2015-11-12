@@ -94,6 +94,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CommentService\CommentServiceTests.cs" />
     <Compile Include="EventService\EventServiceTests.cs" />
     <Compile Include="RecomendationService\RecomendationServiceTests.cs" />
     <Compile Include="TestManager.cs" />

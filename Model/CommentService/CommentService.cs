@@ -24,7 +24,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return comment;
         }
 
-        public CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count)
+		public long DoComment(long userId, long eventId, String text)
+		{
+			Comment comment = new Comment();
+			comment.texto = text;
+			comment.eventId = eventId;
+			comment.usrId = userId;
+			CommentDao.Create(comment);
+
+			return comment.commentId;
+		}
+
+		public CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count)
         {
             List<Comment> comments = CommentDao.SearchCommentsByEventId(eventId, startIndex, count + 1);
 

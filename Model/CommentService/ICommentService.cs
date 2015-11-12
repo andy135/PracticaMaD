@@ -15,7 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         ICommentDao CommentDao { set; }
 
         [Transactional]
-        Comment DoComment(Comment comment);
+        long DoComment(long userId, long eventId, String text);
 
         [Transactional]
         void ModifyComment(long commentId, String text);

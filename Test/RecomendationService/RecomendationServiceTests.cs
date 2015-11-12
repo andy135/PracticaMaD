@@ -109,6 +109,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
             return c.categoryId;
         }
 
+
         private Event GetValidEvent(String name)
         {
             Event e = new Event();
