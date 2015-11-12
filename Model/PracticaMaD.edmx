@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
@@ -30,7 +30,7 @@
           <Property Name="eventName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="review" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="category" Type="bigint" Nullable="false" />
+          <Property Name="categoryId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="GroupMember">
           <Key>
@@ -88,7 +88,7 @@
               <PropertyRef Name="categoryId" />
             </Principal>
             <Dependent Role="Event">
-              <PropertyRef Name="category" />
+              <PropertyRef Name="categoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -148,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecomendedEvent">
+        <Association Name="FK_RecomendationEvent">
           <End Role="Event" Type="Self.Event" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -217,7 +217,7 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="GroupMember" EntitySet="GroupMember" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecomendedEvent" Association="Self.FK_RecomendedEvent">
+          <AssociationSet Name="FK_RecomendationEvent" Association="Self.FK_RecomendationEvent">
             <End Role="Event" EntitySet="Event" />
             <End Role="Recomendation" EntitySet="Recomendation" />
           </AssociationSet>
@@ -230,7 +230,8 @@
             <End Role="RecomendationToGroup" EntitySet="RecomendationToGroup" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -262,10 +263,10 @@
           <Property Name="eventName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="review" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="category" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Category1" Relationship="Self.FK_Category" FromRole="Event" ToRole="Category" />
+          <Property Name="categoryId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="Event" ToRole="Category" />
           <NavigationProperty Name="Comment" Relationship="Self.FK_CommentEvent" FromRole="Event" ToRole="Comment" />
-          <NavigationProperty Name="Recomendation" Relationship="Self.FK_RecomendedEvent" FromRole="Event" ToRole="Recomendation" />
+          <NavigationProperty Name="Recomendation" Relationship="Self.FK_RecomendationEvent" FromRole="Event" ToRole="Recomendation" />
         </EntityType>
         <EntityType Name="Recomendation">
           <Key>
@@ -275,7 +276,7 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="eventId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Event" Relationship="Self.FK_RecomendedEvent" FromRole="Recomendation" ToRole="Event" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_RecomendationEvent" FromRole="Recomendation" ToRole="Event" />
           <NavigationProperty Name="UserGroup" Relationship="Self.RecomendationToGroup" FromRole="Recomendation" ToRole="UserGroup" />
         </EntityType>
         <EntityType Name="UserGroup">
@@ -313,7 +314,7 @@
               <PropertyRef Name="categoryId" />
             </Principal>
             <Dependent Role="Event">
-              <PropertyRef Name="category" />
+              <PropertyRef Name="categoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -345,7 +346,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecomendedEvent">
+        <Association Name="FK_RecomendationEvent">
           <End Role="Event" Type="Self.Event" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -367,7 +368,7 @@
           <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
           <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="madEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MaDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Comment" EntityType="Self.Comment" />
           <EntitySet Name="Event" EntityType="Self.Event" />
@@ -386,7 +387,7 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecomendedEvent" Association="Self.FK_RecomendedEvent">
+          <AssociationSet Name="FK_RecomendationEvent" Association="Self.FK_RecomendationEvent">
             <End Role="Event" EntitySet="Event" />
             <End Role="Recomendation" EntitySet="Recomendation" />
           </AssociationSet>
@@ -404,7 +405,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="madEntities">
+        <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="MaDEntities">
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -431,7 +432,7 @@
                 <ScalarProperty Name="eventName" ColumnName="eventName" />
                 <ScalarProperty Name="review" ColumnName="review" />
                 <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

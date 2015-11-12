@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c38efbe14d9483f9ee6c7def8996d23" Name="Diagram1">
+      <Diagram DiagramId="8259d6009ac54226a5f74b24d192ba7e" Name="Diagram1">
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_CommentEvent" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_CommentUser" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_RecomendedEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_RecomendationEvent" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.GroupMember" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.RecomendationToGroup" ManuallyRouted="false" />
       </Diagram>

@@ -109,10 +109,10 @@ CREATE TABLE Event (
 	eventName varchar(30) NOT NULL,
 	review varchar(255) NOT NULL,
 	date datetime2 NOT NULL,
-	category bigint NOT NULL,
+	categoryId bigint NOT NULL,
 
 	CONSTRAINT [PK_Event] PRIMARY KEY (eventId),
-	CONSTRAINT [FK_Category] FOREIGN KEY(category)
+	CONSTRAINT [FK_Category] FOREIGN KEY(categoryId)
         REFERENCES Category (categoryId) ON DELETE CASCADE
 )
 
@@ -186,13 +186,13 @@ GO
 
 CREATE TABLE Recomendation (
 	recomendationId bigint IDENTITY(1,1) NOT NULL,
-	groupId bigint NOT NULL,
 	date datetime2 NOT NULL,
 	description varchar(255) NOT NULL,
+	eventId bigint NOT NULL,
 
 	CONSTRAINT [PK_Recomendation] PRIMARY KEY (recomendationId),
-	CONSTRAINT [FK_RecomendationGroup] FOREIGN KEY(groupId)
-        REFERENCES UserGroup (groupId) ON DELETE CASCADE
+    CONSTRAINT [FK_RecomendationEvent] FOREIGN KEY(eventId)
+        REFERENCES Event (eventId) ON DELETE CASCADE
 )
 
 PRINT N'Table Recomendation created.'

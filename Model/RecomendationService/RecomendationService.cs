@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao;
 using Microsoft.Practices.Unity;
+using Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
 {
@@ -12,11 +13,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
     {
         [Dependency]
         public IRecomendationDao RecomendationDao { private get; set; }
+        [Dependency]
+        public IUserGroupDao UserGroupDao { private get; set; }
 
-        public Recomendation CreateRecomendation(Recomendation recomendation)
+
+        public long CreateRecomendation(long eventId, long groupId, string description)
         {
-            RecomendationDao.Create(recomendation);
-            return recomendation;
+            Recomendation r = new Recomendation();
+            r.description = description;
+            r.eventId = eventId;
+            r.UserGroup.Add(UserGroupDao.Find(groupId));
+            r.date = DateTime.Now;
+            RecomendationDao.Create(r);
+
+            return r.recomendationId;
         }
 
         public RecomendationBlock GetRecomendationsByUser(long userId, int startIndex, int count)

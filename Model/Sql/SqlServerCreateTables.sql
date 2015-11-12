@@ -45,7 +45,7 @@ DROP TABLE [RecomendationToGroup]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Recomendation]') AND type in ('U'))
-ALTER TABLE [Recomendation] DROP CONSTRAINT FK_RecomendationGroup
+ALTER TABLE [Recomendation] DROP CONSTRAINT FK_RecomendationEvent
 DROP TABLE [Recomendation]
 GO
 
@@ -124,10 +124,10 @@ CREATE TABLE Event (
 	eventName varchar(30) NOT NULL,
 	review varchar(255) NOT NULL,
 	date datetime2 NOT NULL,
-	category bigint NOT NULL,
+	categoryId bigint NOT NULL,
 
 	CONSTRAINT [PK_Event] PRIMARY KEY (eventId),
-	CONSTRAINT [FK_Category] FOREIGN KEY(category)
+	CONSTRAINT [FK_Category] FOREIGN KEY(categoryId)
         REFERENCES Category (categoryId) ON DELETE CASCADE
 )
 
@@ -201,13 +201,13 @@ GO
 
 CREATE TABLE Recomendation (
 	recomendationId bigint IDENTITY(1,1) NOT NULL,
-	groupId bigint NOT NULL,
 	date datetime2 NOT NULL,
 	description varchar(255) NOT NULL,
+	eventId bigint NOT NULL,
 
 	CONSTRAINT [PK_Recomendation] PRIMARY KEY (recomendationId),
-	CONSTRAINT [FK_RecomendationGroup] FOREIGN KEY(groupId)
-        REFERENCES UserGroup (groupId) ON DELETE CASCADE
+    CONSTRAINT [FK_RecomendationEvent] FOREIGN KEY(eventId)
+        REFERENCES Event (eventId) ON DELETE CASCADE
 )
 
 PRINT N'Table Recomendation created.'
@@ -249,7 +249,7 @@ GO
  * most common operations are also defined.
  */
 
-/*  RecomendationToUser */
+/*  RecomendationToGroups */
 
 CREATE TABLE RecomendationToGroup (
 	groupId bigint NOT NULL,
@@ -264,7 +264,5 @@ CREATE TABLE RecomendationToGroup (
 
 PRINT N'Table RecomendationToUser created.'
 GO
-
-/* Crear tabla que relacion recomendaciones con usuarios */
 
 GO

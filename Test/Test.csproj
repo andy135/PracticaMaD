@@ -95,10 +95,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EventService\EventServiceTests.cs" />
+    <Compile Include="RecomendationService\RecomendationServiceTests.cs" />
     <Compile Include="TestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserGroupService\UserGroupServiceTests.cs" />
-    <Compile Include="UserService\IUserServiceTests.cs" />
+    <Compile Include="UserService\UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

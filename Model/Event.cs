@@ -25,9 +25,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public string eventName { get; set; }
         public string review { get; set; }
         public System.DateTime date { get; set; }
-        public long category { get; set; }
+        public long categoryId { get; set; }
     
-        public virtual Category Category1 { get; set; }
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
