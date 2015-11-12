@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Microsoft.Practices.Unity;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
@@ -12,6 +13,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
     {
         [Dependency]
         public IEventDao EventDao { private get; set; }
+
+        [Dependency]
+        public ICategoryDao CategoryDao { private get; set; }
 
         public EventBlock FindEvents(List<string> keywords, long? categoryId, int startIndex, int count)
         {
@@ -23,6 +27,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
                 events.RemoveAt(count);
 
             return new EventBlock(events, existMoreEvents);
+        }
+
+        public List<Category> GetCategories()
+        {
+            return CategoryDao.GetAllCategories();
         }
     }
 }
