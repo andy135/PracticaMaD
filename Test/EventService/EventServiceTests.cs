@@ -87,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         {
             Event e = new Event();
             e.eventName = name;
-            e.date = DateTime.Now;
+            e.date = DateTime.Now.AddDays(5);
             e.review = EVENT_REVIEW;
             e.categoryId = GetValidCategory("Deportes");
             eventDao.Create(e);
@@ -99,7 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
         {
             Event e = new Event();
             e.eventName = name;
-            e.date = DateTime.Now;
+            e.date = DateTime.Now.AddDays(5);
             e.review = EVENT_REVIEW;
             e.categoryId = categoryId;
             eventDao.Create(e);
@@ -116,15 +116,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             long cat = GetValidCategory("Games");
             GetValidEvent("hola",cat);
 
-            List<String> keys = new List<string>();
+			String keys = "";
 
-            Assert.IsTrue(eventDao.FindEvents(keys, cat, 0, 10).Count == 0);
+            Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count == 0);
 
-            keys.Add("h");
+			keys = "h";
 
-            Assert.IsTrue(eventDao.FindEvents(keys, cat, 0, 10).Count>0);
+            Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count >0);
 
-            Assert.IsTrue(eventDao.FindEvents(keys, NOT_VALID_CATEGORY_ID, 0, 10).Count == 0);
+            Assert.IsTrue(eventService.FindEvents(keys, NOT_VALID_CATEGORY_ID, 0, 10).Events.Count == 0);
 
         }
 
@@ -136,16 +136,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             GetValidEvent("hola", cat);
             GetValidEvent("adiohs", cat1);
 
-            List<String> keys = new List<string>();
+			String keys = "";
 
-            Assert.IsTrue(eventDao.FindEvents(keys, cat, 0, 10).Count == 0);
+			Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count == 0);
 
-            keys.Add("h");
+			keys = "h";
 
-            Assert.IsTrue(eventDao.FindEvents(keys, cat, 0, 10).Count == 1);
-            Assert.IsTrue(eventDao.FindEvents(keys, cat1, 0, 10).Count == 1);
-            Assert.IsTrue(eventDao.FindEvents(keys, null, 0, 10).Count == 2);
-            Assert.IsTrue(eventDao.FindEvents(keys, NOT_VALID_CATEGORY_ID, 0, 10).Count == 0);
+			Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count == 1);
+            Assert.IsTrue(eventService.FindEvents(keys, cat1, 0, 10).Events.Count == 1);
+            Assert.IsTrue(eventService.FindEvents(keys, null, 0, 10).Events.Count == 2);
+            Assert.IsTrue(eventService.FindEvents(keys, NOT_VALID_CATEGORY_ID, 0, 10).Events.Count == 0);
         }
 
         [TestMethod()]
@@ -155,21 +155,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             GetValidEvent("hola", cat);
             GetValidEvent("adios", cat);
 
-            Assert.IsTrue(eventDao.FindEvents(null, cat, 0, 10).Count == 2);
+            Assert.IsTrue(eventService.FindEvents(null, cat, 0, 10).Events.Count == 2);
 
         }
 
-        [TestMethod()]
-        public void FindEventsVoidKeysTest()
-        {
-            long cat = GetValidCategory("Games");
-            GetValidEvent("hola", cat);
-            GetValidEvent("adios", cat);
+		[TestMethod()]
+		public void GetCategoriesTest()
+		{
+			GetValidCategory("Games");
+			GetValidCategory("Books");
+			GetValidCategory("Bikes");
 
-            List<String> keys = new List<string>();
+			Assert.AreEqual(eventService.GetCategories().Count,3);
 
-            Assert.IsTrue(eventDao.FindEvents(keys, cat, 0, 10).Count == 2);
-        }
+		}
 
-    }
+	}
 }

@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
     public interface IEventDao : IGenericDao<Event, Int64>
     {
 
-        List<Event> FindEvents(List<String> keywords, long? categoryId, int startIndex, int count);
+        List<Event> FindEvents(String[] keywords, long? categoryId, int startIndex, int count);
 
     }
 }

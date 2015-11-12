@@ -12,15 +12,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
     class EventDaoEntityFramework :
         GenericDaoEntityFramework<Event, Int64>, IEventDao
     {
-        public List<Event> FindEvents(List<string> keywords, long? categoryId, int startIndex, int count)
+        public List<Event> FindEvents(String[] keywords, long? categoryId, int startIndex, int count)
         {
-            
-            String query = "SELECT VALUE e FROM Event WHERE ";
-		    if(keywords.Count>=1){
-			    query+="AND lower(e.name) LIKE @k0 ";
+			
+			DbSet<Event> events = Context.Set<Event>();
+			List<Event> result;
+            if (categoryId == null && keywords!=null)
+			{
+				result =
+					(from e in events
+					 where keywords.All(s => e.eventName.Contains(s)) && e.date>DateTime.Now
+					 orderby e.date
+					 select e).Skip(startIndex).Take(count).ToList();
+			}
+			else
+			{
+				if (keywords != null)
+				{
+					result =
+						(from e in events
+						 where keywords.All(s => e.eventName.Contains(s)) && e.categoryId == categoryId && e.date > DateTime.Now
+						 orderby e.date
+						 select e).Skip(startIndex).Take(count).ToList();
+				}
+				else
+				{
+					result =
+						(from e in events
+						 where e.categoryId == categoryId && e.date > DateTime.Now
+						 orderby e.date
+						 select e).Skip(startIndex).Take(count).ToList();
+				}
+			}
+			
+			return result;
+		/*
+			String query = "SELECT VALUE e FROM Event WHERE ";
+			query += "e.date>NOW() ";
+			if (keywords.Count()>=1){
+			    query+="AND lower(e.eventName) LIKE @k0 ";
 		    }
-		    for(int i = 1;i< keywords.Count; i++){
-			    query+="AND lower(e.name) LIKE @k"+i.ToString()+" ";
+		    for(int i = 1;i< keywords.Count(); i++){
+			    query+= "AND lower(e.eventName) LIKE @k" + i.ToString()+" ";
 		    }
 		    if(categoryId != null){
 			    query+="AND e.category.categoryId = @categoryId ";
@@ -28,7 +61,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 		    query += "ORDER BY (e.date)";
 
             List<DbParameter> q = new List<DbParameter>();
-            for (int i = 0;i< keywords.Count; i++){
+            for (int i = 0;i< keywords.Count(); i++){
                 q.Add(new System.Data.SqlClient.SqlParameter("k" + i.ToString(), keywords.ElementAt(i)));
 		    }
 		    if(categoryId!=null){
@@ -38,6 +71,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
             List<Event> result = Context.Database.SqlQuery<Event>(query, q).Skip(startIndex).Take(count).ToList<Event>();
 
             return result;
+		*/
         }
     }
 }

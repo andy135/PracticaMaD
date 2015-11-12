@@ -17,8 +17,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         [Dependency]
         public ICategoryDao CategoryDao { private get; set; }
 
-        public EventBlock FindEvents(List<string> keywords, long? categoryId, int startIndex, int count)
+        public EventBlock FindEvents(String keys, long? categoryId, int startIndex, int count)
         {
+
+			String[] keywords = null;
+            if (keys != null)
+			{
+				keywords = keys.Split(' ');
+			}
+
             List<Event> events = EventDao.FindEvents(keywords, categoryId, startIndex, count + 1);
 
             bool existMoreEvents = (events.Count == count + 1);
