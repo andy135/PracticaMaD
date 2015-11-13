@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 				c.Tag.Add(t);
 			}
 		}
-
+		/*
 		public long CreateNewTag(string tag)
 		{
 			long result = -1;
@@ -45,6 +45,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 				  typeof(Tag).FullName);
 
 			return result;
+		}
+		*/
+
+		public long CreateNewTag(string tag)
+		{
+			Tag t = new Tag();
+			t.tagName = tag;
+
+			try { TagDao.Create(t);}
+			catch (System.Data.SqlClient.SqlException) {
+				throw new DuplicateInstanceException(tag,
+				  typeof(Tag).FullName);
+			}
+			return t.tagId;
+
 		}
 
 		public void DeleteComment(long commentId)
