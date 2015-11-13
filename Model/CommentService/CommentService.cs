@@ -23,30 +23,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			Comment c = CommentDao.Find(commentId);
 			Tag t = TagDao.Find(tagId);
 
-			if (t != null && c != null)
-			{
-				c.Tag.Add(t);
-			}
+            if (t == null)
+            {
+                throw new InstanceNotFoundException(tagId, typeof(Tag).FullName);
+            }
+            if (c == null)
+            {
+                throw new InstanceNotFoundException(commentId, typeof(Comment).FullName);
+            }
+			c.Tag.Add(t);
 		}
-		/*
-		public long CreateNewTag(string tag)
-		{
-			long result = -1;
-
-			Tag t = TagDao.FindTagByText(tag);
-			
-			if (t == null) {
-				Tag insert = new Tag();
-				insert.tagName = tag;
-				TagDao.Create(insert);
-				result = insert.tagId; }
-			else
-				throw new DuplicateInstanceException(tag,
-				  typeof(Tag).FullName);
-
-			return result;
-		}
-		*/
 
 		public long CreateNewTag(string tag)
 		{
