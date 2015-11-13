@@ -254,14 +254,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 		[TestMethod()]
 		public void GetAllTagsTest()
 		{
-			commentService.CreateNewTag("opinión personal");
-			commentService.CreateNewTag("lesión");
-			commentService.CreateNewTag("fichaje");
-			commentService.CreateNewTag("última hora");
+			commentService.CreateNewTag("tag1");
+			commentService.CreateNewTag("tag2");
+			commentService.CreateNewTag("tag3");
 
 			List<Tag> result = commentService.GetAllTags();
 
-			Assert.IsTrue(result.Count == 4);
+			Assert.IsTrue(result.Count == 3);
 
 		}
 	}

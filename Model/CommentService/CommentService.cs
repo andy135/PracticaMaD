@@ -40,9 +40,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			t.tagName = tag;
 
 			try { TagDao.Create(t);}
-			catch (System.Data.SqlClient.SqlException) {
-				throw new DuplicateInstanceException(tag,
-				  typeof(Tag).FullName);
+			catch (System.Data.DataException e) {
+				throw e;
 			}
 			return t.tagId;
 

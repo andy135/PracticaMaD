@@ -17,7 +17,7 @@
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_RecomendationEvent" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.GroupMember" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.RecomendationToGroup" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Tag" Width="1.5" PointX="7.5" PointY="4" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Tag" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.TagToComment" />
       </Diagram>
     </edmx:Diagrams>
