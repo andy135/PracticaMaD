@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Microsoft.Practices.Unity;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -13,7 +15,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         [Dependency]
         public ICommentDao CommentDao { private get; set; }
 
-        public void DeleteComment(long commentId)
+		[Dependency]
+		public ITagDao TagDao { private get; set; }
+
+		public void AddTagToComment(long commentId, long tagId)
+		{
+			Comment c = CommentDao.Find(commentId);
+			Tag t = TagDao.Find(tagId);
+
+			if (t != null && c != null)
+			{
+				c.Tag.Add(t);
+			}
+		}
+
+		public long CreateNewTag(string tag)
+		{
+			long result = -1;
+
+			Tag t = TagDao.FindTagByText(tag);
+			
+			if (t == null) {
+				Tag insert = new Tag();
+				insert.tagName = tag;
+				TagDao.Create(insert);
+				result = insert.tagId; }
+			else
+				throw new DuplicateInstanceException(tag,
+				  typeof(Tag).FullName);
+
+			return result;
+		}
+
+		public void DeleteComment(long commentId)
         {
             CommentDao.Remove(commentId);
         }
@@ -35,6 +69,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			return comment.commentId;
 		}
 
+		public List<Tag> GetAllTags()
+		{
+			return TagDao.GetAllTags();
+		}
+
 		public CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count)
         {
             List<Comment> comments = CommentDao.SearchCommentsByEventId(eventId, startIndex, count + 1);
@@ -53,11 +92,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             if (comment != null)
             {
-                /*Modify comment text*/
                 comment.texto = text;
-
                 CommentDao.Update(comment);
             }
         }
-    }
+
+		public void RemoveTagFromComment(long commentId, long tagId)
+		{
+			Comment c = CommentDao.Find(commentId);
+			Tag t = TagDao.Find(tagId);
+
+			if (t != null && c != null && c.Tag.Contains(t))
+			{
+				c.Tag.Remove(t);
+			}
+		}
+	}
 }

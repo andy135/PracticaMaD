@@ -26,6 +26,12 @@ USE [mad]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[TagToComment]') AND type in ('U'))
+ALTER TABLE [TagToComment] DROP CONSTRAINT FK_ToTag
+ALTER TABLE [TagToComment] DROP CONSTRAINT FK_ToComment
+DROP TABLE [TagToComment]
+GO
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))
 ALTER TABLE [Comment] DROP CONSTRAINT FK_CommentUser
 ALTER TABLE [Comment] DROP CONSTRAINT FK_CommentEvent
@@ -64,6 +70,11 @@ GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserGroup]') AND type in ('U'))
 DROP TABLE [UserGroup]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Tag]') AND type in ('U'))
+ALTER TABLE [Tag] DROP CONSTRAINT UniqueTag_Name
+DROP TABLE [Tag]
 GO
 
 /*
@@ -263,6 +274,38 @@ CREATE TABLE RecomendationToGroup (
 )
 
 PRINT N'Table RecomendationToUser created.'
+GO
+
+/* Tag */
+
+CREATE TABLE Tag (
+	tagId bigint IDENTITY(1,1) NOT NULL,
+	tagName varchar(25) NOT NULL,
+	usedNum bigint NOT NULL DEFAULT 0,
+
+
+	CONSTRAINT [PK_Tag] PRIMARY KEY (tagId),
+	CONSTRAINT [UniqueTag_Name] UNIQUE (tagName)
+)
+
+PRINT N'Table Tag created.'
+GO
+
+
+/*  TagToComment */
+
+CREATE TABLE TagToComment (
+	tagId bigint NOT NULL,
+	commentId bigint NOT NULL,
+
+	CONSTRAINT [FK_ToTag] FOREIGN KEY(tagId)
+        REFERENCES Tag (tagId) ON DELETE CASCADE,
+    CONSTRAINT [FK_ToComment] FOREIGN KEY(commentId)
+        REFERENCES Comment (commentId) ON DELETE NO ACTION,
+	CONSTRAINT [PK_TagToComment] PRIMARY KEY (tagId,commentId)
+)
+
+PRINT N'Table TagToComment created.'
 GO
 
 GO

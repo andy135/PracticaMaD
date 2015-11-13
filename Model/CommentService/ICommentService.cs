@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         [Dependency]
         ICommentDao CommentDao { set; }
 
-        [Transactional]
+		[Dependency]
+		ITagDao TagDao { set; }
+
+		[Transactional]
         long DoComment(long userId, long eventId, String text);
 
         [Transactional]
@@ -26,5 +30,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         [Transactional]
         CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count);
 
-    }
+		// TAGS SUPPORT
+
+		[Transactional]
+		void AddTagToComment(long commentId, long tagId);
+
+		[Transactional]
+		void RemoveTagFromComment(long commentId, long tagId);
+
+		[Transactional]
+		long CreateNewTag(String tag);
+
+		[Transactional]
+		List<Tag> GetAllTags();
+	}
 }

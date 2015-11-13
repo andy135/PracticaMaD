@@ -126,6 +126,11 @@
     <Compile Include="RecomendationService\IRecomendationService.cs" />
     <Compile Include="RecomendationService\RecomendationBlock.cs" />
     <Compile Include="RecomendationService\RecomendationService.cs" />
+    <Compile Include="Tag.cs">
+      <DependentUpon>PracticaMaD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TagDao\ITagDao.cs" />
+    <Compile Include="TagDao\TagDaoEntityFramework.cs" />
     <Compile Include="UserGroup.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>

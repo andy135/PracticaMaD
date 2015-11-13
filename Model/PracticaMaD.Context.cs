@@ -31,5 +31,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual DbSet<Recomendation> Recomendation { get; set; }
         public virtual DbSet<UserGroup> UserGroup { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
+        public virtual DbSet<Tag> Tag { get; set; }
     }
 }

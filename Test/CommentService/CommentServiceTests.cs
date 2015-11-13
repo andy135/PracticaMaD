@@ -15,6 +15,8 @@ using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 {
@@ -29,6 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 		private static IUserProfileDao userProfileDao;
 		private static ICommentService commentService;
 		private static ICommentDao commentDao;
+		private static ITagDao tagDao;
 
 
 		TransactionScope transaction;
@@ -58,6 +61,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 			userService = container.Resolve<IUserService>();
 			commentDao = container.Resolve<ICommentDao>();
 			commentService = container.Resolve<ICommentService>();
+			tagDao = container.Resolve<ITagDao>();
 
 		}
 
@@ -204,7 +208,61 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 			Comment result = commentDao.Find(c);
 
 			Assert.IsTrue(result.texto.Contains("Madrid"));
-			
+
+		}
+
+
+		[TestMethod()]
+		public void CreateAddAndRemoveTagToCommentTest()
+		{
+			Event e = GetValidEvent("Clásico");
+			UserProfile u = GetValidUserProfile();
+
+			commentService.CreateNewTag("opinión personal");
+			commentService.CreateNewTag("última hora");
+
+			Tag t1 = tagDao.FindTagByText("opinión personal");
+			Tag t2 = tagDao.FindTagByText("última hora");
+
+			Assert.IsNotNull(t1);
+
+			long c = commentService.DoComment(u.usrId, e.eventId, "Ganará el Barcelona");
+
+			commentService.AddTagToComment(c, t1.tagId);
+			commentService.AddTagToComment(c, t2.tagId);
+
+			Comment result = commentDao.Find(c);
+
+			Assert.IsTrue(result.Tag.Count == 2);
+
+			commentService.RemoveTagFromComment(c, t1.tagId);
+
+			Comment result2 = commentDao.Find(c);
+
+			Assert.IsTrue(result.Tag.Count == 1);
+
+		}
+
+		[TestMethod()]
+		[ExpectedException(typeof(DuplicateInstanceException))]
+		public void AddDuplicatedTagTest()
+		{
+			commentService.CreateNewTag("opinión personal");
+			commentService.CreateNewTag("opinión personal");
+		}
+
+		[TestMethod()]
+		public void GetAllTagsTest()
+		{
+			commentService.CreateNewTag("opinión personal");
+			commentService.CreateNewTag("lesión");
+			commentService.CreateNewTag("fichaje");
+			commentService.CreateNewTag("última hora");
+
+			List<Tag> result = commentService.GetAllTags();
+
+			Assert.IsTrue(result.Count == 4);
+
 		}
 	}
 }

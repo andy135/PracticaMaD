@@ -12,23 +12,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Tag
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Comment()
+        public Tag()
         {
-            this.Tag = new HashSet<Tag>();
+            this.Comment = new HashSet<Comment>();
         }
     
-        public long commentId { get; set; }
-        public long usrId { get; set; }
-        public long eventId { get; set; }
-        public System.DateTime date { get; set; }
-        public string texto { get; set; }
+        public long tagId { get; set; }
+        public string tagName { get; set; }
+        public long usedNum { get; set; }
     
-        public virtual Event Event { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tag { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
     }
 }

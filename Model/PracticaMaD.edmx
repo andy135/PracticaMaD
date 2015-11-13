@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
@@ -56,6 +56,22 @@
           </Key>
           <Property Name="groupId" Type="bigint" Nullable="false" />
           <Property Name="recomendationId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tagName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usedNum" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagToComment">
+          <Key>
+            <PropertyRef Name="tagId" />
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" Nullable="false" />
+          <Property Name="commentId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="UserGroup">
           <Key>
@@ -162,6 +178,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ToComment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1" />
+          <End Role="TagToComment" Type="Self.TagToComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="commentId" />
+            </Principal>
+            <Dependent Role="TagToComment">
+              <PropertyRef Name="commentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ToGroup">
           <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -188,6 +216,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ToTag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TagToComment" Type="Self.TagToComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="TagToComment">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EsUdcDotNetPracticaMaDModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
@@ -195,6 +237,8 @@
           <EntitySet Name="GroupMember" EntityType="Self.GroupMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recomendation" EntityType="Self.Recomendation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecomendationToGroup" EntityType="Self.RecomendationToGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagToComment" EntityType="Self.TagToComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Category" Association="Self.FK_Category">
@@ -221,6 +265,10 @@
             <End Role="Event" EntitySet="Event" />
             <End Role="Recomendation" EntitySet="Recomendation" />
           </AssociationSet>
+          <AssociationSet Name="FK_ToComment" Association="Self.FK_ToComment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="TagToComment" EntitySet="TagToComment" />
+          </AssociationSet>
           <AssociationSet Name="FK_ToGroup" Association="Self.FK_ToGroup">
             <End Role="UserGroup" EntitySet="UserGroup" />
             <End Role="RecomendationToGroup" EntitySet="RecomendationToGroup" />
@@ -229,9 +277,12 @@
             <End Role="Recomendation" EntitySet="Recomendation" />
             <End Role="RecomendationToGroup" EntitySet="RecomendationToGroup" />
           </AssociationSet>
+          <AssociationSet Name="FK_ToTag" Association="Self.FK_ToTag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="TagToComment" EntitySet="TagToComment" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -254,6 +305,7 @@
           <Property Name="texto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="Self.FK_CommentEvent" FromRole="Comment" ToRole="Event" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_CommentUser" FromRole="Comment" ToRole="UserProfile" />
+          <NavigationProperty Name="Tag" Relationship="Es.Udc.DotNet.PracticaMaD.Model.TagToComment" FromRole="Comment" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -399,7 +451,25 @@
             <End Role="UserGroup" EntitySet="UserGroup" />
             <End Role="Recomendation" EntitySet="Recomendation" />
           </AssociationSet>
+          <EntitySet Name="Tag" EntityType="Es.Udc.DotNet.PracticaMaD.Model.Tag" />
+          <AssociationSet Name="TagToComment" Association="Es.Udc.DotNet.PracticaMaD.Model.TagToComment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tagName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="usedNum" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.TagToComment" FromRole="Tag" ToRole="Comment" />
+        </EntityType>
+        <Association Name="TagToComment">
+          <End Type="Es.Udc.DotNet.PracticaMaD.Model.Comment" Role="Comment" Multiplicity="*" />
+          <End Type="Es.Udc.DotNet.PracticaMaD.Model.Tag" Role="Tag" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -483,6 +553,23 @@
             </EndProperty>
             <EndProperty Name="Recomendation">
               <ScalarProperty Name="recomendationId" ColumnName="recomendationId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="usedNum" ColumnName="usedNum" />
+                <ScalarProperty Name="tagName" ColumnName="tagName" />
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TagToComment" TypeName="Es.Udc.DotNet.PracticaMaD.Model.TagToComment" StoreEntitySet="TagToComment">
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="tagId" ColumnName="tagId" />
+            </EndProperty>
+            <EndProperty Name="Comment">
+              <ScalarProperty Name="commentId" ColumnName="commentId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
