@@ -36,15 +36,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
 		public long CreateNewTag(string tag)
 		{
-			Tag t = new Tag();
-			t.tagName = tag;
-
-			try { TagDao.Create(t);}
-			catch (System.Data.DataException e) {
-				throw e;
-			}
-			return t.tagId;
-
+            try
+            {
+                Tag t = new Tag();
+			    t.tagName = tag;
+                t.usedNum = 0;
+                TagDao.Create(t);
+			    return t.tagId;
+            }
+            catch (Exception)
+            {
+                throw new DuplicateInstanceException(tag, typeof(Tag).FullName);
+            }
 		}
 
 		public void DeleteComment(long commentId)
