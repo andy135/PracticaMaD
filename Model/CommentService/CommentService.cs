@@ -38,15 +38,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 		{
             try
             {
+                TagDao.FindTagByText(tag);
+
+                throw new DuplicateInstanceException(tag,
+                    typeof(Tag).FullName);
+
+            }
+            catch (InstanceNotFoundException)
+            {
                 Tag t = new Tag();
-			    t.tagName = tag;
+                t.tagName = tag;
                 t.usedNum = 0;
                 TagDao.Create(t);
-			    return t.tagId;
-            }
-            catch (Exception)
-            {
-                throw new DuplicateInstanceException(tag, typeof(Tag).FullName);
+                return t.tagId;
             }
 		}
 
@@ -110,5 +114,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 				c.Tag.Remove(t);
 			}
 		}
-	}
+
+        public Tag GetTagById(long tagId)
+        {
+            return TagDao.Find(tagId);
+        }
+
+    }
 }

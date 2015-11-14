@@ -1,18 +1,18 @@
-﻿/* 
+﻿/*
  * SQL Server Script
- * 
+ *
  * This script can be directly executed to configure the test database from
- * PCs located at CECAFI Lab. The database and the corresponding users are 
- * already created in the sql server, so it will create the tables needed 
- * in the samples. 
- * 
- * In a local environment (for example, with the SQLServerExpress instance 
- * included in the VStudio installation) it will be necessary to create the 
+ * PCs located at CECAFI Lab. The database and the corresponding users are
+ * already created in the sql server, so it will create the tables needed
+ * in the samples.
+ *
+ * In a local environment (for example, with the SQLServerExpress instance
+ * included in the VStudio installation) it will be necessary to create the
  * database and the user required by the connection string. So, the following
  * steps are needed:
  *
- *      Configure within the CREATE DATABASE sql-sentence the path where 
- *      database and log files will be created  
+ *      Configure within the CREATE DATABASE sql-sentence the path where
+ *      database and log files will be created
  *
  * This script can be executed from MS Sql Server Management Studio Express,
  * but also it is possible to use a command Line syntax:
@@ -21,47 +21,53 @@
  *
  */
 
- 
+
 USE [mad]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[TagToComment]') AND type in ('U'))
-ALTER TABLE [TagToComment] DROP CONSTRAINT FK_ToTag
-ALTER TABLE [TagToComment] DROP CONSTRAINT FK_ToComment
-DROP TABLE [TagToComment]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[TagToComment]') AND type in ('U'))BEGIN
+	ALTER TABLE [TagToComment] DROP CONSTRAINT FK_ToTag
+	ALTER TABLE [TagToComment] DROP CONSTRAINT FK_ToComment
+	DROP TABLE [TagToComment]
+END
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))
-ALTER TABLE [Comment] DROP CONSTRAINT FK_CommentUser
-ALTER TABLE [Comment] DROP CONSTRAINT FK_CommentEvent
-DROP TABLE [Comment]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))BEGIN
+	ALTER TABLE [Comment] DROP CONSTRAINT FK_CommentUser
+	ALTER TABLE [Comment] DROP CONSTRAINT FK_CommentEvent
+	DROP TABLE [Comment]
+END
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[GroupMember]') AND type in ('U'))
-ALTER TABLE [GroupMember] DROP CONSTRAINT FK_Member
-ALTER TABLE [GroupMember] DROP CONSTRAINT FK_GroupGuser
-DROP TABLE [GroupMember]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[GroupMember]') AND type in ('U'))BEGIN
+	ALTER TABLE [GroupMember] DROP CONSTRAINT FK_Member
+	ALTER TABLE [GroupMember] DROP CONSTRAINT FK_GroupGuser
+	DROP TABLE [GroupMember]
+END
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[RecomendationToGroup]') AND type in ('U'))
-ALTER TABLE [RecomendationToGroup] DROP CONSTRAINT FK_ToGroup
-ALTER TABLE [RecomendationToGroup] DROP CONSTRAINT FK_ToRecomendation
-DROP TABLE [RecomendationToGroup]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[RecomendationToGroup]') AND type in ('U'))BEGIN
+	ALTER TABLE [RecomendationToGroup] DROP CONSTRAINT FK_ToGroup
+	ALTER TABLE [RecomendationToGroup] DROP CONSTRAINT FK_ToRecomendation
+	DROP TABLE [RecomendationToGroup]
+END
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Recomendation]') AND type in ('U'))
-ALTER TABLE [Recomendation] DROP CONSTRAINT FK_RecomendationEvent
-DROP TABLE [Recomendation]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Recomendation]') AND type in ('U'))BEGIN
+	ALTER TABLE [Recomendation] DROP CONSTRAINT FK_RecomendationEvent
+	DROP TABLE [Recomendation]
+END
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserProfile]') AND type in ('U'))
 DROP TABLE [UserProfile]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Event]') AND type in ('U'))
-ALTER TABLE [Event] DROP CONSTRAINT FK_Category
-DROP TABLE [Event]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Event]') AND type in ('U'))BEGIN
+	ALTER TABLE [Event] DROP CONSTRAINT FK_Category
+	DROP TABLE [Event]
+END
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
@@ -73,17 +79,10 @@ DROP TABLE [UserGroup]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Tag]') AND type in ('U'))
-ALTER TABLE [Tag] DROP CONSTRAINT UniqueTag_Name
 DROP TABLE [Tag]
 GO
 
-/*
- * Create tables.
- * UserProfile table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  UserProfile */
+/*************************************************/
 
 CREATE TABLE UserProfile (
 	usrId bigint IDENTITY(1,1) NOT NULL,
@@ -99,13 +98,31 @@ CREATE TABLE UserProfile (
 	CONSTRAINT [UniqueKey_Login] UNIQUE (loginName)
 )
 
-
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
 ON [UserProfile] ([loginName] ASC)
 
 PRINT N'Table UserProfile created.'
 GO
 
+/** ************************************************************************ **/
+
+CREATE TABLE Tag (
+	tagId bigint IDENTITY(1,1) NOT NULL,
+	tagName varchar(30) NOT NULL,
+	usedNum bigint NOT NULL,
+
+
+	CONSTRAINT [PK_Tag] PRIMARY KEY (tagId),
+	CONSTRAINT [UniqueTag_Name] UNIQUE (tagName)
+)
+
+CREATE NONCLUSTERED INDEX [IX_TagIndexByTagName]
+ON [Tag] ([tagName] ASC)
+
+PRINT N'Table Tag created.'
+GO
+
+/** ************************************************************************ **/
 
 CREATE TABLE Category (
 	categoryId bigint IDENTITY(1,1) NOT NULL,
@@ -117,18 +134,7 @@ CREATE TABLE Category (
 PRINT N'Table Category created.'
 GO
 
-/* ********** Drop Table Event if already exists *********** */
-
-
-
-
-/*
- * Create tables.
- * Event table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  Event */
+/** ************************************************************************ **/
 
 CREATE TABLE Event (
 	eventId bigint IDENTITY(1,1) NOT NULL,
@@ -145,18 +151,7 @@ CREATE TABLE Event (
 PRINT N'Table Event created.'
 GO
 
-
-/* ********** Drop Table Group if already exists *********** */
-
-
-
-/*
- * Create tables.
- * UserGroup table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  UserGroup */
+/** ************************************************************************ **/
 
 CREATE TABLE UserGroup (
 	groupId bigint IDENTITY(1,1) NOT NULL,
@@ -169,17 +164,7 @@ CREATE TABLE UserGroup (
 PRINT N'Table UserGroup created.'
 GO
 
-/* ********** Drop Table Comment if already exists *********** */
-
-
-
-/*
- * Create tables.
- * Comment table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  Comment */
+/** ************************************************************************ **/
 
 CREATE TABLE Comment (
 	commentId bigint IDENTITY(1,1) NOT NULL,
@@ -198,17 +183,7 @@ CREATE TABLE Comment (
 PRINT N'Table Comment created.'
 GO
 
-/* ********** Drop Table Recomendation if already exists *********** */
-
-
-
-/*
- * Create tables.
- * Recomendation table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  Recomendation */
+/** ************************************************************************ **/
 
 CREATE TABLE Recomendation (
 	recomendationId bigint IDENTITY(1,1) NOT NULL,
@@ -224,17 +199,7 @@ CREATE TABLE Recomendation (
 PRINT N'Table Recomendation created.'
 GO
 
-/* ********** Drop Table GroupMember if already exists *********** */
-
-
-
-/*
- * Create tables.
- * GroupMember table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  GroupMember */
+/** ************************************************************************ **/
 
 CREATE TABLE GroupMember (
 	usrId bigint NOT NULL,
@@ -250,59 +215,33 @@ CREATE TABLE GroupMember (
 PRINT N'Table GroupMember created.'
 GO
 
-/* ********** Drop Table RecomendationToUser if already exists *********** */
-
-
-
-/*
- * Create tables.
- * RecomendationToUser table is created. Indexes required for the 
- * most common operations are also defined.
- */
-
-/*  RecomendationToGroups */
+/** ************************************************************************ **/
 
 CREATE TABLE RecomendationToGroup (
 	groupId bigint NOT NULL,
 	recomendationId bigint NOT NULL,
 
-	CONSTRAINT [FK_ToGroup] FOREIGN KEY(groupId)
+    CONSTRAINT [PK_RecomendationTOGroup] PRIMARY KEY (groupId,recomendationId),
+	  CONSTRAINT [FK_ToGroup] FOREIGN KEY(groupId)
         REFERENCES UserGroup (groupId) ON DELETE CASCADE,
     CONSTRAINT [FK_ToRecomendation] FOREIGN KEY(recomendationId)
-        REFERENCES Recomendation (recomendationId) ON DELETE NO ACTION,
-	CONSTRAINT [PK_RecomendationTOGroup] PRIMARY KEY (groupId,recomendationId)
+        REFERENCES Recomendation (recomendationId) ON DELETE CASCADE
 )
 
 PRINT N'Table RecomendationToUser created.'
 GO
 
-/* Tag */
-
-CREATE TABLE Tag (
-	tagId bigint IDENTITY(1,1) NOT NULL,
-	tagName varchar(25) NOT NULL,
-	usedNum bigint NOT NULL DEFAULT 0,
-
-
-	CONSTRAINT [PK_Tag] PRIMARY KEY (tagId),
-	CONSTRAINT [UniqueTag_Name] UNIQUE (tagName)
-)
-
-PRINT N'Table Tag created.'
-GO
-
-
-/*  TagToComment */
+/** ************************************************************************ **/
 
 CREATE TABLE TagToComment (
 	tagId bigint NOT NULL,
 	commentId bigint NOT NULL,
 
+  CONSTRAINT [PK_TagToComment] PRIMARY KEY (tagId,commentId),
 	CONSTRAINT [FK_ToTag] FOREIGN KEY(tagId)
         REFERENCES Tag (tagId) ON DELETE CASCADE,
     CONSTRAINT [FK_ToComment] FOREIGN KEY(commentId)
-        REFERENCES Comment (commentId) ON DELETE NO ACTION,
-	CONSTRAINT [PK_TagToComment] PRIMARY KEY (tagId,commentId)
+        REFERENCES Comment (commentId) ON DELETE CASCADE
 )
 
 PRINT N'Table TagToComment created.'

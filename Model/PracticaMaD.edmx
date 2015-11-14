@@ -62,7 +62,7 @@
             <PropertyRef Name="tagId" />
           </Key>
           <Property Name="tagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tagName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tagName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="usedNum" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="TagToComment">
@@ -179,7 +179,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToComment">
-          <End Role="Comment" Type="Self.Comment" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TagToComment" Type="Self.TagToComment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comment">
@@ -205,7 +207,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToRecomendation">
-          <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="1" />
+          <End Role="Recomendation" Type="Self.Recomendation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="RecomendationToGroup" Type="Self.RecomendationToGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recomendation">
@@ -462,7 +466,7 @@
             <PropertyRef Name="tagId" />
           </Key>
           <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tagName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="tagName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="usedNum" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.TagToComment" FromRole="Tag" ToRole="Comment" />
         </EntityType>

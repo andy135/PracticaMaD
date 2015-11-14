@@ -1,6 +1,8 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -13,23 +15,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 	{
 		public Tag FindTagByText(string text)
 		{
-			DbSet<Tag> tags = Context.Set<Tag>();
+            Tag tagt = null;
 
-			try
-			{
-				Tag tag =
-					(from t in tags
-					 where t.tagName == text
-					 select t).Single();
+            DbSet<Tag> tag = Context.Set<Tag>();
 
-				return tag;
-			}
-			catch (System.InvalidOperationException)
-			{
-				return null;
-			}
-				
-		}
+            string sqlQuery = "Select * FROM Tag where tagName=@tagName";
+            DbParameter loginNameParameter =
+                new System.Data.SqlClient.SqlParameter("tagName", text);
+
+            tagt = Context.Database.SqlQuery<Tag>(sqlQuery, loginNameParameter).FirstOrDefault<Tag>();
+
+            if (tagt == null)
+                throw new InstanceNotFoundException(text,
+                    typeof(Tag).FullName);
+
+            return tagt;
+
+        }
 
 		public List<Tag> GetAllTags()
 		{

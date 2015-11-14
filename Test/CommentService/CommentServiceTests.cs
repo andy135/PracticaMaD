@@ -247,8 +247,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 		[ExpectedException(typeof(DuplicateInstanceException))]
 		public void AddDuplicatedTagTest()
 		{
-			commentService.CreateNewTag("opinión personal");
-			commentService.CreateNewTag("opinión personal");
+			commentService.CreateNewTag("tag");
+			commentService.CreateNewTag("tag");
 		}
 
 		[TestMethod()]
@@ -263,5 +263,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 			Assert.IsTrue(result.Count == 3);
 
 		}
-	}
+
+        [TestMethod()]
+        public void CreateTagTestTest()
+        {
+            long tagId = commentService.CreateNewTag("tag8");
+
+            Assert.IsNotNull(commentService.GetTagById(tagId));
+            Assert.AreEqual(commentService.GetTagById(tagId).tagName, "tag1");
+
+        }
+
+    }
 }
