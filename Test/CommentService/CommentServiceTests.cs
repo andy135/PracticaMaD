@@ -270,7 +270,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
             long tagId = commentService.CreateNewTag("tag8");
 
             Assert.IsNotNull(commentService.GetTagById(tagId));
-            Assert.AreEqual(commentService.GetTagById(tagId).tagName, "tag1");
+            Assert.AreEqual(commentService.GetTagById(tagId).tagName, "tag8");
 
         }
 
