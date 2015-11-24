@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
     class UserGroupDaoEntityFramework :
         GenericDaoEntityFramework<UserGroup, Int64>, IUserGroupDao
     {
-        public List<UserGroup> FindGroupsByUserId(long userId, int startIndex, int count)
+        public List<GroupInfo> FindGroupsByUserId(long userId, int startIndex, int count)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
             DbSet<UserProfile> users = Context.Set<UserProfile>();
@@ -34,11 +35,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
                  orderby g.groupId
                  select g).Skip(startIndex).Take(count).ToList();
 
-            return result;
+			List<GroupInfo> groupsinfo = new List<GroupInfo>();
+			GroupInfo gi;
+			foreach (UserGroup g in result)
+			{
+				gi = new GroupInfo(g.groupId, g.groupName, g.description, g.UserProfile.Count, g.Recomendation.Count);
+				groupsinfo.Add(gi);
+			}
+
+			return groupsinfo;
 
         }
 
-        public List<UserGroup> GetGroups(int startIndex, int count)
+        public List<GroupInfo> GetGroups(int startIndex, int count)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
 
@@ -47,7 +56,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
                  orderby g.groupId
                  select g).Skip(startIndex).Take(count).ToList();
 
-            return result;
+			List<GroupInfo> groupsinfo = new List<GroupInfo>();
+			GroupInfo gi;
+
+			foreach (UserGroup g in result)
+			{
+				gi = new GroupInfo(g.groupId, g.groupName, g.description, g.UserProfile.Count, g.Recomendation.Count);
+				groupsinfo.Add(gi);
+			}
+
+			return groupsinfo;
         }
 
         public void SubscribeUserInGroup(long userId, long groupId)

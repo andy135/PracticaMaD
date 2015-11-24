@@ -9,10 +9,11 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class UserProfile
+	using System;
+	using System.Collections.Generic;
+	using System.Text;
+
+	public partial class UserProfile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserProfile()
@@ -34,5 +35,60 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserGroup> UserGroup { get; set; }
-    }
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				int multiplier = 31;
+				int hash = GetType().GetHashCode();
+
+				hash = hash * multiplier + usrId.GetHashCode();
+				hash = hash * multiplier + (loginName == null ? 0 : loginName.GetHashCode());
+				hash = hash * multiplier + (enPassword == null ? 0 : enPassword.GetHashCode());
+				hash = hash * multiplier + (firstName == null ? 0 : firstName.GetHashCode());
+				hash = hash * multiplier + (lastName == null ? 0 : lastName.GetHashCode());
+				hash = hash * multiplier + (email == null ? 0 : email.GetHashCode());
+				hash = hash * multiplier + (language == null ? 0 : language.GetHashCode());
+				hash = hash * multiplier + (country == null ? 0 : country.GetHashCode());
+
+				return hash;
+			}
+
+		}
+
+		public override bool Equals(object obj)
+		{
+			UserProfile target = (UserProfile)obj;
+
+			return true
+			   && (this.usrId == target.usrId)
+			   && (this.loginName == target.loginName)
+			   && (this.enPassword == target.enPassword)
+			   && (this.firstName == target.firstName)
+			   && (this.lastName == target.lastName)
+			   && (this.email == target.email)
+			   && (this.language == target.language)
+			   && (this.country == target.country);
+
+		}
+
+		public override String ToString()
+		{
+			StringBuilder strUserProfile = new StringBuilder();
+
+			strUserProfile.Append("[ ");
+			strUserProfile.Append(" usrId = " + usrId + " | ");
+			strUserProfile.Append(" loginName = " + loginName + " | ");
+			strUserProfile.Append(" enPassword = " + enPassword + " | ");
+			strUserProfile.Append(" firstName = " + firstName + " | ");
+			strUserProfile.Append(" lastName = " + lastName + " | ");
+			strUserProfile.Append(" email = " + email + " | ");
+			strUserProfile.Append(" language = " + language + " | ");
+			strUserProfile.Append(" country = " + country + " | ");
+			strUserProfile.Append("] ");
+
+			return strUserProfile.ToString();
+		}
+	}
 }
