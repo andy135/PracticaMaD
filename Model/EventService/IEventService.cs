@@ -17,8 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
         EventBlock FindEvents(String keys, long? categoryId, int startIndex, int count);
 
+		EventBlock FindEvents(String keys, int startIndex, int count);
 
-        List<Category> GetCategories();
+		List<Category> GetCategories();
 
 
     }

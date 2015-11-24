@@ -40,5 +40,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         {
             return CategoryDao.GetAllCategories();
         }
-    }
+
+		public EventBlock FindEvents(string keys, int startIndex, int count)
+		{
+			return FindEvents(keys, null, startIndex, count);
+		}
+	}
 }
