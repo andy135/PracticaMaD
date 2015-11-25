@@ -36,5 +36,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 		{
 			return GetAllElements();
 		}
+
+		public List<Tag> GetTopNTags(int n)
+		{
+			DbSet<Tag> tags = Context.Set<Tag>();
+
+			List<Tag> list =
+				(from t in tags
+				 orderby t.usedNum descending
+				 select t).Take(n).ToList();
+
+			return list;
+		}
 	}
 }

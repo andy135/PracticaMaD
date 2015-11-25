@@ -30,6 +30,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         [Transactional]
         CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count);
 
+		[Transactional]
+		CommentBlock GetCommentsByTag(long tagId, int startIndex, int count);
+
 		// TAGS SUPPORT
 
 		[Transactional]
@@ -46,5 +49,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         [Transactional]
         Tag GetTagById(long tagId);
-    }
+
+		[Transactional]
+		List<Tag> GetTopNTags(int n);
+
+
+	}
 }

@@ -120,5 +120,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return TagDao.Find(tagId);
         }
 
-    }
+		public CommentBlock GetCommentsByTag(long tagId, int startIndex, int count)
+		{
+			List<CommentInfo> comments = CommentDao.SearchCommentsByTag(tagId, startIndex, count + 1);
+
+			bool existMoreComments = (comments.Count == count + 1);
+
+			if (existMoreComments)
+				comments.RemoveAt(count);
+
+			return new CommentBlock(comments, existMoreComments);
+		}
+
+		public List<Tag> GetTopNTags(int n)
+		{
+			return TagDao.GetTopNTags(n);
+		}
+	}
 }

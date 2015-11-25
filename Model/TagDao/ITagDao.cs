@@ -11,6 +11,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 	{
 		List<Tag> GetAllTags();
 
+		List<Tag> GetTopNTags(int n);
+
 		Tag FindTagByText(String text);
 	}
 }

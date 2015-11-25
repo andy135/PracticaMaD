@@ -212,7 +212,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 		}
 
 		[TestMethod()]
-		public void CreateTagTestTest()
+		public void CreateTagTest()
 		{
 			long tagId = commentService.CreateNewTag("abc");
 
@@ -223,7 +223,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
 		[TestMethod()]
 		[ExpectedException(typeof(DuplicateInstanceException))]
-		public void AddDuplicatedTagTest()
+		public void CreateDuplicatedTagTest()
 		{
 			commentService.CreateNewTag("tag");
 			commentService.CreateNewTag("tag");
@@ -240,6 +240,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
 			Assert.IsTrue(result.Count == 3);
 
+		}
+
+		[TestMethod()]
+		public void GetTopNTagsTest()
+		{
+			Assert.Fail();
 		}
 
 		[TestMethod()]
@@ -273,5 +279,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
 		}
 
-    }
+		[TestMethod()]
+		public void GetCommentsByTagTest()
+		{
+			Assert.Fail();
+		}
+	}
 }

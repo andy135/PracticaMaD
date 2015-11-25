@@ -12,5 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
         List<CommentInfo> SearchCommentsByEventId(long eventId, int startIndex, int count);
 
-    }
+		List<CommentInfo> SearchCommentsByTag(long tagId, int startIndex, int count);
+
+	}
 }
