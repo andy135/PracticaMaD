@@ -15,9 +15,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
         IRecomendationDao RecomendationDao { set; }
 
         [Transactional]
-        long CreateRecomendation(long eventId, long groupId, String description);
+        long CreateRecomendation(long userId, long eventId, List<long> groupsId, String description);
 
-        [Transactional]
+		[Transactional]
+		long CreateRecomendation(long userId, long eventId, long groupId, string description);
+
+		[Transactional]
         RecomendationBlock GetRecomendationsByUser(long userId, int startIndex, int count);
     }
 }

@@ -15,21 +15,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 	{
 		public Tag FindTagByText(string text)
 		{
-            Tag tagt = null;
+            Tag tag = null;
 
-            DbSet<Tag> tag = Context.Set<Tag>();
+            DbSet<Tag> tags = Context.Set<Tag>();
 
-            string sqlQuery = "Select * FROM Tag where tagName=@tagName";
-            DbParameter loginNameParameter =
-                new System.Data.SqlClient.SqlParameter("tagName", text);
+			tag =
+				(from t in tags
+				 where t.tagName == text
+				 select t).FirstOrDefault<Tag>();
 
-            tagt = Context.Database.SqlQuery<Tag>(sqlQuery, loginNameParameter).FirstOrDefault<Tag>();
-
-            if (tagt == null)
+            if (tag == null)
                 throw new InstanceNotFoundException(text,
                     typeof(Tag).FullName);
 
-            return tagt;
+            return tag;
 
         }
 

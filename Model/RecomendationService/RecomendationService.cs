@@ -17,19 +17,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
         public IUserGroupDao UserGroupDao { private get; set; }
 
 
-        public long CreateRecomendation(long eventId, long groupId, string description)
+        public long CreateRecomendation(long userId, long eventId, List<long> groupsId, string description)
         {
-            Recomendation r = new Recomendation();
-            r.description = description;
-            r.eventId = eventId;
-            r.UserGroup.Add(UserGroupDao.Find(groupId));
-            r.date = DateTime.Now;
-            RecomendationDao.Create(r);
-
-            return r.recomendationId;
+            return RecomendationDao.CreateRecomendationToGroups(userId,eventId,groupsId,description);
         }
 
-        public RecomendationBlock GetRecomendationsByUser(long userId, int startIndex, int count)
+		public long CreateRecomendation(long userId, long eventId, long groupId, string description)
+		{
+			List<long> groups = new List<long>();
+			groups.Add(groupId);
+			return RecomendationDao.CreateRecomendationToGroups(userId, eventId, groups, description);
+		}
+
+		public RecomendationBlock GetRecomendationsByUser(long userId, int startIndex, int count)
         {
             List<Recomendation> recomendations = RecomendationDao.FindRecomendationByUserId(userId, startIndex, count+1);
 

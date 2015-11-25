@@ -92,9 +92,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
             transaction.Dispose();
         }
 
-        private UserProfile GetValidUserProfile()
+        private UserProfile GetValidUserProfile(String login)
         {
-            long userId = userService.RegisterUser("andy.qmelo", "Password",
+            long userId = userService.RegisterUser(login, "Password",
                new UserProfileDetails("Andy", "Quintero", "andy.qmelo@udc.es", "es", "ES"));
 
             return userProfileDao.Find(userId);
@@ -122,9 +122,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
             return e;
         }
 
-        private UserGroup GetValidUserGroup()
+        private UserGroup GetValidUserGroup(long userId)
         {
-            long groupId = userGroupService.CreateGroup(GetValidUserProfile().usrId, GROUP_NAME, GROUP_DESCRIPTION);
+            long groupId = userGroupService.CreateGroup(userId, GROUP_NAME, GROUP_DESCRIPTION);
             
             return userGroupDao.Find(groupId);
         }
@@ -136,8 +136,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
         public void CreateRecomendationTest()
         {
             Event e = GetValidEvent("Evento 1");
-            UserGroup g = GetValidUserGroup();
-            long rId = recomendationService.CreateRecomendation(e.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
+            UserProfile u = GetValidUserProfile("i.santosd1");
+			UserGroup g = GetValidUserGroup(u.usrId);
+			long rId = recomendationService.CreateRecomendation(u.usrId,e.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
 
             Recomendation r = recomendationDao.Find(rId);
 
@@ -152,9 +153,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
         {
             Event e = GetValidEvent("Evento 1");
             Event e2 = GetValidEvent("Evento 2");
-            UserGroup g = GetValidUserGroup();
-            long rId = recomendationService.CreateRecomendation(e.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
-            long rId2 = recomendationService.CreateRecomendation(e2.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
+            UserProfile u = GetValidUserProfile("user.admin");
+			UserGroup g = GetValidUserGroup(u.usrId);
+			long rId = recomendationService.CreateRecomendation(u.usrId,e.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
+            long rId2 = recomendationService.CreateRecomendation(u.usrId, e2.eventId, g.groupId, RECOMENDATION_DESCRIPTION);
 
             RecomendationBlock result = recomendationService.GetRecomendationsByUser(g.UserProfile.ElementAt(0).usrId, 0, 10);
 

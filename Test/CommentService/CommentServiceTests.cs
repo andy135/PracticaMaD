@@ -211,6 +211,36 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
 		}
 
+		[TestMethod()]
+		public void CreateTagTestTest()
+		{
+			long tagId = commentService.CreateNewTag("abc");
+
+			Assert.IsNotNull(commentService.GetTagById(tagId));
+			Assert.AreEqual(commentService.GetTagById(tagId).tagName, "abc");
+
+		}
+
+		[TestMethod()]
+		[ExpectedException(typeof(DuplicateInstanceException))]
+		public void AddDuplicatedTagTest()
+		{
+			commentService.CreateNewTag("tag");
+			commentService.CreateNewTag("tag");
+		}
+
+		[TestMethod()]
+		public void GetAllTagsTest()
+		{
+			commentService.CreateNewTag("tag1");
+			commentService.CreateNewTag("tag2");
+			commentService.CreateNewTag("tag3");
+
+			List<Tag> result = commentService.GetAllTags();
+
+			Assert.IsTrue(result.Count == 3);
+
+		}
 
 		[TestMethod()]
 		public void CreateAddAndRemoveTagToCommentTest()
@@ -242,37 +272,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 			Assert.IsTrue(result.Tag.Count == 1);
 
 		}
-
-		[TestMethod()]
-		[ExpectedException(typeof(DuplicateInstanceException))]
-		public void AddDuplicatedTagTest()
-		{
-			commentService.CreateNewTag("tag");
-			commentService.CreateNewTag("tag");
-		}
-
-		[TestMethod()]
-		public void GetAllTagsTest()
-		{
-			commentService.CreateNewTag("tag1");
-			commentService.CreateNewTag("tag2");
-			commentService.CreateNewTag("tag3");
-
-			List<Tag> result = commentService.GetAllTags();
-
-			Assert.IsTrue(result.Count == 3);
-
-		}
-
-        [TestMethod()]
-        public void CreateTagTestTest()
-        {
-            long tagId = commentService.CreateNewTag("tag8");
-
-            Assert.IsNotNull(commentService.GetTagById(tagId));
-            Assert.AreEqual(commentService.GetTagById(tagId).tagName, "tag8");
-
-        }
 
     }
 }
