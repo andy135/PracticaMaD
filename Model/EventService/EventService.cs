@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 				keywords = keys.Split(' ');
 			}
 
-            List<Event> events = EventDao.FindEvents(keywords, categoryId, startIndex, count + 1);
+            List<EventInfo> events = EventDao.FindEvents(keywords, categoryId, startIndex, count + 1);
 
             bool existMoreEvents = (events.Count == count + 1);
 

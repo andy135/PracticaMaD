@@ -83,7 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
 		public CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count)
         {
-            List<Comment> comments = CommentDao.SearchCommentsByEventId(eventId, startIndex, count + 1);
+            List<CommentInfo> comments = CommentDao.SearchCommentsByEventId(eventId, startIndex, count + 1);
 
             bool existMoreComments = (comments.Count == count + 1);
 

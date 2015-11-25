@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
     class CommentDaoEntityFramework :
         GenericDaoEntityFramework<Comment, Int64>, ICommentDao
     {
-        public List<Comment> SearchCommentsByEventId(long eventId, int startIndex, int count)
+        public List<CommentInfo> SearchCommentsByEventId(long eventId, int startIndex, int count)
         {
             DbSet<Comment> comments = Context.Set<Comment>();
 
@@ -21,7 +21,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
                  orderby g.date
                  select g).Skip(startIndex).Take(count).ToList();
 
-            return result;
+			List<CommentInfo> commentsinfo = new List<CommentInfo>();
+			CommentInfo ci;
+			foreach (Comment c in result)
+			{
+				ci = new CommentInfo(c.commentId,c.usrId,c.eventId,c.date,c.texto,c.UserProfile.loginName);
+				commentsinfo.Add(ci);
+			}
+
+			return commentsinfo;
         }
     }
 }

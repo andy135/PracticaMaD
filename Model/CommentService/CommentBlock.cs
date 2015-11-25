@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
     public class CommentBlock
     {
-        public List<Comment> Comments { get; private set; }
+        public List<CommentInfo> Comments { get; private set; }
         public bool ExistMoreComments { get; private set; }
 
-        public CommentBlock(List<Comment> comments, bool existMoreComments)
+        public CommentBlock(List<CommentInfo> comments, bool existMoreComments)
         {
             this.Comments = comments;
             this.ExistMoreComments = existMoreComments;

@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
     public interface ICommentDao : IGenericDao<Comment, Int64>
     {
 
-        List<Comment> SearchCommentsByEventId(long eventId, int startIndex, int count);
+        List<CommentInfo> SearchCommentsByEventId(long eventId, int startIndex, int count);
 
     }
 }

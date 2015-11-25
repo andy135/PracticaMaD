@@ -90,6 +90,7 @@
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
     <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
+    <Compile Include="CommentDao\CommentInfo.cs" />
     <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="CommentService\CommentBlock.cs" />
     <Compile Include="CommentService\CommentService.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Event.cs">
       <DependentUpon>PracticaMaD.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventDao\EventInfo.cs" />
     <Compile Include="EventService\EventBlock.cs" />
     <Compile Include="EventDao\EventDaoEntityFramework.cs" />
     <Compile Include="EventDao\IEventDao.cs" />
