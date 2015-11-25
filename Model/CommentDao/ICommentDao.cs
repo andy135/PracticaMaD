@@ -14,5 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
 		List<CommentInfo> SearchCommentsByTag(long tagId, int startIndex, int count);
 
+		void AddTagToComment(long commentId, Tag tag);
+
+		void RemoveTagFromComment(long commentId, Tag tag);
+
 	}
 }

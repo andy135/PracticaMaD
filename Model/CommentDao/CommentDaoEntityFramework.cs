@@ -37,26 +37,53 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			DbSet<Comment> comments = Context.Set<Comment>();
 			DbSet<Tag> tags = Context.Set<Tag>();
 
-			Tag tag = (from t in tags
-					   where t.tagId == tagId
-					   select t).SingleOrDefault();
+			//Tag tag = (from t in tags
+			//		   where t.tagId == tagId
+			//		   select t).SingleOrDefault();
 
-			List<Comment> result =
+			List<Comment> result2 =
 				(from g in comments
 				 from t in g.Tag
-				 where g.Tag.Contains(tag)
+				 where g.Tag.Select(s => s.tagId).Contains(tagId)
 				 orderby g.date
 				 select g).Skip(startIndex).Take(count).ToList();
 
+			//List<Comment> result =
+			//	(from g in comments
+			//	 from t in g.Tag
+			//	 where g.Tag.Contains(tag)
+			//	 orderby g.date
+			//	 select g).Skip(startIndex).Take(count).ToList();
+
 			List<CommentInfo> commentsinfo = new List<CommentInfo>();
 			CommentInfo ci;
-			foreach (Comment c in result)
+			foreach (Comment c in result2)
 			{
 				ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, c.UserProfile.loginName);
 				commentsinfo.Add(ci);
 			}
 
 			return commentsinfo;
+		}
+
+		public void AddTagToComment(long commentId,Tag tag)
+		{
+			Comment c = Find(commentId);
+			if (c != null)
+			{
+				c.Tag.Add(tag);
+			}
+			Update(c);
+		}
+
+		public void RemoveTagFromComment(long commentId, Tag tag)
+		{
+			Comment c = Find(commentId);
+			if (c != null)
+			{
+				c.Tag.Remove(tag);
+			}
+			Update(c);
 		}
 	}
 }

@@ -21,7 +21,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 		[Transactional]
         long DoComment(long userId, long eventId, String text);
 
-        [Transactional]
+		[Transactional]
+		long DoCommentWithTags(long userId, long eventId, String text, List<String> tags);
+
+		[Transactional]
         void ModifyComment(long commentId, String text);
 
         [Transactional]

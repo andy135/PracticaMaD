@@ -54,6 +54,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 		}
 
+		public Tag ManageTag(String tag)
+		{
+			try
+			{
+				Tag t = TagDao.FindTagByText(tag);
+				t.usedNum++;
+				TagDao.Update(t);
+				return t;
+			}
+			catch (InstanceNotFoundException)
+			{
+				Tag t = new Tag();
+				t.tagName = tag;
+				t.usedNum = 0;
+				TagDao.Create(t);
+				return t;
+			}
+		}
+
 		public void DeleteComment(long commentId)
         {
             CommentDao.Remove(commentId);
@@ -67,11 +86,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
 		public long DoComment(long userId, long eventId, String text)
 		{
+			return DoCommentWithTags(userId,eventId,text, null);
+		}
+
+		public long DoCommentWithTags(long userId, long eventId, String text, List<String> tags)
+		{
 			Comment comment = new Comment();
 			comment.texto = text;
 			comment.eventId = eventId;
 			comment.usrId = userId;
 			CommentDao.Create(comment);
+			if (tags != null) { 
+				foreach(String t in tags)
+				{
+					Tag tag = ManageTag(t);
+					CommentDao.AddTagToComment(comment.commentId, tag);
+				}
+			}
 
 			return comment.commentId;
 		}

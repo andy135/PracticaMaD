@@ -245,44 +245,55 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 		[TestMethod()]
 		public void GetTopNTagsTest()
 		{
-			Assert.Fail();
+			Event e = GetValidEvent("Partido");
+			Event e1 = GetValidEvent("Run");
+			UserProfile u = GetValidUserProfile();
+			List<String> tags = new List<String>();
+			tags.Add("match");
+			tags.Add("tv");
+			commentService.DoCommentWithTags(u.usrId, e.eventId, "Mola", tags);
+			commentService.DoCommentWithTags(u.usrId, e.eventId, "Es de lo mejor", tags);
+			tags.Remove("match");
+			tags.Add("football");
+			commentService.DoCommentWithTags(u.usrId, e1.eventId, "Shiiiiit", tags);
+
+			List<Tag> result = commentService.GetTopNTags(10);
+
+			Assert.AreEqual(result.Count, 3);
+
 		}
 
 		[TestMethod()]
-		public void CreateAddAndRemoveTagToCommentTest()
+		public void DoCommentWithTagsTest()
 		{
-			Event e = GetValidEvent("Clásico");
+			Event e = GetValidEvent("Partido");
 			UserProfile u = GetValidUserProfile();
+			List<String> tags = new List<String>();
+			tags.Add("match");
+			tags.Add("tv");
+			long commentId = commentService.DoCommentWithTags(u.usrId, e.eventId, "Mola", tags);
 
-			commentService.CreateNewTag("opinión personal");
-			commentService.CreateNewTag("última hora");
+			Comment c = commentDao.Find(commentId);
 
-			Tag t1 = tagDao.FindTagByText("opinión personal");
-			Tag t2 = tagDao.FindTagByText("última hora");
-
-			Assert.IsNotNull(t1);
-
-			long c = commentService.DoComment(u.usrId, e.eventId, "Ganará el Barcelona");
-
-			commentService.AddTagToComment(c, t1.tagId);
-			commentService.AddTagToComment(c, t2.tagId);
-
-			Comment result = commentDao.Find(c);
-
-			Assert.IsTrue(result.Tag.Count == 2);
-
-			commentService.RemoveTagFromComment(c, t1.tagId);
-
-			Comment result2 = commentDao.Find(c);
-
-			Assert.IsTrue(result.Tag.Count == 1);
-
+			Assert.IsTrue(c.Tag.Count == 2);
 		}
 
 		[TestMethod()]
 		public void GetCommentsByTagTest()
 		{
-			Assert.Fail();
+			Event e = GetValidEvent("Partido");
+			UserProfile u = GetValidUserProfile();
+			List<String> tags = new List<String>();
+			tags.Add("match");
+			tags.Add("tv");
+			long commentId = commentService.DoCommentWithTags(u.usrId, e.eventId, "Mola", tags);
+			Tag t = tagDao.FindTagByText("tv");
+
+			CommentBlock block = commentService.GetCommentsByTag(t.tagId, 0, 10);
+
+			Assert.IsTrue(block.Comments.First().commentId == commentId);
 		}
+
+
 	}
 }
