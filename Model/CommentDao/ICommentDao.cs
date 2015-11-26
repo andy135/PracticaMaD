@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
 		void AddTagToComment(long commentId, Tag tag);
 
-		void RemoveTagFromComment(long commentId, Tag tag);
+		void RemoveTagsFromComment(long commentId);
 
 	}
 }

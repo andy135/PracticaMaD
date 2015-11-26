@@ -18,42 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 		[Dependency]
 		public ITagDao TagDao { private get; set; }
 
-		public void AddTagToComment(long commentId, long tagId)
-		{
-			Comment c = CommentDao.Find(commentId);
-			Tag t = TagDao.Find(tagId);
-
-            if (t == null)
-            {
-                throw new InstanceNotFoundException(tagId, typeof(Tag).FullName);
-            }
-            if (c == null)
-            {
-                throw new InstanceNotFoundException(commentId, typeof(Comment).FullName);
-            }
-			c.Tag.Add(t);
-		}
-
-		public long CreateNewTag(string tag)
-		{
-            try
-            {
-                TagDao.FindTagByText(tag);
-
-                throw new DuplicateInstanceException(tag,
-                    typeof(Tag).FullName);
-
-            }
-            catch (InstanceNotFoundException)
-            {
-                Tag t = new Tag();
-                t.tagName = tag;
-                t.usedNum = 0;
-                TagDao.Create(t);
-                return t.tagId;
-            }
-		}
-
 		public Tag ManageTag(String tag)
 		{
 			try
@@ -126,23 +90,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public void ModifyComment(long commentId, string text)
         {
-            Comment comment = CommentDao.Find(commentId);
-
-            if (comment != null)
-            {
-                comment.texto = text;
-                CommentDao.Update(comment);
-            }
+			ModifyCommentWithTags(commentId, text, null);
         }
 
-		public void RemoveTagFromComment(long commentId, long tagId)
+		public void ModifyCommentWithTags(long commentId, string text, List<String> tags)
 		{
-			Comment c = CommentDao.Find(commentId);
-			Tag t = TagDao.Find(tagId);
+			Comment comment = CommentDao.Find(commentId);
 
-			if (t != null && c != null && c.Tag.Contains(t))
+			if (comment != null)
 			{
-				c.Tag.Remove(t);
+				comment.texto = text;
+				
+				if (tags != null)
+				{
+					CommentDao.RemoveTagsFromComment(commentId);
+					foreach (String t in tags)
+					{
+						Tag tag = ManageTag(t);
+						CommentDao.AddTagToComment(comment.commentId, tag);
+					}
+				}
+				CommentDao.Update(comment);
 			}
 		}
 

@@ -27,25 +27,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 		[Transactional]
         void ModifyComment(long commentId, String text);
 
-        [Transactional]
+		[Transactional]
+		void ModifyCommentWithTags(long commentId, string text, List<String> tags);
+
+		[Transactional]
         void DeleteComment(long commentId);
 
         [Transactional]
         CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count);
 
-		[Transactional]
-		CommentBlock GetCommentsByTag(long tagId, int startIndex, int count);
-
 		// TAGS SUPPORT
 
 		[Transactional]
-		void AddTagToComment(long commentId, long tagId);
-
-		[Transactional]
-		void RemoveTagFromComment(long commentId, long tagId);
-
-		[Transactional]
-		long CreateNewTag(String tag);
+		CommentBlock GetCommentsByTag(long tagId, int startIndex, int count);
 
 		[Transactional]
 		List<Tag> GetAllTags();

@@ -212,37 +212,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 		}
 
 		[TestMethod()]
-		public void CreateTagTest()
-		{
-			long tagId = commentService.CreateNewTag("abc");
-
-			Assert.IsNotNull(commentService.GetTagById(tagId));
-			Assert.AreEqual(commentService.GetTagById(tagId).tagName, "abc");
-
-		}
-
-		[TestMethod()]
-		[ExpectedException(typeof(DuplicateInstanceException))]
-		public void CreateDuplicatedTagTest()
-		{
-			commentService.CreateNewTag("tag");
-			commentService.CreateNewTag("tag");
-		}
-
-		[TestMethod()]
-		public void GetAllTagsTest()
-		{
-			commentService.CreateNewTag("tag1");
-			commentService.CreateNewTag("tag2");
-			commentService.CreateNewTag("tag3");
-
-			List<Tag> result = commentService.GetAllTags();
-
-			Assert.IsTrue(result.Count == 3);
-
-		}
-
-		[TestMethod()]
 		public void GetTopNTagsTest()
 		{
 			Event e = GetValidEvent("Partido");
@@ -294,6 +263,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 			Assert.IsTrue(block.Comments.First().commentId == commentId);
 		}
 
+		[TestMethod()]
+		public void ModifyCommentWithTagsTest()
+		{
+			Event e = GetValidEvent("Important Match");
+			UserProfile u = GetValidUserProfile();
+			List<String> tags = new List<String>();
+			tags.Add("match");
+			tags.Add("tv");
+			long commentId = commentService.DoCommentWithTags(u.usrId, e.eventId, "Mola", tags);
 
+			Comment c = commentDao.Find(commentId);
+
+			Assert.IsTrue(c.Tag.Count == 2);
+
+			tags.Add("football");
+			tags.Add("victory");
+			tags.Remove("tv");
+
+			commentService.ModifyCommentWithTags(commentId, "No Mola", tags);
+
+			c = commentDao.Find(commentId);
+
+			Assert.IsTrue(c.Tag.Count == 3);
+		}
 	}
 }
