@@ -53,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
                  from u in g.UserProfile
                  where u.usrId == userId
                  orderby r.date
-                 select r).Skip(startIndex).Take(count).ToList();
+                 select r).Skip(startIndex).Take(count).Distinct().ToList();
 
             return result;
         }
