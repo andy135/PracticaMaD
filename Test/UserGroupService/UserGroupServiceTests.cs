@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
@@ -16,7 +12,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 {
-    [TestClass()]
+	[TestClass()]
     public class UserGroupServiceTests
     {
         private static IUnityContainer container;

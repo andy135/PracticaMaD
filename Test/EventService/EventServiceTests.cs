@@ -1,25 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao;
 using System.Transactions;
 using System.Reflection;
 using Es.Udc.DotNet.PracticaMaD.Test;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 {
-    [TestClass()]
+	[TestClass()]
     public class EventServiceTests
     {
         private static IUnityContainer container;

@@ -1,13 +1,9 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
-    public class EventBlock
+	public class EventBlock
     {
         public List<EventInfo> Events { get; private set; }
         public bool ExistMoreEvents { get; private set; }

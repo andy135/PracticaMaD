@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using System.Transactions;
@@ -16,7 +11,7 @@ using System.Reflection;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Tests
 {
-    [TestClass()]
+	[TestClass()]
     public class UserServiceTests
     {
 

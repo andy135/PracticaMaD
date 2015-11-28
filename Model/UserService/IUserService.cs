@@ -2,14 +2,12 @@
 using Microsoft.Practices.Unity;
 
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
-    public interface IUserService
+	public interface IUserService
     {
         [Dependency]
         IUserProfileDao UserProfileDao { set; } 

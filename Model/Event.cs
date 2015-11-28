@@ -9,10 +9,9 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Event
+	using System.Collections.Generic;
+
+	public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Event()

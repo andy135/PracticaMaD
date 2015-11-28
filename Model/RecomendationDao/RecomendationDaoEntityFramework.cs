@@ -4,12 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
 {
-    class RecomendationDaoEntityFramework :
+	class RecomendationDaoEntityFramework :
         GenericDaoEntityFramework<Recomendation, Int64>, IRecomendationDao
     {
 		public long CreateRecomendationToGroups(long userId, long eventId, List<long> groupsId, string description)

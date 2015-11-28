@@ -9,11 +9,10 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    public partial class MaDEntities : DbContext
+	using System.Data.Entity;
+	using System.Data.Entity.Infrastructure;
+
+	public partial class MaDEntities : DbContext
     {
         public MaDEntities()
             : base("name=MaDEntities")

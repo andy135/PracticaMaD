@@ -3,14 +3,11 @@ using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System.Linq;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Data.Common;
-using Es.Udc.DotNet.PracticaMaD.Model;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {
-    public class UserProfileDaoEntityFramework :
+	public class UserProfileDaoEntityFramework :
         GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
     {
 

@@ -5,12 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
 {
-    class UserGroupDaoEntityFramework :
+	class UserGroupDaoEntityFramework :
         GenericDaoEntityFramework<UserGroup, Int64>, IUserGroupDao
     {
         public List<GroupInfo> FindGroupsByUserId(long userId, int startIndex, int count)

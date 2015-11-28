@@ -3,13 +3,10 @@ using Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
 {
-    public interface IRecomendationService
+	public interface IRecomendationService
     {
         [Dependency]
         IRecomendationDao RecomendationDao { set; }

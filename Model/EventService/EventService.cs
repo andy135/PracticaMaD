@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
-    public class EventService : IEventService
+	public class EventService : IEventService
     {
         [Dependency]
         public IEventDao EventDao { private get; set; }

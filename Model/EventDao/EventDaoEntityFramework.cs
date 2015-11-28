@@ -1,15 +1,12 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 {
-    class EventDaoEntityFramework :
+	class EventDaoEntityFramework :
         GenericDaoEntityFramework<Event, Int64>, IEventDao
     {
         public List<EventInfo> FindEvents(String[] keywords, long? categoryId, int startIndex, int count)

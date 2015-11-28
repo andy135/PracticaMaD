@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
 {
-    [Serializable()]
+	[Serializable()]
     public class GroupInfo
     {
         public long GroupId { get; private set; }

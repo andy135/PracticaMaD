@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
 {
-    public class GroupBlock
+	public class GroupBlock
     {
         public List<GroupInfo> Groups { get; private set; }
         public bool ExistMoreGroups { get; private set; }

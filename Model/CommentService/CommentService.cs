@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
@@ -10,7 +7,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
-    public class CommentService : ICommentService
+	public class CommentService : ICommentService
     {
         [Dependency]
         public ICommentDao CommentDao { private get; set; }

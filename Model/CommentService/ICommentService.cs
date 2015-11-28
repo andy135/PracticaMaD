@@ -4,13 +4,10 @@ using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
-    public interface ICommentService
+	public interface ICommentService
     {
         [Dependency]
         ICommentDao CommentDao { set; }

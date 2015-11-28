@@ -1,11 +1,9 @@
 ﻿using System;
 using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {
-    public interface IUserProfileDao : IGenericDao<UserProfile, Int64>
+	public interface IUserProfileDao : IGenericDao<UserProfile, Int64>
     {
         /// <summary>
         /// Finds a UserProfile by loginName

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
 {
-    public class RecomendationService : IRecomendationService
+	public class RecomendationService : IRecomendationService
     {
         [Dependency]
         public IRecomendationDao RecomendationDao { private get; set; }

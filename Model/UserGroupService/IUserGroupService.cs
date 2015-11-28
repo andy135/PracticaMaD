@@ -2,14 +2,10 @@
 using Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao;
 using Microsoft.Practices.Unity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
 {
-    public interface IUserGroupService
+	public interface IUserGroupService
     {
         [Dependency]
         IUserGroupDao UserGroupDao { set; }

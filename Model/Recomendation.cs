@@ -9,10 +9,9 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Recomendation
+	using System.Collections.Generic;
+
+	public partial class Recomendation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Recomendation()
