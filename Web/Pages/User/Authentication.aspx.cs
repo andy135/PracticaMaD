@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
 		protected void BtnLoginClick(object sender, EventArgs e)
 		{
-			/*
+			
 			if (Page.IsValid)
 			{
 				try
@@ -39,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 				}
 
 			}
-			*/
+			
 		}
 	}
 }

@@ -48,6 +48,34 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ModelUtil">
       <HintPath>..\Lib\ModelUtil.dll</HintPath>
     </Reference>
@@ -74,6 +102,10 @@
     <Content Include="packages.config" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
+    <Content Include="Pages\User\ChangePassword.aspx" />
+    <Content Include="Pages\User\Logout.aspx" />
+    <Content Include="Pages\User\Register.aspx" />
+    <Content Include="Pages\User\UpdateUserProfile.aspx" />
     <Content Include="PracticaMaD.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -101,6 +133,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HTTP\Session\SessionManager.cs" />
+    <Compile Include="HTTP\Session\SpecificCulturePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HTTP\Session\UserSession.cs" />
+    <Compile Include="HTTP\Util\CookiesManager.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,6 +156,34 @@
     <Compile Include="Pages\User\Authentication.aspx.designer.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\User\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\UpdateUserProfile.aspx.cs">
+      <DependentUpon>UpdateUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\UpdateUserProfile.aspx.designer.cs">
+      <DependentUpon>UpdateUserProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PracticaMaD.Master.cs">
       <DependentUpon>PracticaMaD.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,7 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Error\" />
-    <Folder Include="Pages\User\App_LocalResources\es\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\en-default\PracticaMaD.Master.resx">
@@ -162,6 +230,27 @@
     <Content Include="App_GlobalResources\Common.es.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Common.es.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\Authentication.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{780a8d2b-f59c-4324-81ce-8eace34d532d}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\en-default\Register.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\Register.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
