@@ -1,5 +1,4 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.Transactions;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
@@ -9,7 +8,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
-    public class UserService : IUserService
+	public class UserService : IUserService
     {
         [Dependency]
         public IUserProfileDao UserProfileDao { private get; set; }
