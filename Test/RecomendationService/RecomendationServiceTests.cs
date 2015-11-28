@@ -162,5 +162,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService.Tests
 
             Assert.IsTrue(result.Recomendations.Count == 2);
         }
+
+        [TestMethod()]
+        public void GetUnrepeatedRecomendationsByUserTest()
+        {
+            Event e = GetValidEvent("Evento 1");
+            UserProfile u = GetValidUserProfile("user.admin");
+            UserGroup g = GetValidUserGroup(u.usrId);
+            UserGroup g1 = GetValidUserGroup(u.usrId);
+            List<long> groups = new List<long>();
+            groups.Add(g.groupId);
+            groups.Add(g1.groupId);
+            long rId = recomendationService.CreateRecomendation(u.usrId, e.eventId, groups, RECOMENDATION_DESCRIPTION);
+
+            RecomendationBlock result = recomendationService.GetRecomendationsByUser(g.UserProfile.ElementAt(0).usrId, 0, 10);
+
+            Assert.IsTrue(result.Recomendations.Count == 1);
+        }
+
     }
 }
