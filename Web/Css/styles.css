@@ -1,9 +1,13 @@
-﻿/* Body. */
+﻿html,body,#window{
+	height:95%;
+}
+
+/* Body. */
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    margin: 10px 20px;
+
     background-color: #dddde0;
 }
 
@@ -23,8 +27,8 @@ a:hover {
 
 #window {
 	border: #00c853 2px solid;
-    background-color: #fff;
-    padding: 7px;
+    background-color: #333;
+    padding: 5px;
     width: 98%;
 }
 
@@ -32,55 +36,27 @@ a:hover {
 
 #pageTitle {
     background-color: #00c853;    
-    color: #fff;
+    color: #333;
     text-align: center;
     font-weight: bold;
     padding: 5px 0 5px 0px;
     width: 100%;
     font-weight: bold;
 	font-size: 20px; 
+
+	height:7%;
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
 }
 
 /* Page body. */
 
 #pageBody { 
-    margin-top: 5px;
+
     width: 100%;
-}
 
-/* Sidebar. */
-
-#sidebar {
-    float: left;
-    background-color: #00e676;
-    width: 20%;
-}
-
-#sidebar a {
-    color : #6200ea;
-}
-
-#sidebar a:hover {
-	color: #651fff;
-}
-
-#sidebar ul {
-    list-style: none;
-    padding-top: 0px;
-    /* Hack for correct indentation (the following three lines). */
-    margin-left: 0;
-    padding-left: 1em;
-    text-indent: -1em;
-}
-
-#sidebar li 
-{
-    padding: 0 0 3px 5px;
-}
-
-#sidebar li span
-{
-    font-weight: bold;
+	height:90%;
 }
 
 #menuWelcome {
@@ -101,9 +77,8 @@ a:hover {
     float: right;    
     text-align: center;
     width: 80%;
-	background-color: #c8e6c9;
+	background-color: #ccc;
 	
-	margin-bottom: 5px;
 	height: 90%;
 }
 
@@ -174,4 +149,49 @@ input, select, textarea  {
     width: 100%;
 	background-color: #00c853;  
 	font-weight: bold;
+}
+
+#cssmenu {
+	width: 20%;
+	height: 90%;
+	background: #333;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float:left;
+}
+#cssmenu ul{
+	list-style: none;
+    padding-top: 0px;
+    /* Hack for correct indentation (the following three lines). */
+    margin-left: 0;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+#cssmenu li span
+{
+    font-weight: bold;
+	color:white;
+	padding: 12px 12px;
+}
+#cssmenu li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin: 0 0 5px 0;
+}
+#cssmenu a {
+  background: #333;
+  border-bottom: 1px solid #393939;
+  color: #ccc;
+  display: block;
+  margin: 0;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-weight: normal;
+}
+#cssmenu a:hover {
+  background: #00c853;
+  color: #fff;
+  padding-bottom: 8px;
 }
