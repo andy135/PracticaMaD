@@ -15,7 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
          */
         private static readonly ArrayList languages_es = new ArrayList();
         private static readonly ArrayList languages_en = new ArrayList();
-        private static readonly ArrayList languages_gl = new ArrayList();
+        //private static readonly ArrayList languages_gl = new ArrayList();
         private static readonly Hashtable languages = new Hashtable();
 
         /* Access modifiers are not allowed on static constructors
@@ -29,20 +29,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
             #region set the languages
 
             languages_es.Add(new ListItem("Español", "es"));
-            languages_es.Add(new ListItem("Gallego", "gl"));
+            //languages_es.Add(new ListItem("Gallego", "gl"));
             languages_es.Add(new ListItem("Inglés", "en"));
 
             languages_en.Add(new ListItem("English", "en"));
-            languages_en.Add(new ListItem("Galician", "gl"));
+            //languages_en.Add(new ListItem("Galician", "gl"));
             languages_en.Add(new ListItem("Spanish", "es"));
 
-            languages_gl.Add(new ListItem("Español", "es"));
-            languages_gl.Add(new ListItem("Galego", "gl"));
-            languages_gl.Add(new ListItem("Inglés", "en"));
+            //languages_gl.Add(new ListItem("Español", "es"));
+            //languages_gl.Add(new ListItem("Galego", "gl"));
+            //languages_gl.Add(new ListItem("Inglés", "en"));
 
             languages.Add("es", languages_es);
             languages.Add("en", languages_en);
-            languages.Add("gl", languages_gl);
+            //languages.Add("gl", languages_gl);
 
             #endregion
         }

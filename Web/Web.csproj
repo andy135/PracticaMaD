@@ -101,12 +101,19 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Pages\MainPage.aspx" />
+    <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\Logout.aspx" />
     <Content Include="Pages\User\Register.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
     <Content Include="PracticaMaD.Master" />
+    <Content Include="Pages\User\App_LocalResources\es\UpdateUserProfile.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -251,6 +258,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\User\App_LocalResources\es\Register.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\en-default\ChangePassword.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\es\ChangePassword.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

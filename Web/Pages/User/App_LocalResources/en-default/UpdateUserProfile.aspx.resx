@@ -112,51 +112,39 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRegister.Text" xml:space="preserve">
-    <value>Aceptar</value>
-  </data>
-  <data name="cvPasswordCheck.Text" xml:space="preserve">
-    <value>Las contraseñas no coinciden</value>
-  </data>
-  <data name="lblLoginError.Text" xml:space="preserve">
-    <value>Usuario ya existente</value>
+  <data name="btnUpdate.Text" xml:space="preserve">
+    <value>Update</value>
   </data>
   <data name="lclCountry.Text" xml:space="preserve">
-    <value>País</value>
+    <value>Country</value>
   </data>
   <data name="lclEmail.Text" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="lclFirstName.Text" xml:space="preserve">
-    <value>Nombre</value>
+    <value>First name</value>
   </data>
   <data name="lclLanguage.Text" xml:space="preserve">
-    <value>Idioma</value>
+    <value>Language</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Registro de usuario</value>
-  </data>
-  <data name="lclPassword.Text" xml:space="preserve">
-    <value>Contraseña</value>
-  </data>
-  <data name="lclRetypePassword.Text" xml:space="preserve">
-    <value>Repita la contraseña</value>
+    <value>User profile details</value>
   </data>
   <data name="lclSurname.Text" xml:space="preserve">
-    <value>Apellidos</value>
+    <value>Surname</value>
   </data>
-  <data name="lclUserName.Text" xml:space="preserve">
-    <value>Nombre de usuario</value>
+  <data name="lnkChangePassword.Text" xml:space="preserve">
+    <value>Change password</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Registro de Usuario</value>
+    <value>PracticaMaD - Update User Profile</value>
   </data>
   <data name="revEmail.ErrorMessage" xml:space="preserve">
-    <value>Sintaxis de email incorrecta</value>
+    <value>Incorrect email syntax</value>
   </data>
 </root>

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -11,7 +9,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			lblOldPasswordError.Visible = false;
 		}
+
+		protected void BtnChangePasswordClick(object sender, EventArgs e)
+		{
+			if (Page.IsValid)
+			{
+				try
+				{
+
+					SessionManager.ChangePassword(Context, txtOldPassword.Text,
+						txtNewPassword.Text);
+
+					Response.Redirect(Response.
+						ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+
+				}
+				catch (IncorrectPasswordException)
+				{
+					lblOldPasswordError.Visible = true;
+				}
+			}
+		}
+
 	}
 }
