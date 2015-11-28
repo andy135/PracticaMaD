@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin: 10px 20px;
-    background-color: #dddde0;    
+    background-color: #dddde0;
 }
 
 /* Links. */
@@ -21,8 +21,8 @@ a:hover {
 
 /* Window. */
 
-#window {    
-    border: #000 1px solid;
+#window {
+	border: #00c853 2px solid;
     background-color: #fff;
     padding: 7px;
     width: 98%;
@@ -35,19 +35,52 @@ a:hover {
     color: #fff;
     text-align: center;
     font-weight: bold;
-    padding: 5px 0 5px 5px;
-    width: 99%;
-    font-weight: bold;    
+    padding: 5px 0 5px 0px;
+    width: 100%;
+    font-weight: bold;
+	font-size: 20px; 
 }
 
-/* Menu. */
+/* Page body. */
 
-#menu {
+#pageBody { 
+    margin-top: 5px;
+    width: 100%;
+}
+
+/* Sidebar. */
+
+#sidebar {
+    float: left;
     background-color: #00e676;
-    color: #fff;
-    text-align: left;
-    padding: 5px 0 5px 5px;
-    width: 99%;
+    width: 20%;
+}
+
+#sidebar a {
+    color : #6200ea;
+}
+
+#sidebar a:hover {
+	color: #651fff;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding-top: 0px;
+    /* Hack for correct indentation (the following three lines). */
+    margin-left: 0;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+#sidebar li 
+{
+    padding: 0 0 3px 5px;
+}
+
+#sidebar li span
+{
+    font-weight: bold;
 }
 
 #menuWelcome {
@@ -64,11 +97,14 @@ a:hover {
 /* Content. */
 
 #content {
-    margin: 10px 0;
+    padding-top: 20px;
+    float: right;    
     text-align: center;
-    width: 100%;
-
+    width: 80%;
 	background-color: #c8e6c9;
+	
+	margin-bottom: 5px;
+	height: 90%;
 }
 
 p.info {
@@ -131,11 +167,11 @@ input, select, textarea  {
 /* Footer. */
 
 #footer {
-    border-top: 1px solid #000;
-    padding-top: 5px;
+    clear: both;
     text-align: center;
-    width: 100%;   
-    padding-top: 5px;
-
+    padding-top: 10px;
+	padding-bottom: 10px;
+    width: 100%;
 	background-color: #00c853;  
+	font-weight: bold;
 }
