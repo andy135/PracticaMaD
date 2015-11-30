@@ -138,4 +138,7 @@
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update Profile</value>
   </data>
+  <data name="lnkFindEvents.Text" xml:space="preserve">
+    <value>Find Events</value>
+  </data>
 </root>

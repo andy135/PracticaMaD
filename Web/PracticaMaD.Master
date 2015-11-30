@@ -25,6 +25,12 @@
 						<asp:Label ID="lblWelcome" runat="server" meta:resourcekey="lblWelcome" />
 					</asp:ContentPlaceHolder>
 				</li>
+
+				<li>
+                    <asp:HyperLink ID="lnkFindEvents" runat="server" 
+                        NavigateUrl="~/Pages/Event/FindEvents.aspx"
+                         meta:resourcekey="lnkFindEvents" />
+				</li>
 				
 				<li>
                     <asp:HyperLink ID="lnkAuthenticate" runat="server" 

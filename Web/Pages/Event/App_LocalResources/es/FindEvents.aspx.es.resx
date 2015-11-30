@@ -117,28 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Bienvenido a la página web de PracticaMad.</value>
+  <data name="btnFindEvents.Text" xml:space="preserve">
+    <value>Buscar</value>
   </data>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hola</value>
+  <data name="lclCategory.Text" xml:space="preserve">
+    <value>Categoría</value>
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; AndIag - Coruña</value>
+  <data name="lclKeywords.Text" xml:space="preserve">
+    <value>Palabras clave</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD</value>
-  </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Autentificación</value>
-  </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Salir</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Actualizar perfil de usuario</value>
-  </data>
-  <data name="lnkFindEvents.Text" xml:space="preserve">
-    <value>Buscar eventos</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Búsqueda de eventos</value>
   </data>
 </root>

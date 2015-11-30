@@ -100,7 +100,14 @@
     <Content Include="Css\styles.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
+    <Content Include="Pages\Event\FindEvents.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Event\App_LocalResources\en-default\FindEvents.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\Event\App_LocalResources\es\FindEvents.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>
@@ -149,6 +156,13 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\Event\FindEvents.aspx.cs">
+      <DependentUpon>FindEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Event\FindEvents.aspx.designer.cs">
+      <DependentUpon>FindEvents.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
