@@ -8,7 +8,7 @@
                 <span class="label">
                     <asp:Localize ID="lclOldPassword" runat="server" meta:resourcekey="lclOldPassword" /></span><span
                         class="entry">
-                        <asp:TextBox ID="txtOldPassword" TextMode="Password" runat="server" Width="100" Columns="16">
+                        <asp:TextBox ID="txtOldPassword" CssClass="textbox" TextMode="Password" runat="server" Width="100" Columns="16">
                         </asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvOldPassword" runat="server" ControlToValidate="txtOldPassword"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
@@ -21,7 +21,7 @@
                 <span class="label">
                     <asp:Localize ID="lclNewPassword" runat="server" meta:resourcekey="lclNewPassword" /></span><span
                         class="entry">
-                        <asp:TextBox TextMode="Password" ID="txtNewPassword" runat="server" Width="100" Columns="16">
+                        <asp:TextBox TextMode="Password" CssClass="textbox" ID="txtNewPassword" runat="server" Width="100" Columns="16">
                         </asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvNewPassword" runat="server" ControlToValidate="txtNewPassword"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
@@ -33,7 +33,7 @@
                 <span class="label">
                     <asp:Localize ID="lclRetypePassword" runat="server" meta:resourcekey="lclRetypePassword" /></span><span
                         class="entry">
-                        <asp:TextBox TextMode="Password" ID="txtRetypePassword" runat="server" Width="100"
+                        <asp:TextBox TextMode="Password" CssClass="textbox" ID="txtRetypePassword" runat="server" Width="100"
                             Columns="16"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvRetypePassword" runat="server" ControlToValidate="txtRetypePassword"
                             Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
@@ -42,7 +42,7 @@
                     </span>
             </div>
             <div class="button">
-                <asp:Button ID="btnChangePassword" runat="server" OnClick="BtnChangePasswordClick"
+                <asp:Button CssClass="btn" ID="btnChangePassword" runat="server" OnClick="BtnChangePasswordClick"
                     meta:resourcekey="btnChangePassword" />
             </div>
         </form>
