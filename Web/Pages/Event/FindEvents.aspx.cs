@@ -18,16 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 			List<Category> cats = GetCategories();
 			FillComboCategories(cats);
 		}
-		/*
-		private void UpdateComboCategory(String selectedCategory)
-		{
-			this.comboCategory.DataSource = Languages.GetLanguages(selectedCategory);
-			this.comboCategory.DataTextField = "text";
-			this.comboCategory.DataValueField = "value";
-			this.comboCategory.DataBind();
-			this.comboCategory.SelectedValue = selectedCategory;
-		}
-		*/
 
 		private void FillComboCategories(List<Category> cats)
 		{

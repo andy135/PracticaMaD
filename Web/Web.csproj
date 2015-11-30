@@ -101,6 +101,7 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Pages\Event\FindEvents.aspx" />
+    <Content Include="Pages\Event\FoundEvents.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Event\App_LocalResources\en-default\FindEvents.aspx.resx">
       <SubType>Designer</SubType>
@@ -162,6 +163,13 @@
     </Compile>
     <Compile Include="Pages\Event\FindEvents.aspx.designer.cs">
       <DependentUpon>FindEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Event\FoundEvents.aspx.cs">
+      <DependentUpon>FoundEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Event\FoundEvents.aspx.designer.cs">
+      <DependentUpon>FoundEvents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
