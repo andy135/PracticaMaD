@@ -52,5 +52,40 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 
 			return eventsinfo;
         }
-    }
+
+		public int GetNumberOfEvents(String[] keywords, long? categoryId)
+		{
+
+			DbSet<Event> events = Context.Set<Event>();
+			int result;
+			if (categoryId == null && keywords != null)
+			{
+				result =
+					(from e in events
+					 where keywords.All(s => e.eventName.Contains(s)) && e.date > DateTime.Now
+					 orderby e.date
+					 select e).Count();
+			}
+			else
+			{
+				if (keywords != null)
+				{
+					result =
+						(from e in events
+						 where keywords.All(s => e.eventName.Contains(s)) && e.categoryId == categoryId && e.date > DateTime.Now
+						 orderby e.date
+						 select e).Count();
+				}
+				else
+				{
+					result =
+						(from e in events
+						 where e.categoryId == categoryId && e.date > DateTime.Now
+						 orderby e.date
+						 select e).Count();
+				}
+			}
+			return result;
+		}
+	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
@@ -42,5 +43,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 		{
 			return FindEvents(keys, null, startIndex, count);
 		}
+
+		public int GetNumberOfEvents(String keys, long? categoryId)
+		{
+			String[] keywords = null;
+			if (keys != null)
+			{
+				keywords = keys.Split(' ');
+			}
+
+			return EventDao.GetNumberOfEvents(keywords, categoryId);
+
+		}
+
 	}
 }

@@ -12,6 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
 		protected void Application_Start(object sender, EventArgs e)
 		{
+			Application.Lock();
 			/*
 			 * We read the UnityConfigurationSection from the default 
 			 * configuration file, Web.config, and then populate the 
@@ -29,6 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 			Application["UnityContainer"] = container;
 
 			LogManager.RecordMessage("Unity Container started", MessageType.Info);
+
+			Application.UnLock();
 		}
 
 		protected void Session_Start(object sender, EventArgs e)

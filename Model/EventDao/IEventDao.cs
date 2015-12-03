@@ -9,5 +9,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 
         List<EventInfo> FindEvents(String[] keywords, long? categoryId, int startIndex, int count);
 
-    }
+		int GetNumberOfEvents(String[] keywords, long? categoryId);
+	}
 }

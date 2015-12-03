@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
 		List<Category> GetCategories();
 
+		int GetNumberOfEvents(String keys, long? categoryId);
 
-    }
+	}
 }
