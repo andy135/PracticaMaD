@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         {
 
 			String[] keywords = null;
-            if (keys != null)
+            if (keys != null && keys != "")
 			{
 				keywords = keys.Split(' ');
 			}
@@ -47,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 		public int GetNumberOfEvents(String keys, long? categoryId)
 		{
 			String[] keywords = null;
-			if (keys != null)
+			if (keys != null && keys != "")
 			{
 				keywords = keys.Split(' ');
 			}

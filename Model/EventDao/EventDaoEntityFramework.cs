@@ -14,33 +14,45 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 			
 			DbSet<Event> events = Context.Set<Event>();
 			List<Event> result;
-            if (categoryId == null && keywords!=null)
-			{
-				result =
-					(from e in events
-					 where keywords.All(s => e.eventName.Contains(s)) && e.date>DateTime.Now
-					 orderby e.date
-					 select e).Skip(startIndex).Take(count).ToList();
-			}
-			else
-			{
-				if (keywords != null)
-				{
-					result =
-						(from e in events
-						 where keywords.All(s => e.eventName.Contains(s)) && e.categoryId == categoryId && e.date > DateTime.Now
-						 orderby e.date
-						 select e).Skip(startIndex).Take(count).ToList();
-				}
-				else
-				{
-					result =
-						(from e in events
-						 where e.categoryId == categoryId && e.date > DateTime.Now
-						 orderby e.date
-						 select e).Skip(startIndex).Take(count).ToList();
-				}
-			}
+            
+            if(categoryId == null)
+            {
+                if (keywords == null)
+                {
+                    result =
+                    (from e in events
+                     where e.date > DateTime.Now
+                     orderby e.date
+                     select e).Skip(startIndex).Take(count).ToList();
+                }
+                else
+                {
+                    result =
+                    (from e in events
+                     where keywords.All(s => e.eventName.Contains(s)) && e.date > DateTime.Now
+                     orderby e.date
+                     select e).Skip(startIndex).Take(count).ToList();
+                }
+            }
+            else
+            {
+                if (keywords == null)
+                {
+                    result =
+                        (from e in events
+                         where e.categoryId == categoryId && e.date > DateTime.Now
+                         orderby e.date
+                         select e).Skip(startIndex).Take(count).ToList();
+                }
+                else
+                {
+                    result =
+                        (from e in events
+                         where keywords.All(s => e.eventName.Contains(s)) && e.categoryId == categoryId && e.date > DateTime.Now
+                         orderby e.date
+                         select e).Skip(startIndex).Take(count).ToList();
+                }
+            }
 
 			List<EventInfo> eventsinfo = new List<EventInfo>();
 			EventInfo ei;
@@ -58,34 +70,45 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 
 			DbSet<Event> events = Context.Set<Event>();
 			int result;
-			if (categoryId == null && keywords != null)
-			{
-				result =
-					(from e in events
-					 where keywords.All(s => e.eventName.Contains(s)) && e.date > DateTime.Now
-					 orderby e.date
-					 select e).Count();
-			}
-			else
-			{
-				if (keywords != null)
-				{
-					result =
-						(from e in events
-						 where keywords.All(s => e.eventName.Contains(s)) && e.categoryId == categoryId && e.date > DateTime.Now
-						 orderby e.date
-						 select e).Count();
-				}
-				else
-				{
-					result =
-						(from e in events
-						 where e.categoryId == categoryId && e.date > DateTime.Now
-						 orderby e.date
-						 select e).Count();
-				}
-			}
-			return result;
+            if (categoryId == null)
+            {
+                if (keywords == null)
+                {
+                    result =
+                    (from e in events
+                     where e.date > DateTime.Now
+                     orderby e.date
+                     select e).Count();
+                }
+                else
+                {
+                    result =
+                    (from e in events
+                     where keywords.All(s => e.eventName.Contains(s)) && e.date > DateTime.Now
+                     orderby e.date
+                     select e).Count();
+                }
+            }
+            else
+            {
+                if (keywords == null)
+                {
+                    result =
+                        (from e in events
+                         where e.categoryId == categoryId && e.date > DateTime.Now
+                         orderby e.date
+                         select e).Count();
+                }
+                else
+                {
+                    result =
+                        (from e in events
+                         where keywords.All(s => e.eventName.Contains(s)) && e.categoryId == categoryId && e.date > DateTime.Now
+                         orderby e.date
+                         select e).Count();
+                }
+            }
+            return result;
 		}
 	}
 }

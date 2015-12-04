@@ -8,7 +8,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
+namespace Es.Udc.DotNet.PracticaMaD.Model.EventService.Tests
 {
 	[TestClass()]
     public class EventServiceTests
@@ -107,11 +107,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             long cat = GetValidCategory("Games");
             GetValidEvent("hola",cat);
 
-			String keys = "";
-
-            Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count == 0);
-
-			keys = "h";
+			String keys = "h";
 
             Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count >0);
 
@@ -127,11 +123,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
             GetValidEvent("hola", cat);
             GetValidEvent("adiohs", cat1);
 
-			String keys = "";
-
-			Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count == 0);
-
-			keys = "h";
+			String keys = "h";
 
 			Assert.IsTrue(eventService.FindEvents(keys, cat, 0, 10).Events.Count == 1);
             Assert.IsTrue(eventService.FindEvents(keys, cat1, 0, 10).Events.Count == 1);
@@ -161,5 +153,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService.Tests
 
 		}
 
-	}
+        [TestMethod()]
+        public void GetNumberOfEventsTest()
+        {
+
+            long cat = GetValidCategory("Games");
+            GetValidEvent("hola", cat);
+
+            String keys = "";
+
+            Assert.AreEqual(eventService.GetNumberOfEvents(keys, cat), 1);
+
+            GetValidEvent("hola1", cat);
+
+            Assert.AreEqual(eventService.GetNumberOfEvents(keys, cat), 2);
+
+        }
+
+    }
 }
