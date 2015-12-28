@@ -9,7 +9,7 @@
     <p>
         <asp:Label ID="lblNoEvents" meta:resourcekey="lblNoEvents" runat="server"></asp:Label></p>
     <asp:GridView ID="gvEvents" runat="server" CssClass="Grid" GridLines="None"
-        AutoGenerateColumns="False" HorizontalAlign="Center">
+        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
         <Columns>
             <asp:BoundField DataField="EventName" HeaderText="<%$ Resources:, name %>" />
             <asp:BoundField DataField="Date" HeaderText="<%$ Resources:, date %>" />

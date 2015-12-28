@@ -112,6 +112,9 @@
     <Content Include="Pages\Event\App_LocalResources\en-default\FoundEvents.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Pages\Event\App_LocalResources\es\FoundEvents.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>

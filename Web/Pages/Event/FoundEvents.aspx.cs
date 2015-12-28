@@ -59,9 +59,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
                 return;
             }
 
-            gvEvents.AllowPaging = true;
-			gvEvents.PageSize = Settings.Default.PracticaMaD_defaultCount;
-
 			gvEvents.DataSource = eventBlock.Events;
 			gvEvents.DataBind();
 
