@@ -15,8 +15,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			List<Category> cats = GetCategories();
-			FillComboCategories(cats);
+			
+            if (!IsPostBack)
+            {
+                List<Category> cats = GetCategories();
+                FillComboCategories(cats);
+            }
+            
 		}
 
 		private void FillComboCategories(List<Category> cats)
@@ -41,8 +46,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 			string keys = this.txtKeys.Text;
 			string catId = this.comboCategory.SelectedValue;
 
-			/* Do action. */
-			String url =
+            /* Do action. */
+            String url =
 				String.Format("./FoundEvents.aspx?keys={0}" +
 					"&categoryId={1}", keys, catId);
 

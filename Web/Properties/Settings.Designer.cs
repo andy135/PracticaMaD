@@ -34,7 +34,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/PracticaMaD")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:53857/")]
         public string PracticaMaD_applicationURL {
             get {
                 return ((string)(this["PracticaMaD_applicationURL"]));

@@ -1,5 +1,5 @@
 DECLARE @Default_DB_Path as VARCHAR(64)
-SET @Default_DB_Path = N'D:\workspace\C#\MaD\DB'
+SET @Default_DB_Path = N'C:\Workspace\C#\MaD\DB'
 
 
 USE [master]
