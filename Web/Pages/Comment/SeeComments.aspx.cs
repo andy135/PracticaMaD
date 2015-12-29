@@ -1,34 +1,25 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
-using Es.Udc.DotNet.PracticaMaD.Model.EventService;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
 using System;
-using System.Data;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
-	public partial class FoundEvents : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
-            lblNoEvents.Visible = false;
+    public partial class SeeComments : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
             int startIndex, count;
 
-            /* Get Keywords */
-            String keys = Convert.ToString(Request.Params.Get("keys"));
-
             /* Get the start date (without time) */
-            long? categoryId;
-            try {
-                categoryId = Convert.ToInt64(Request.Params.Get("categoryId"));
-            }
-            catch (FormatException)
-            {
-                categoryId = null;
-            }
-			 
+            long eventId = Convert.ToInt64(Request.Params.Get("eventId"));
+
+
 
             /* Get Start Index */
             try
@@ -54,28 +45,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             IUnityContainer container =
                 (IUnityContainer)HttpContext.Current.
                     Application["unityContainer"];
-            IEventService eventService =
-                container.Resolve<IEventService>();
+            ICommentService commentService =
+                container.Resolve<ICommentService>();
 
             /* Get Events Info */
-            EventBlock eventBlock =
-                eventService.FindEvents(keys, categoryId, startIndex,count);
+            CommentBlock commentBlock =
+                commentService.GetCommentsOfEvent(eventId, startIndex, count);
 
-            if (eventBlock.Events.Count == 0)
-            {
-                lblNoEvents.Visible = true;
-                return;
-            }
-
-			gvEvents.DataSource = eventBlock.Events;
-			gvEvents.DataBind();
+            gvComments.DataSource = commentBlock.Comments;
+            gvComments.DataBind();
 
             /* "Previous" link */
             if ((startIndex - count) >= 0)
             {
                 String url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "Pages/Event/FoundEvents.aspx" + "?keys=" + keys + "&categoryId="+ categoryId +
+                    "Pages/Comment/SeeComments.aspx" + "?eventId=" + eventId +
                     "&startIndex=" + (startIndex - count) + "&count=" +
                     count;
 
@@ -85,11 +70,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             }
 
             /* "Next" link */
-            if (eventBlock.ExistMoreEvents)
+            if (commentBlock.ExistMoreComments)
             {
                 String url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "Pages/Event/FoundEvents.aspx" + "?keys=" + keys + "&categoryId=" + categoryId +
+                    "Pages/Comment/SeeComments.aspx" + "?eventId=" + eventId +
                     "&startIndex=" + (startIndex + count) + "&count=" +
                     count;
 
@@ -98,6 +83,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
                 this.lnkNext.Visible = true;
             }
         }
-
-	}
+    }
+    
 }

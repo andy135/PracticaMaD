@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
 
-        <br />
+    <br />
     <form runat="server">
     <p>
         <asp:Label ID="lblNoEvents" meta:resourcekey="lblNoEvents" runat="server"></asp:Label></p>
@@ -14,9 +14,22 @@
             <asp:BoundField DataField="EventName" HeaderText="<%$ Resources:, name %>" />
             <asp:BoundField DataField="Date" HeaderText="<%$ Resources:, date %>" />
             <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources:, category %>" />
-			<asp:BoundField DataField="EventId" HeaderText="<%$ Resources:, docomment %>" />
-            <asp:BoundField DataField="NumComments" HeaderText="<%$ Resources:, comments %>" />
-            <asp:BoundField DataField="EventId" HeaderText="<%$ Resources:, recomend %>" />
+            <asp:HyperLinkField 
+                HeaderText="<%$ Resources:, docomment %>"
+                DataTextField="EventId"
+                DataNavigateUrlFields="EventId"
+                Target="_blank" />
+            <asp:HyperLinkField 
+                HeaderText="<%$ Resources:, comments %>"
+                DataTextField="NumComments"
+                DataNavigateUrlFields="EventId"
+                DataNavigateUrlFormatString="~/Pages/Comment/SeeComments.aspx?eventId={0}"
+                Target="_blank" />
+            <asp:HyperLinkField 
+                HeaderText="<%$ Resources:, recomend %>"
+                DataTextField="EventId"
+                DataNavigateUrlFields="EventId"
+                Target="_blank" />
         </Columns>
     </asp:GridView>
     </form>
