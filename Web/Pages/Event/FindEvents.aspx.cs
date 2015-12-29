@@ -30,7 +30,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 			this.comboCategory.DataValueField = "categoryId";
 			this.comboCategory.DataSource = cats;
 			this.comboCategory.DataBind();
-		}
+            this.comboCategory.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            this.comboCategory.SelectedIndex = 0;
+        }
 
 		private List<Category> GetCategories()
 		{

@@ -19,8 +19,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             /* Get Account Identifier */
             String keys = Convert.ToString(Request.Params.Get("keys"));
 
-			/* Get the start date (without time) */
-			long categoryId = Convert.ToInt64(Request.Params.Get("categoryId"));
+            /* Get the start date (without time) */
+            long? categoryId;
+            try {
+                categoryId = Convert.ToInt64(Request.Params.Get("categoryId"));
+            }
+            catch (FormatException)
+            {
+                categoryId = null;
+            }
+			 
 
             /* Get Start Index */
             try
@@ -67,7 +75,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             {
                 String url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "/Pages/Event/FoundEvents.aspx" + "?keys=" + keys + "&categoryId="+ categoryId +
+                    "Pages/Event/FoundEvents.aspx" + "?keys=" + keys + "&categoryId="+ categoryId +
                     "&startIndex=" + (startIndex - count) + "&count=" +
                     count;
 
@@ -81,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             {
                 String url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "/Pages/Event/FoundEvents.aspx" + "?keys=" + keys + "&categoryId=" + categoryId +
+                    "Pages/Event/FoundEvents.aspx" + "?keys=" + keys + "&categoryId=" + categoryId +
                     "&startIndex=" + (startIndex + count) + "&count=" +
                     count;
 
