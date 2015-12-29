@@ -9,9 +9,10 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-	using System.Collections.Generic;
-
-	public partial class Recomendation
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public partial class Recomendation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Recomendation()
@@ -27,5 +28,46 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual Event Event { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserGroup> UserGroup { get; set; }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int multiplier = 31;
+                int hash = GetType().GetHashCode();
+
+                hash = hash * multiplier + recomendationId.GetHashCode();
+                hash = hash * multiplier + (description == null ? 0 : description.GetHashCode());
+                hash = hash * multiplier + (eventId == null ? 0 : eventId.GetHashCode());
+
+                return hash;
+            }
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            Recomendation target = (Recomendation)obj;
+
+            return true
+               && (this.recomendationId == target.recomendationId)
+               && (this.description == target.description)
+               && (this.eventId == target.eventId);
+
+        }
+
+        public override String ToString()
+        {
+            StringBuilder strUserProfile = new StringBuilder();
+
+            strUserProfile.Append("[ ");
+            strUserProfile.Append(" recomendationId = " + recomendationId + " | ");
+            strUserProfile.Append(" description = " + description + " | ");
+            strUserProfile.Append(" eventId = " + eventId + " | ");
+            strUserProfile.Append("] ");
+
+            return strUserProfile.ToString();
+        }
+
     }
 }

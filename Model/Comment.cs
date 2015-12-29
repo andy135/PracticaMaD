@@ -9,9 +9,10 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-	using System.Collections.Generic;
-
-	public partial class Comment
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public partial class Comment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Comment()
@@ -29,5 +30,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tag { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Comment target = (Comment)obj;
+
+            return true
+               && (this.commentId == target.commentId)
+               && (this.usrId == target.usrId)
+               && (this.eventId == target.eventId)
+               && (this.texto == target.texto)
+               && (this.date.Equals(target.date));
+
+        }
+
+        public override String ToString()
+        {
+            StringBuilder strUserProfile = new StringBuilder();
+
+            strUserProfile.Append("[ ");
+            strUserProfile.Append(" commentId = " + commentId + " | ");
+            strUserProfile.Append(" usrId = " + usrId + " | ");
+            strUserProfile.Append(" eventId = " + eventId + " | ");
+            strUserProfile.Append(" texto = " + texto + " | ");
+            strUserProfile.Append("] ");
+
+            return strUserProfile.ToString();
+        }
+
     }
 }

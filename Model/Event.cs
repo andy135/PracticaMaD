@@ -9,9 +9,10 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-	using System.Collections.Generic;
-
-	public partial class Event
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Event()
@@ -31,5 +32,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recomendation> Recomendation { get; set; }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int multiplier = 31;
+                int hash = GetType().GetHashCode();
+
+                hash = hash * multiplier + eventId.GetHashCode();
+                hash = hash * multiplier + (eventName == null ? 0 : eventName.GetHashCode());
+                hash = hash * multiplier + (review == null ? 0 : review.GetHashCode());
+                hash = hash * multiplier + categoryId.GetHashCode();
+
+                return hash;
+            }
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            Event target = (Event)obj;
+
+            return true
+               && (this.eventId == target.eventId)
+               && (this.eventName == target.eventName)
+               && (this.review == target.review)
+               && (this.categoryId == target.categoryId);
+
+        }
+
+        public override String ToString()
+        {
+            StringBuilder strUserProfile = new StringBuilder();
+
+            strUserProfile.Append("[ ");
+            strUserProfile.Append(" eventId = " + eventId + " | ");
+            strUserProfile.Append(" eventName = " + eventName + " | ");
+            strUserProfile.Append(" review = " + review + " | ");
+            strUserProfile.Append(" categoryId = " + categoryId + " | ");
+            strUserProfile.Append("] ");
+
+            return strUserProfile.ToString();
+        }
+
     }
 }

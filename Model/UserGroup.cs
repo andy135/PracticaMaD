@@ -9,9 +9,10 @@
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
-	using System.Collections.Generic;
-
-	public partial class UserGroup
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public partial class UserGroup
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserGroup()
@@ -28,5 +29,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<UserProfile> UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recomendation> Recomendation { get; set; }
+
+
+        public override bool Equals(object obj)
+        {
+            UserGroup target = (UserGroup)obj;
+
+            return true
+               && (this.groupId == target.groupId)
+               && (this.groupName == target.groupName)
+               && (this.description == target.description);
+
+        }
+
+        public override String ToString()
+        {
+            StringBuilder strUserProfile = new StringBuilder();
+
+            strUserProfile.Append("[ ");
+            strUserProfile.Append(" groupId = " + groupId + " | ");
+            strUserProfile.Append(" groupName = " + groupName + " | ");
+            strUserProfile.Append(" description = " + description + " | ");
+            strUserProfile.Append("] ");
+
+            return strUserProfile.ToString();
+        }
+
+
     }
 }
