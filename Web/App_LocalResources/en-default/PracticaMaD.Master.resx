@@ -141,4 +141,7 @@
   <data name="lnkFindEvents.Text" xml:space="preserve">
     <value>Find Events</value>
   </data>
+  <data name="lnkSeeGroups.Text" xml:space="preserve">
+    <value>See Groups</value>
+  </data>
 </root>

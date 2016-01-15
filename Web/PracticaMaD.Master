@@ -26,6 +26,12 @@
 					</asp:ContentPlaceHolder>
 				</li>
 
+                <li>
+                    <asp:HyperLink ID="lnkSeeGroups" runat="server" 
+                        NavigateUrl="~/Pages/Group/SeeGroups.aspx"
+                         meta:resourcekey="lnkSeeGroups" />
+				</li>
+
 				<li>
                     <asp:HyperLink ID="lnkFindEvents" runat="server" 
                         NavigateUrl="~/Pages/Event/FindEvents.aspx"

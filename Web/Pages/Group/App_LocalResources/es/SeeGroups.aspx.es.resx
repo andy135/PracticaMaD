@@ -117,31 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Bienvenido a la página web de PracticaMad.</value>
+  <data name="lblNoGroups.Text" xml:space="preserve">
+    <value>No se han encontrado resultados</value>
   </data>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hola</value>
+  <data name="members" xml:space="preserve">
+    <value>Miembros</value>
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; AndIag - Coruña</value>
+  <data name="name" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD</value>
+  <data name="recomendations" xml:space="preserve">
+    <value>Recomendaciones</value>
   </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Autentificación</value>
-  </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Salir</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Actualizar perfil de usuario</value>
-  </data>
-  <data name="lnkFindEvents.Text" xml:space="preserve">
-    <value>Buscar eventos</value>
-  </data>
-  <data name="lnkSeeGroups.Text" xml:space="preserve">
-    <value>Ver Grupos</value>
+  <data name="sign" xml:space="preserve">
+    <value>Alta Grupo</value>
   </data>
 </root>
