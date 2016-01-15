@@ -45,7 +45,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			CommentInfo ci;
 			foreach (Comment c in result)
 			{
-				ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, c.UserProfile.loginName);
+                if (c.UserProfile == null)
+                {
+                    ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, "Null");
+                }
+                else {
+                    ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, c.UserProfile.loginName);
+                }
 				commentsinfo.Add(ci);
 			}
 

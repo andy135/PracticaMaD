@@ -39,12 +39,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Remove(commentId);
         }
 
-        public Comment DoComment(Comment comment)
-        {
-            CommentDao.Create(comment);
-            return comment;
-        }
-
 		public long DoComment(long userId, long eventId, String text)
 		{
 			return DoCommentWithTags(userId,eventId,text, null);
@@ -56,6 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			comment.texto = text;
 			comment.eventId = eventId;
 			comment.usrId = userId;
+            comment.date = DateTime.Now;
 			CommentDao.Create(comment);
 			if (tags != null) { 
 				foreach(String t in tags)
