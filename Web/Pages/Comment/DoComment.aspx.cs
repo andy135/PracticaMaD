@@ -43,6 +43,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             ICommentService commentService = container.Resolve<ICommentService>();
 
             commentService.DoComment(userId,eventId,comment);
+
+            /* Do action. */
+            String url =
+                Settings.Default.PracticaMaD_applicationURL +
+                                "Pages/MainPage.aspx";
+
+            Response.Redirect(Response.ApplyAppPathModifier(url));
+
         }
     }
 }
