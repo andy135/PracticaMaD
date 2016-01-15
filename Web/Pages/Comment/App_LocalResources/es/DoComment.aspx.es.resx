@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnFindEvents.Text" xml:space="preserve">
-    <value>Buscar</value>
-  </data>
-  <data name="lclCategory.Text" xml:space="preserve">
-    <value>Categoría</value>
-  </data>
-  <data name="lclKeywords.Text" xml:space="preserve">
-    <value>Palabras clave</value>
+  <data name="lclComment.Text" xml:space="preserve">
+    <value>Comentario</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Búsqueda de eventos</value>
+    <value>PracticaMaD - Comentar</value>
+  </data>
+  <data name="btnDoComment.Text" xml:space="preserve">
+    <value>Comentar</value>
   </data>
 </root>

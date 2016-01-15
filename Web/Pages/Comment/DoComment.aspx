@@ -9,7 +9,7 @@
                     <asp:Localize ID="lclComment" runat="server" meta:resourcekey="lclComment" />
                 </span>
                 <span class="entry">
-                        <asp:TextBox CssClass="textbox" TextMode="multiline" Columns="16" Rows="5" ID="txtKeys" runat="server" Width="200px" 
+                        <asp:TextBox CssClass="textbox" TextMode="multiline" Columns="16" Rows="5" ID="txtComment" runat="server" Width="200px" 
                     meta:resourcekey="txtCommentResource"></asp:TextBox>
             </div>
 

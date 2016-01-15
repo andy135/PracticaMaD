@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             /* Get Keywords */
             String keys = Convert.ToString(Request.Params.Get("keys"));
 
-            /* Get the start date (without time) */
+            /* Get the category (without time) */
             long? categoryId;
             try {
                 categoryId = Convert.ToInt64(Request.Params.Get("categoryId"));
