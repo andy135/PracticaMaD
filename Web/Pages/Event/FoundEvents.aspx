@@ -18,6 +18,7 @@
                 HeaderText="<%$ Resources:, docomment %>"
                 DataTextField="EventId"
                 DataNavigateUrlFields="EventId"
+                DataNavigateUrlFormatString="~/Pages/Comment/DoComment.aspx?eventId={0}"
                 Target="_blank" />
             <asp:HyperLinkField 
                 HeaderText="<%$ Resources:, comments %>"
