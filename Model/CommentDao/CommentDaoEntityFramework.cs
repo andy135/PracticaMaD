@@ -58,15 +58,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			return commentsinfo;
 		}
 
-        long GetNumOfComments()
-        {
-            DbSet<Comment> comments = Context.Set<Comment>();
-
-            long result = (from c in comments select c).Count();
-
-            return result;
-        }
-
         public void AddTagToComment(long commentId,Tag tag)
 		{
 			Comment c = Find(commentId);
@@ -86,5 +77,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			}
 			Update(c);
 		}
-	}
+
+        public long GetNumOfComments()
+        {
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            long result = (from c in comments select c).Count();
+
+            return result;
+        }
+    }
 }

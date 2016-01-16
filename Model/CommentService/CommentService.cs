@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			return comment.commentId;
 		}
 
-        long GetNumOfComments()
+        public long GetNumOfComments()
         {
             return CommentDao.GetNumOfComments();
         }
