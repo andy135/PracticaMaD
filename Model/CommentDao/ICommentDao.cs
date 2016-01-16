@@ -11,6 +11,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
 		List<CommentInfo> SearchCommentsByTag(long tagId, int startIndex, int count);
 
+        long GetNumOfComments();
+
 		void AddTagToComment(long commentId, Tag tag);
 
 		void RemoveTagsFromComment(long commentId);

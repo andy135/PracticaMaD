@@ -63,7 +63,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			return comment.commentId;
 		}
 
-		public List<Tag> GetAllTags()
+        long GetNumOfComments()
+        {
+            return CommentDao.GetNumOfComments();
+        }
+
+        public List<Tag> GetAllTags()
 		{
 			return TagDao.GetAllTags();
 		}

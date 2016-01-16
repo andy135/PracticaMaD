@@ -58,7 +58,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			return commentsinfo;
 		}
 
-		public void AddTagToComment(long commentId,Tag tag)
+        long GetNumOfComments()
+        {
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            long result = (from c in comments select c).Count();
+
+            return result;
+        }
+
+        public void AddTagToComment(long commentId,Tag tag)
 		{
 			Comment c = Find(commentId);
 			if (c != null)

@@ -85,7 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                     Response.ApplyAppPathModifier(url);
                 this.lnkNext.Visible = true;
             }
-
+  
         }
     }
 }

@@ -14,6 +14,7 @@
             <asp:BoundField DataField="NumMembers" HeaderText="<%$ Resources:, members %>" />
             <asp:BoundField DataField="NumRecomendations" HeaderText="<%$ Resources:, recomendations %>" />
             <asp:HyperLinkField 
+                ID="darAlta"
                 HeaderText="<%$ Resources:, sign %>"
                 DataTextField="GroupId"
                 DataNavigateUrlFields="GroupId"

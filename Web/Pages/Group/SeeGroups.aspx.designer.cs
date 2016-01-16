@@ -31,6 +31,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group {
         protected global::System.Web.UI.WebControls.GridView gvGroups;
         
         /// <summary>
+        /// darAlta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLinkField darAlta;
+        
+        /// <summary>
         /// lnkPrevious control.
         /// </summary>
         /// <remarks>
