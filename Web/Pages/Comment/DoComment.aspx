@@ -12,6 +12,14 @@
                         <asp:TextBox CssClass="textbox" TextMode="multiline" Columns="16" Rows="5" ID="txtComment" runat="server" Width="200px" 
                     meta:resourcekey="txtCommentResource"></asp:TextBox>
             </div>
+            <div class="field">
+                <span class="label">
+                    <asp:Localize ID="lclTags" runat="server" meta:resourcekey="lclTags" />
+                </span>
+                <span class="entry">
+                        <asp:TextBox CssClass="textbox" TextMode="multiline" Columns="16" Rows="5" ID="txtTags" runat="server" Width="200px" 
+                    meta:resourcekey="txtTagResource"></asp:TextBox>
+            </div>
 
             <div class="button">
                 <asp:Button CssClass="btn" ID="btnDoComment" runat="server" OnClick="BtnDoCommentClick" meta:resourcekey="btnDoComment" />

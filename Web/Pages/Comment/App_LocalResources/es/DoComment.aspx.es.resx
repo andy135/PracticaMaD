@@ -126,4 +126,7 @@
   <data name="btnDoComment.Text" xml:space="preserve">
     <value>Comentar</value>
   </data>
+  <data name="lclTags.Text" xml:space="preserve">
+    <value>Etiquetas</value>
+  </data>
 </root>

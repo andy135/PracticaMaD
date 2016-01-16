@@ -52,6 +52,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             CommentBlock commentBlock =
                 commentService.GetCommentsByTag(tagId, startIndex, count);
 
+            if (commentBlock.Comments.Count == 0)
+            {
+                lblNoComments.Visible = true;
+                return;
+            }
+
             gvComments.DataSource = commentBlock.Comments;
             gvComments.DataBind();
 

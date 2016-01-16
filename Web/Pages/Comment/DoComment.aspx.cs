@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+﻿using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
@@ -38,11 +39,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnDoCommentClick(object sender, EventArgs e)
         {
             string comment = this.txtComment.Text;
+            string tags = this.txtTags.Text;
 
             IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
             ICommentService commentService = container.Resolve<ICommentService>();
 
-            commentService.DoComment(userId,eventId,comment);
+            commentService.DoCommentWithTags(userId,eventId,comment, tags.Split(' ').ToList());
 
             /* Do action. */
             String url =

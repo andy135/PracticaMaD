@@ -126,4 +126,7 @@
   <data name="text" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="lblNoComments.Text" xml:space="preserve">
+    <value>There aren't comments</value>
+  </data>
 </root>

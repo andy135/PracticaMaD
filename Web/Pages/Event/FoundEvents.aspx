@@ -6,8 +6,7 @@
 
     <br />
     <form runat="server">
-    <p>
-        <asp:Label ID="lblNoEvents" meta:resourcekey="lblNoEvents" runat="server"></asp:Label></p>
+    <p><asp:Label ID="lblNoEvents" meta:resourcekey="lblNoEvents" runat="server"></asp:Label></p>
     <asp:GridView ID="gvEvents" runat="server" CssClass="Grid" GridLines="None"
         AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
         <Columns>

@@ -4,6 +4,7 @@
     
     <br />
     <form runat="server">
+    <p><asp:Label ID="lblNoComments" meta:resourcekey="lblNoComments" runat="server"></asp:Label></p>
     <asp:GridView ID="gvComments" runat="server" CssClass="Grid" GridLines="None"
         AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
         <Columns>
