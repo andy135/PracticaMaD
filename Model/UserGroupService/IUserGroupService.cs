@@ -55,5 +55,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
         /// <exception cref="InstanceNotFoundException"
         [Transactional]
         void UnsubscribeUserToGroup(long userId, long groupId);
+
+        [Transactional]
+        bool isMember(long? userId, long groupId);
     }
 }

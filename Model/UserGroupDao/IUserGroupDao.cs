@@ -15,6 +15,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
         void UnsubscribeUserInGroup(long userId, long groupId);
 
         List<GroupInfo> GetGroups(int startIndex, int count);
-   
+        bool isMember(long? userId, long groupId);
     }
 }

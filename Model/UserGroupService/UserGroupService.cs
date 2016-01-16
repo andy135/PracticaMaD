@@ -53,6 +53,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
             return new GroupBlock(groups, existMoreGroups);
         }
 
+        public bool isMember(long? userId, long groupId)
+        {
+            return UserGroupDao.isMember(userId, groupId);
+        }
+
         public void SubscribeUserToGroup(long userId, long groupId)
         {
             UserGroupDao.SubscribeUserInGroup(userId, groupId);

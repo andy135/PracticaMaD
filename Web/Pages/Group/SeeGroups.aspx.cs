@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
 using System;
@@ -12,6 +13,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
 {
     public partial class SeeGroups : System.Web.UI.Page
     {
+        IUserGroupService groupService;
+        long? userId = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -42,12 +46,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             IUnityContainer container =
                 (IUnityContainer)HttpContext.Current.
                     Application["unityContainer"];
-            IUserGroupService groupService =
+            groupService =
                 container.Resolve<IUserGroupService>();
 
             /* Get Events Info */
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                userId = SessionManager.GetUserSession(Context).UserProfileId;
+            }
+
             GroupBlock groupBlock =
-                groupService.GetAllGroups(startIndex, count);
+            groupService.GetAllGroups(startIndex, count);
 
             if (groupBlock.Groups.Count == 0)
             {
@@ -87,5 +96,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             }
   
         }
+
+        protected void GridView_DataBound(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvGroups.Rows)
+            {
+                long groupId = Convert.ToInt64(row.Cells[0].Text);
+                if (row.RowType == DataControlRowType.DataRow && userId!=null && !groupService.isMember(userId,groupId))
+                {
+                    LinkButton lb = new LinkButton();
+                    lb.Text = "Darse de alta";
+                    lb.CommandName = "darseAlta";
+                    lb.CommandArgument = row.Cells[0].Text;
+                    lb.Command += LinkButton_Command;
+                    row.Cells[4].Controls.Add(lb);
+                }
+            }
+        }
+
+        protected void LinkButton_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "darseAlta")
+            {
+                LinkButton lb = (LinkButton)sender;
+                if (userId != null)
+                {
+                    long id = (long) userId;
+                    groupService.SubscribeUserToGroup(id, Convert.ToInt64(lb.CommandArgument));
+                    lb.Text = "";
+                }
+                else
+                {
+                    lb.Text = "Error";
+                }
+            }
+        }
+
     }
 }
