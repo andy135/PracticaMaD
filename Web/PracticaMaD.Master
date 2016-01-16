@@ -14,6 +14,9 @@
         <div id="pageTitle">
             <asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" />
         </div>
+        <div id="tagCloud">
+            <asp:PlaceHolder ID="TagsPlaceHolder" runat="server"/>
+        </div>
 		<!-- Main Content. -->
 		<div id="pageBody">
         <!-- Menu. -->
@@ -62,11 +65,11 @@
         <!-- Body content. -->
         <div id="content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
-
         </div>
 
 		<!-- Footer. -->
         <div id="footer">
+            
             <asp:Localize ID="lclFooter" runat="server" meta:resourcekey="lclFooter" />
         </div>
 
