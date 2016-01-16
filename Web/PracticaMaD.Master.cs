@@ -23,6 +23,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 					lnkUpdate.Visible = false;
 				if (lnkLogout != null)
 					lnkLogout.Visible = false;
+                if (lnkSeeMyGroups != null)
+                    lnkSeeMyGroups.Visible = false;
 
 			}
 			else

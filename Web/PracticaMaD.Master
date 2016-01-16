@@ -35,6 +35,12 @@
                          meta:resourcekey="lnkSeeGroups" />
 				</li>
 
+                <li>
+                    <asp:HyperLink ID="lnkSeeMyGroups" runat="server" 
+                        NavigateUrl="~/Pages/Group/SeeMyGroups.aspx"
+                         meta:resourcekey="lnkSeeMyGroups" />
+				</li>
+
 				<li>
                     <asp:HyperLink ID="lnkFindEvents" runat="server" 
                         NavigateUrl="~/Pages/Event/FindEvents.aspx"
