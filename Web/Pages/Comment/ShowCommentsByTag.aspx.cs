@@ -10,14 +10,14 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
-    public partial class SeeComments : System.Web.UI.Page
+    public partial class ShowCommentsByTag : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             int startIndex, count;
 
             /* Get the start date (without time) */
-            long eventId = Convert.ToInt64(Request.Params.Get("eventId"));
+            long tagId = Convert.ToInt64(Request.Params.Get("tagId"));
 
 
 
@@ -48,9 +48,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             ICommentService commentService =
                 container.Resolve<ICommentService>();
 
-            /* Get Comments Info */
+            /* Get CommentsByTags Info */
             CommentBlock commentBlock =
-                commentService.GetCommentsOfEvent(eventId, startIndex, count);
+                commentService.GetCommentsByTag(tagId, startIndex, count);
 
             gvComments.DataSource = commentBlock.Comments;
             gvComments.DataBind();
@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             {
                 String url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "Pages/Comment/SeeComments.aspx" + "?eventId=" + eventId +
+                    "Pages/Comment/ShowCommentsByTag.aspx" + "?tagId=" + tagId +
                     "&startIndex=" + (startIndex - count) + "&count=" +
                     count;
 
@@ -74,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             {
                 String url =
                     Settings.Default.PracticaMaD_applicationURL +
-                    "Pages/Comment/SeeComments.aspx" + "?eventId=" + eventId +
+                    "Pages/Comment/ShowCommentsByTag.aspx" + "?tagId=" + tagId +
                     "&startIndex=" + (startIndex + count) + "&count=" +
                     count;
 
@@ -84,5 +84,4 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             }
         }
     }
-    
 }

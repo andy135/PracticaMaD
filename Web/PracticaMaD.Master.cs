@@ -46,16 +46,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
             List<Tag> tags = commentService.GetTopNTags(10);
 
-            tags = ShuffleList(tags);       
+            tags = ShuffleList(tags);
+
+            long totalComments = commentService.GetNumOfComments();
 
             foreach (Tag t in tags)
             {
                 string tagInUrl = Server.UrlEncode(t.tagName);
                 HyperLink link = new HyperLink();
                 link.Text = t.tagName;
-                link.NavigateUrl = String.Format("~/ShowCommentsByTag.aspx?tag={0}", t.tagId);
-                long tagCount = t.usedNum;
-                link.CssClass = GetCssClass(tagCount, 2);
+                link.NavigateUrl = String.Format("~/Pages/Comment/ShowCommentsByTag.aspx?tag={0}", t.tagId);
+                link.CssClass = GetCssClass(t.usedNum, totalComments);
                 TagsPlaceHolder.Controls.Add(link);
                 TagsPlaceHolder.Controls.Add(new LiteralControl("  "));
             }
