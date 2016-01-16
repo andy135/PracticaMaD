@@ -8,17 +8,16 @@
     <p>
         <asp:Label ID="lblNoGroups" meta:resourcekey="lblNoGroups" runat="server"></asp:Label></p>
     <asp:GridView ID="gvGroups" runat="server" CssClass="Grid" GridLines="None"
-        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
+        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" OnDataBound="GridView_DataBound">
         <Columns>
+            <asp:BoundField DataField="GroupId" HeaderText="<%$ Resources:, groupid %>" />
             <asp:BoundField DataField="Name" HeaderText="<%$ Resources:, name %>" />
             <asp:BoundField DataField="NumMembers" HeaderText="<%$ Resources:, members %>" />
             <asp:BoundField DataField="NumRecomendations" HeaderText="<%$ Resources:, recomendations %>" />
-            <asp:HyperLinkField 
-                ID="darAlta"
-                HeaderText="<%$ Resources:, sign %>"
-                DataTextField="GroupId"
-                DataNavigateUrlFields="GroupId"
-                Target="_blank" />
+            <asp:TemplateField> 
+                   <ItemTemplate> 
+                   </ItemTemplate> 
+               </asp:TemplateField> 
         </Columns>
     </asp:GridView>
     </form>

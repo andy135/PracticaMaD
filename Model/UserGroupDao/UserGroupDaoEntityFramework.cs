@@ -66,6 +66,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
 			return groupsinfo;
         }
 
+        public bool isMember(long? userId, long groupId)
+        {
+            if (userId != null)
+            {
+                DbSet<UserGroup> groups = Context.Set<UserGroup>();
+                DbSet<UserProfile> users = Context.Set<UserProfile>();
+
+                UserProfile user = (from u in users
+                                        where u.usrId == userId
+                                        select u).Single();
+
+                UserGroup group = (from g in groups
+                     where g.groupId == groupId
+                     select g).Single();
+
+                if (user == null || group == null) return false;
+
+                return group.UserProfile.Contains(user);
+
+            }
+            return false;
+        }
+
         public void SubscribeUserInGroup(long userId, long groupId)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
