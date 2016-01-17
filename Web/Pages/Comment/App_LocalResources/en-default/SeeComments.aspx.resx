@@ -126,4 +126,10 @@
   <data name="text" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="modify.Text" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="remove.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
 </root>

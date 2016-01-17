@@ -5,11 +5,19 @@
     <br />
     <form runat="server">
     <asp:GridView ID="gvComments" runat="server" CssClass="Grid" GridLines="None"
-        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
+        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" OnRowDataBound="GridView_DataBound">
         <Columns>
             <asp:BoundField DataField="userName" HeaderText="<%$ Resources:, userName %>" />
             <asp:BoundField DataField="date" HeaderText="<%$ Resources:, date %>" />
             <asp:BoundField DataField="texto" HeaderText="<%$ Resources:, text %>" />
+            <asp:TemplateField> 
+                   <ItemTemplate> 
+                   </ItemTemplate> 
+               </asp:TemplateField> 
+            <asp:TemplateField> 
+                   <ItemTemplate> 
+                   </ItemTemplate> 
+               </asp:TemplateField> 
         </Columns>
     </asp:GridView>
     </form>
