@@ -105,7 +105,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                 if (row.RowType == DataControlRowType.DataRow && userId!=null && !groupService.isMember(userId,groupId))
                 {
                     LinkButton lb = new LinkButton();
-                    lb.Text = "Darse de alta";
+                    lb.Text = GetLocalResourceObject("signin.Text").ToString();
                     lb.CommandName = "darseAlta";
                     lb.CommandArgument = row.Cells[0].Text;
                     lb.Command += LinkButton_Command;

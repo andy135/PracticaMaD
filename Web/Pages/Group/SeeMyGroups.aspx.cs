@@ -105,7 +105,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                 if (row.RowType == DataControlRowType.DataRow)
                 {
                     LinkButton lb = new LinkButton();
-                    lb.Text = "Darse de baja";
+                    lb.Text = GetLocalResourceObject("signout.Text").ToString();
                     lb.CommandName = "darseBaja";
                     lb.CommandArgument = groupId.ToString();
                     lb.Command += LinkButton_Command;

@@ -1,4 +1,6 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
 using System;
@@ -12,13 +14,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
     public partial class SeeComments : System.Web.UI.Page
     {
+        ICommentService commentService;
+        int startIndex, count;
+        long eventId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            int startIndex, count;
 
             /* Get the start date (without time) */
-            long eventId = Convert.ToInt64(Request.Params.Get("eventId"));
-
+            eventId = Convert.ToInt64(Request.Params.Get("eventId"));
 
 
             /* Get Start Index */
@@ -45,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             IUnityContainer container =
                 (IUnityContainer)HttpContext.Current.
                     Application["unityContainer"];
-            ICommentService commentService =
+            commentService =
                 container.Resolve<ICommentService>();
 
             /* Get Comments Info */
@@ -81,6 +84,51 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 this.lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
                 this.lnkNext.Visible = true;
+            }
+        }
+        protected void GridView_DataBound(object sender, GridViewRowEventArgs e)
+        {            
+            if (e.Row.RowType == DataControlRowType.DataRow && SessionManager.IsUserAuthenticated(Context))
+            {
+                long userId = SessionManager.GetUserSession(Context).UserProfileId;                
+                CommentInfo c = (CommentInfo)e.Row.DataItem;
+                if (c.usrId == userId)
+                {
+                    LinkButton lb = new LinkButton();
+                    lb.Text = GetLocalResourceObject("modify.Text").ToString();
+                    lb.CommandName = "modificar";
+                    lb.Command += LinkButton_Command;
+                    e.Row.Cells[3].Controls.Add(lb);
+
+                    lb = new LinkButton();
+                    lb.Text = GetLocalResourceObject("remove.Text").ToString();
+                    lb.CommandName = "eliminar";
+                    lb.CommandArgument = c.commentId.ToString();
+                    lb.Command += LinkButton_Command;
+                    e.Row.Cells[4].Controls.Add(lb);
+                }
+            }            
+        }
+
+        protected void LinkButton_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "eliminar" || e.CommandName == "modificar")
+            {
+                LinkButton lb = (LinkButton)sender;
+                if(e.CommandName == "eliminar")
+                {
+                    commentService.DeleteComment(Convert.ToInt64(e.CommandArgument));
+
+                    CommentBlock commentBlock =
+                        commentService.GetCommentsOfEvent(eventId, startIndex, count);
+
+                    gvComments.DataSource = commentBlock.Comments;
+                    gvComments.DataBind();
+                }
+                if (e.CommandName == "modificar")
+                {
+
+                }
             }
         }
     }
