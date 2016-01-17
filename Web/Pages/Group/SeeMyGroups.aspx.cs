@@ -15,12 +15,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
     {
         IUserGroupService groupService;
         long userId;
+        int startIndex, count;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             lblNoGroups.Visible = false;
-            int startIndex, count;
 
             /* Get Start Index */
             try
@@ -121,7 +121,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                 LinkButton lb = (LinkButton)sender;
                 long groupId = Convert.ToInt64(lb.CommandArgument);
                 groupService.UnsubscribeUserToGroup(userId, groupId);
-                lb.Text = "";
+
+                GroupBlock groupBlock =
+                    groupService.GetGroupsByUser(userId, startIndex, count);
+
+                if (groupBlock.Groups.Count == 0)
+                {
+                    lblNoGroups.Visible = true;
+                    return;
+                }
+
+                gvMyGroups.DataSource = groupBlock.Groups;
+                gvMyGroups.DataBind();
             }
         }
     }

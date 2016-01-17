@@ -138,4 +138,7 @@
   <data name="lblNoEvents.Text" xml:space="preserve">
     <value>No se han encontrado resultados</value>
   </data>
+  <data name="comments.Text" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
 </root>

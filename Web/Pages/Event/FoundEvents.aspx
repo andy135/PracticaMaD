@@ -8,7 +8,7 @@
     <form runat="server">
     <p><asp:Label ID="lblNoEvents" meta:resourcekey="lblNoEvents" runat="server"></asp:Label></p>
     <asp:GridView ID="gvEvents" runat="server" CssClass="Grid" GridLines="None"
-        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
+        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" OnRowDataBound="GridView_DataBound">
         <Columns>
             <asp:BoundField DataField="EventName" HeaderText="<%$ Resources:, name %>" />
             <asp:BoundField DataField="Date" HeaderText="<%$ Resources:, date %>" />
@@ -19,12 +19,10 @@
                 DataNavigateUrlFields="EventId"
                 DataNavigateUrlFormatString="~/Pages/Comment/DoComment.aspx?eventId={0}"
                 Target="_blank" />
-            <asp:HyperLinkField 
-                HeaderText="<%$ Resources:, comments %>"
-                DataTextField="NumComments"
-                DataNavigateUrlFields="EventId"
-                DataNavigateUrlFormatString="~/Pages/Comment/SeeComments.aspx?eventId={0}"
-                Target="_blank" />
+            <asp:TemplateField> 
+                   <ItemTemplate> 
+                   </ItemTemplate> 
+               </asp:TemplateField> 
             <asp:HyperLinkField 
                 HeaderText="<%$ Resources:, recomend %>"
                 DataTextField="EventId"
