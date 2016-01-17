@@ -44,7 +44,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
             ICommentService commentService = container.Resolve<ICommentService>();
 
-            commentService.DoCommentWithTags(userId,eventId,comment, tags.Split(' ').ToList());
+            //Parsea los tags y elimina los espacios sobrantes
+            List<String> t = tags.Split('#').ToList();
+            foreach(String s in t)
+            {
+                s.Trim();
+            }
+
+            commentService.DoCommentWithTags(userId,eventId,comment, t);
 
             /* Do action. */
             String url =

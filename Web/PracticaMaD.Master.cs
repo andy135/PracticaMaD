@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         private string GetCssClass(long tagCount, long commentCount)
         {
-            long result = tagCount;// (tagCount * 100) / commentCount;
+            long result = (tagCount * 100) / commentCount;
             if (result <= 20)
                 return "TagSize1";
             if (result <= 40)

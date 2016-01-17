@@ -146,6 +146,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Pages\Recomendation\Recomend.aspx" />
+    <Content Include="Pages\Recomendation\ShowRecomendations.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\Logout.aspx" />
@@ -250,6 +252,20 @@
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Recomendation\Recomend.aspx.cs">
+      <DependentUpon>Recomend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Recomendation\Recomend.aspx.designer.cs">
+      <DependentUpon>Recomend.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Recomendation\ShowRecomendations.aspx.cs">
+      <DependentUpon>ShowRecomendations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Recomendation\ShowRecomendations.aspx.designer.cs">
+      <DependentUpon>ShowRecomendations.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\Authentication.aspx.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -301,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Error\" />
+    <Folder Include="Pages\Recomendation\App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\en-default\PracticaMaD.Master.resx">
