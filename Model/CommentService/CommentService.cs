@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			{
 				Tag t = new Tag();
 				t.tagName = tag;
-				t.usedNum = 0;
+				t.usedNum = 1;
 				TagDao.Create(t);
 				return t;
 			}

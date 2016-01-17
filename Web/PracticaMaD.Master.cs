@@ -57,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 string tagInUrl = Server.UrlEncode(t.tagName);
                 HyperLink link = new HyperLink();
                 link.Text = t.tagName;
-                link.NavigateUrl = String.Format("~/Pages/Comment/ShowCommentsByTag.aspx?tag={0}", t.tagId);
+                link.NavigateUrl = String.Format("~/Pages/Comment/ShowCommentsByTag.aspx?tagId={0}", t.tagId);
                 link.CssClass = GetCssClass(t.usedNum, totalComments);
                 TagsPlaceHolder.Controls.Add(link);
                 TagsPlaceHolder.Controls.Add(new LiteralControl("  "));

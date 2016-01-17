@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			List<Comment> result =
 				(from g in comments
 				 from t in g.Tag
-				 where g.Tag.Select(s => s.tagId).Contains(tagId)
+				 where t.tagId==tagId
 				 orderby g.date
 				 select g).Skip(startIndex).Take(count).ToList();
 
@@ -45,14 +45,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			CommentInfo ci;
 			foreach (Comment c in result)
 			{
-                if (c.UserProfile == null)
-                {
-                    ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, "Null");
-                }
-                else {
-                    ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, c.UserProfile.loginName);
-                }
-				commentsinfo.Add(ci);
+                ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, c.UserProfile.loginName);
+                commentsinfo.Add(ci);
 			}
 
 			return commentsinfo;
