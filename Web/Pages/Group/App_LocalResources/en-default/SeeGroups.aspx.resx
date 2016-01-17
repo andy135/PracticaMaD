@@ -132,7 +132,7 @@
   <data name="recomendations" xml:space="preserve">
     <value>Recomendations</value>
   </data>
-  <data name="sign" xml:space="preserve">
+  <data name="signin" xml:space="preserve">
     <value>Sign</value>
   </data>
 </root>
