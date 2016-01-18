@@ -27,6 +27,7 @@
                 HeaderText="<%$ Resources:, recomend %>"
                 DataTextField="EventId"
                 DataNavigateUrlFields="EventId"
+                DataNavigateUrlFormatString="~/Pages/Recomendation/Recomend.aspx?eventId={0}"
                 Target="_blank" />
         </Columns>
     </asp:GridView>

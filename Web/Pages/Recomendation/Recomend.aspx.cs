@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.RecomendationService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
@@ -31,10 +32,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recomendation
             {
                 userId = SessionManager.GetUserSession(Context).UserProfileId;
             }
+
+            IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
+            IUserGroupService groupService = container.Resolve<IUserGroupService>();
+
+            GroupBlock gb = groupService.GetGroupsByUser(userId, 0, 10);
+
+            CheckBoxListGroups.DataSource = gb.Groups;
+            CheckBoxListGroups.DataTextField = "Name";
+            CheckBoxListGroups.DataValueField = "GroupId";
+            CheckBoxListGroups.DataBind();
         }
 
 
-        protected void BtnDoCommentClick(object sender, EventArgs e)
+        protected void BtnRecomendClick(object sender, EventArgs e)
         {
             string recomendation = this.txtRecomendation.Text;
 
