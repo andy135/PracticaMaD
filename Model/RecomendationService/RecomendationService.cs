@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
 
 		public RecomendationBlock GetRecomendationsByUser(long userId, int startIndex, int count)
         {
-            List<Recomendation> recomendations = RecomendationDao.FindRecomendationByUserId(userId, startIndex, count+1);
+            List<RecomendationInfo> recomendations = RecomendationDao.FindRecomendationByUserId(userId, startIndex, count+1);
 
             bool existMoreRecomendations = (recomendations.Count == count + 1);
 

@@ -4,10 +4,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationService
 {
 	public class RecomendationBlock
     {
-        public List<Recomendation> Recomendations { get; private set; }
+        public List<RecomendationInfo> Recomendations { get; private set; }
         public bool ExistMoreRecomendations { get; private set; }
 
-        public RecomendationBlock(List<Recomendation> recomendations, bool existMoreRecomendations)
+        public RecomendationBlock(List<RecomendationInfo> recomendations, bool existMoreRecomendations)
         {
             this.Recomendations = recomendations;
             this.ExistMoreRecomendations = existMoreRecomendations;

@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.RecomendationService;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,35 +14,40 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
 		public long CreateRecomendationToGroups(long userId, long eventId, List<long> groupsId, string description)
 		{
 			DbSet<UserGroup> groups = Context.Set<UserGroup>();
-			List<UserGroup> listgroups = null;
-
-			foreach(long id in groupsId)
-			{
-				listgroups =
+            List<UserGroup> listgroups = new List<UserGroup>();
+                /*
 				(from g in groups
-				 from u in g.UserProfile
-				 where groupsId.Contains(g.groupId) && u.usrId == userId
+				 where groupsId.Contains(g.groupId)
 				 select g).ToList<UserGroup>();
+                 */
 
-				if (listgroups.Count != groupsId.Count) throw new InstanceNotFoundException(id, typeof(UserGroup).FullName);
+            foreach(long id in groupsId)
+            {
+                UserGroup gr = (
+                    from g in groups
+                    where g.groupId == id
+                    select g).Single();
 
-			}
+                listgroups.Add(gr);
+            }
 
 			Recomendation r = new Recomendation();
 			r.description = description;
 			r.eventId = eventId;
-			foreach(UserGroup group in listgroups)
-			{
-				r.UserGroup.Add(group);
+            //r.UserGroup = listgroups;
+            
+    	    foreach(UserGroup group in listgroups)
+            { 
+			    r.UserGroup.Add(group);
 			}
-			r.date = DateTime.Now;
-			Create(r);
-
+            
+            r.date = DateTime.Now;
+            Create(r);
 
 			return r.recomendationId;
 		}
 
-		public List<Recomendation> FindRecomendationByUserId(long userId, int startIndex, int count)
+		public List<RecomendationInfo> FindRecomendationByUserId(long userId, int startIndex, int count)
         {
             DbSet<Recomendation> recomendations = Context.Set<Recomendation>();
 
@@ -53,7 +59,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
                  orderby r.date
                  select r).Skip(startIndex).Take(count).Distinct().ToList();
 
-            return result;
+            List<RecomendationInfo> recinfo = new List<RecomendationInfo>();
+            RecomendationInfo ri;
+            foreach (Recomendation r in result)
+            {
+                ri = new RecomendationInfo(r.recomendationId, r.date, r.description, r.eventId, r.Event.eventName);
+                recinfo.Add(ri);
+            }
+
+            return recinfo;
         }
     }
 }

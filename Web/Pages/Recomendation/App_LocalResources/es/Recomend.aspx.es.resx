@@ -120,6 +120,9 @@
   <data name="lclRecomendation.Text" xml:space="preserve">
     <value>Recomendación</value>
   </data>
+  <data name="lclGroups.Text" xml:space="preserve">
+    <value>Seleccionar grupos</value>
+  </data>
   <data name="Page.Title" xml:space="preserve">
     <value>PracticaMaD - Recomendar</value>
   </data>

@@ -30,6 +30,12 @@
 				</li>
 
                 <li>
+                    <asp:HyperLink ID="lnkShowRecomendations" runat="server" 
+                        NavigateUrl="~/Pages/Recomendation/ShowRecomendations.aspx"
+                         meta:resourcekey="lnkShowRecomendations" />
+				</li>
+
+                <li>
                     <asp:HyperLink ID="lnkSeeGroups" runat="server" 
                         NavigateUrl="~/Pages/Group/SeeGroups.aspx"
                          meta:resourcekey="lnkSeeGroups" />

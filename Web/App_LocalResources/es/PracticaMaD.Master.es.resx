@@ -150,4 +150,7 @@
   <data name="lnkCreateGroup.Text" xml:space="preserve">
     <value>Crear Grupo</value>
   </data>
+  <data name="lnkShowRecomendations.Text" xml:space="preserve">
+    <value>Mostrar recomendaciones</value>
+  </data>
 </root>

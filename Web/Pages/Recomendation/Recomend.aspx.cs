@@ -47,10 +47,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recomendation
 
         protected void BtnRecomendClick(object sender, EventArgs e)
         {
-            string recomendation = this.txtRecomendation.Text;
+            string description = this.txtRecomendation.Text;
+            List<long> selected_groups = new List<long>();
+            foreach (ListItem item in CheckBoxListGroups.Items)
+            {
+                if (item.Selected)
+                    selected_groups.Add(Convert.ToInt64(item.Value));
+            }
+            selected_groups.Add(15);
+            if (selected_groups.Contains(15))
+            {/* Do action. */
+                String url2 =
+                    Settings.Default.PracticaMaD_applicationURL +
+                                    "Pages/Recomendation/ShowRecomendations.aspx";
+
+                Response.Redirect(Response.ApplyAppPathModifier(url2));
+            }
 
             IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
             IRecomendationService recomendService = container.Resolve<IRecomendationService>();
+
+            //recomendService.CreateRecomendation(userId, eventId, selected_groups, description);
+            recomendService.CreateRecomendation(userId, eventId, 15, description);
 
             /* Do action. */
             String url =
