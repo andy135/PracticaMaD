@@ -140,5 +140,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             if (c == null || c.UserProfile == null) return null;
             return new CommentInfo(c.commentId,c.usrId,c.eventId,c.date,c.texto,c.UserProfile.loginName);
         }
+
+        public List<Tag> GetTagsByCommentId(long commentId)
+        {
+            return TagDao.GetTagsByCommentId(commentId);
+        }
     }
 }

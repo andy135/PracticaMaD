@@ -48,6 +48,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 		List<Tag> GetAllTags();
 
         [Transactional]
+        List<Tag> GetTagsByCommentId(long commentId);
+
+        [Transactional]
         Tag GetTagById(long tagId);
 
 		[Transactional]

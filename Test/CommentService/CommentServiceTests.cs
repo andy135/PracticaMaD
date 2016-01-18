@@ -281,7 +281,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
 			c = commentDao.Find(commentId);
 
-			Assert.IsTrue(c.Tag.Count == 3);
+            Assert.IsTrue(c.texto == "No Mola");
+            Assert.IsTrue(c.Tag.Count == 3);
 		}
 	}
 }

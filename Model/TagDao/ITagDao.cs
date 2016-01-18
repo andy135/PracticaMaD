@@ -10,6 +10,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
 		List<Tag> GetTopNTags(int n);
 
-		Tag FindTagByText(String text);
+        List<Tag> GetTagsByCommentId(long commentId);
+
+        Tag FindTagByText(String text);
 	}
 }

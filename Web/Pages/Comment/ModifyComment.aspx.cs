@@ -27,8 +27,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             commentService = container.Resolve<ICommentService>();
 
             CommentInfo c = commentService.GetCommentById(commentId);
+            List<Tag> tags = commentService.GetTagsByCommentId(commentId);
+
+            string stags = ParseTags(tags);
 
             this.txtComment.Text = c.texto;
+            this.txtTags.Text = stags;
 
             if (!SessionManager.IsUserAuthenticated(Context))
             {
@@ -45,14 +49,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             }
         }
 
+        private string ParseTags(List<Tag> tags)
+        {
+            string s = "";
+            foreach(Tag t in tags)
+            {
+                s += "#" + t.tagName + " ";
+            }
+            return s;
+        }
 
         protected void BtnDoCommentClick(object sender, EventArgs e)
         {
             string comment = this.txtComment.Text;
             string tags = this.txtTags.Text;
-
-            IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
-            ICommentService commentService = container.Resolve<ICommentService>();
 
             //Parsea los tags y elimina los espacios sobrantes
             List<String> t = tags.Split('#').ToList();
@@ -61,7 +71,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 s.Trim();
             }
 
-            commentService.DoCommentWithTags(userId,eventId,comment, t);
+            commentService.ModifyCommentWithTags(commentId, comment, t);
 
             /* Do action. */
             String url =

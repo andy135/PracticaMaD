@@ -150,6 +150,8 @@
     <Content Include="Pages\Group\App_LocalResources\es\CreateGroup.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Pages\Comment\App_LocalResources\es\ModifyComment.aspx.es.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\en-default\ModifyComment.aspx.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>

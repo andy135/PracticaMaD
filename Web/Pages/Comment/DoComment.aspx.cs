@@ -45,6 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             ICommentService commentService = container.Resolve<ICommentService>();
 
             //Parsea los tags y elimina los espacios sobrantes
+            tags.Trim();
             List<String> t = tags.Split('#').ToList();
             foreach(String s in t)
             {
