@@ -150,18 +150,8 @@
     <Content Include="Pages\Group\App_LocalResources\es\CreateGroup.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Pages\Recomendation\App_LocalResources\en-default\Recomend.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\Recomendation\App_LocalResources\es\Recomend.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\Recomendation\App_LocalResources\en-default\ShowRecomendations.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\Recomendation\App_LocalResources\es\ShowRecomendations.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Pages\Comment\App_LocalResources\es\ModifyComment.aspx.es.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\en-default\ModifyComment.aspx.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>
@@ -300,11 +290,6 @@
     <Compile Include="Pages\Recomendation\ShowRecomendations.aspx.designer.cs">
       <DependentUpon>ShowRecomendations.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UpdateUserProfile.aspx.resx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\User\Authentication.aspx.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -356,6 +341,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Error\" />
+    <Folder Include="Pages\Recomendation\App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\en-default\PracticaMaD.Master.resx">

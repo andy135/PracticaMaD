@@ -97,6 +97,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                     LinkButton lb = new LinkButton();
                     lb.Text = GetLocalResourceObject("modify.Text").ToString();
                     lb.CommandName = "modificar";
+                    lb.CommandArgument = c.commentId.ToString();
                     lb.Command += LinkButton_Command;
                     e.Row.Cells[3].Controls.Add(lb);
 
@@ -127,7 +128,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 }
                 if (e.CommandName == "modificar")
                 {
+                    long commentId = Convert.ToInt64(e.CommandArgument);
 
+                    String url =
+                    Settings.Default.PracticaMaD_applicationURL +
+                                    "Pages/Comment/ModifyComment.aspx" + "?eventId=" + eventId + "&commentId=" +commentId;
+
+                    Response.Redirect(Response.ApplyAppPathModifier(url));
                 }
             }
         }

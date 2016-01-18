@@ -34,7 +34,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 			return GetAllElements();
 		}
 
-		public List<Tag> GetTopNTags(int n)
+        public List<Tag> GetTagsByCommentId(long commentId)
+        {
+            DbSet<Tag> tags = Context.Set<Tag>();
+
+            List<Tag> result =
+                (from t in tags
+                 from g in t.Comment
+                 where g.commentId == commentId
+                 select t).ToList();
+
+            return result;
+        }
+
+        public List<Tag> GetTopNTags(int n)
 		{
 			DbSet<Tag> tags = Context.Set<Tag>();
 
