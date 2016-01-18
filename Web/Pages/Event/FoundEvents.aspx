@@ -17,8 +17,7 @@
                 HeaderText="<%$ Resources:, docomment %>"
                 DataTextField="EventId"
                 DataNavigateUrlFields="EventId"
-                DataNavigateUrlFormatString="~/Pages/Comment/DoComment.aspx?eventId={0}"
-                Target="_blank" />
+                DataNavigateUrlFormatString="~/Pages/Comment/DoComment.aspx?eventId={0}"/>
             <asp:TemplateField> 
                    <ItemTemplate> 
                    </ItemTemplate> 
@@ -26,8 +25,7 @@
             <asp:HyperLinkField 
                 HeaderText="<%$ Resources:, recomend %>"
                 DataTextField="EventId"
-                DataNavigateUrlFields="EventId"
-                Target="_blank" />
+                DataNavigateUrlFields="EventId"/>
         </Columns>
     </asp:GridView>
     </form>

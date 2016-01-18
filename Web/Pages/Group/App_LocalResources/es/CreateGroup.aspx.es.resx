@@ -117,37 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Welcome to PracticaMaD web page.</value>
+  <data name="btnCreateGroups.Text" xml:space="preserve">
+    <value>Crear</value>
   </data>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hello</value>
+  <data name="lclDescription.Text" xml:space="preserve">
+    <value>Descripcion</value>
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; AndIag - Coruña</value>
+  <data name="lclGroupName.Text" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD</value>
-  </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Authentication</value>
-  </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Logout</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Update Profile</value>
-  </data>
-  <data name="lnkFindEvents.Text" xml:space="preserve">
-    <value>Find Events</value>
-  </data>
-  <data name="lnkSeeGroups.Text" xml:space="preserve">
-    <value>See Groups</value>
-  </data>
-  <data name="lnkSeeMyGroups.Text" xml:space="preserve">
-    <value>My Groups</value>
-  </data>
-  <data name="lnkCreateGroup.Text" xml:space="preserve">
-    <value>Create Group</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Pagina Crear Grupo</value>
   </data>
 </root>

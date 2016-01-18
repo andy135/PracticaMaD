@@ -105,6 +105,7 @@
     <Content Include="Pages\Comment\ShowCommentsByTag.aspx" />
     <Content Include="Pages\Event\FindEvents.aspx" />
     <Content Include="Pages\Event\FoundEvents.aspx" />
+    <Content Include="Pages\Group\CreateGroup.aspx" />
     <Content Include="Pages\Group\SeeGroups.aspx" />
     <Content Include="Pages\Group\SeeMyGroups.aspx" />
     <Content Include="Pages\MainPage.aspx" />
@@ -142,6 +143,12 @@
     </Content>
     <Content Include="Pages\Group\App_LocalResources\en-default\SeeMyGroups.aspx.resx" />
     <Content Include="Pages\Group\App_LocalResources\es\SeeMyGroups.aspx.es.resx" />
+    <Content Include="Pages\Group\App_LocalResources\en-default\CreateGroup.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\Group\App_LocalResources\es\CreateGroup.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>
@@ -230,6 +237,13 @@
     </Compile>
     <Compile Include="Pages\Event\FoundEvents.aspx.designer.cs">
       <DependentUpon>FoundEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Group\CreateGroup.aspx.cs">
+      <DependentUpon>CreateGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Group\CreateGroup.aspx.designer.cs">
+      <DependentUpon>CreateGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Group\SeeGroups.aspx.cs">
       <DependentUpon>SeeGroups.aspx</DependentUpon>
