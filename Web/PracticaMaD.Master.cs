@@ -25,8 +25,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 					lnkLogout.Visible = false;
                 if (lnkSeeMyGroups != null)
                     lnkSeeMyGroups.Visible = false;
+                if (lnkCreateGroup != null)
+                    lnkCreateGroup.Visible = false;
 
-			}
+            }
 			else
 			{
 				if (lblWelcome != null)

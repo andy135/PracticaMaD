@@ -132,5 +132,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 		{
 			return TagDao.GetTopNTags(n);
 		}
-	}
+
+        public CommentInfo GetCommentById(long commentId)
+        {
+            if (commentId < 0) return null;
+            Comment c = CommentDao.Find(commentId);
+            if (c == null || c.UserProfile == null) return null;
+            return new CommentInfo(c.commentId,c.usrId,c.eventId,c.date,c.texto,c.UserProfile.loginName);
+        }
+    }
 }

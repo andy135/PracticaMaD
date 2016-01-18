@@ -34,6 +34,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         CommentBlock GetCommentsOfEvent(long eventId, int startIndex, int count);
 
         [Transactional]
+        CommentInfo GetCommentById(long commentId);
+
+        [Transactional]
         long GetNumOfComments();
 
         // TAGS SUPPORT

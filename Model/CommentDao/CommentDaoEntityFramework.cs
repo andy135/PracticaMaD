@@ -45,6 +45,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 			CommentInfo ci;
 			foreach (Comment c in result)
 			{
+                if (c.UserProfile == null)
+                {
+                    Console.Out.WriteLine("******ERROR******");
+                    continue;
+                }
                 ci = new CommentInfo(c.commentId, c.usrId, c.eventId, c.date, c.texto, c.UserProfile.loginName);
                 commentsinfo.Add(ci);
 			}

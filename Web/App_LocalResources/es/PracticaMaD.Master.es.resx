@@ -147,4 +147,7 @@
   <data name="lnkSeeMyGroups.Text" xml:space="preserve">
     <value>Mis Grupos</value>
   </data>
+  <data name="lnkCreateGroup.Text" xml:space="preserve">
+    <value>Crear Grupo</value>
+  </data>
 </root>

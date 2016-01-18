@@ -128,6 +128,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                 if (groupBlock.Groups.Count == 0)
                 {
                     lblNoGroups.Visible = true;
+                    gvMyGroups.Visible = false;
                     return;
                 }
 

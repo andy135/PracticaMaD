@@ -9,7 +9,7 @@
                     <asp:Localize ID="lclKeywords" runat="server" meta:resourcekey="lclKeywords" /></span><span
                         class="entry">
                         <asp:TextBox CssClass="textbox" ID="txtKeys" runat="server" Width="100px" Columns="16" 
-                    meta:resourcekey="txtKeysResource1"></asp:TextBox>
+                    meta:resourcekey="txtKeysResource1"></asp:TextBox></span>
             </div>
 
 			<div class="field">
