@@ -35,16 +35,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
 			r.description = description;
 			r.eventId = eventId;
             //r.UserGroup = listgroups;
-            
+            /*
     	    foreach(UserGroup group in listgroups)
             { 
 			    r.UserGroup.Add(group);
 			}
-            
+            */
             r.date = DateTime.Now;
             Create(r);
+            r.UserGroup = listgroups;
+            Update(r);
 
-			return r.recomendationId;
+            return r.recomendationId;
 		}
 
 		public List<RecomendationInfo> FindRecomendationByUserId(long userId, int startIndex, int count)

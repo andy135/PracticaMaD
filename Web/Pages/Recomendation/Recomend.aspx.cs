@@ -33,15 +33,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recomendation
                 userId = SessionManager.GetUserSession(Context).UserProfileId;
             }
 
-            IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
-            IUserGroupService groupService = container.Resolve<IUserGroupService>();
+            if (!IsPostBack)
+            {
+                IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
+                IUserGroupService groupService = container.Resolve<IUserGroupService>();
 
-            GroupBlock gb = groupService.GetGroupsByUser(userId, 0, 10);
+                GroupBlock gb = groupService.GetGroupsByUser(userId, 0, 10);
 
-            CheckBoxListGroups.DataSource = gb.Groups;
-            CheckBoxListGroups.DataTextField = "Name";
-            CheckBoxListGroups.DataValueField = "GroupId";
-            CheckBoxListGroups.DataBind();
+                CheckBoxListGroups.DataSource = gb.Groups;
+                CheckBoxListGroups.DataTextField = "Name";
+                CheckBoxListGroups.DataValueField = "GroupId";
+                CheckBoxListGroups.DataBind();
+            }
         }
 
 
@@ -54,21 +57,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recomendation
                 if (item.Selected)
                     selected_groups.Add(Convert.ToInt64(item.Value));
             }
-            selected_groups.Add(15);
-            if (selected_groups.Contains(15))
-            {/* Do action. */
-                String url2 =
-                    Settings.Default.PracticaMaD_applicationURL +
-                                    "Pages/Recomendation/ShowRecomendations.aspx";
-
-                Response.Redirect(Response.ApplyAppPathModifier(url2));
-            }
-
+            
             IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
             IRecomendationService recomendService = container.Resolve<IRecomendationService>();
 
-            //recomendService.CreateRecomendation(userId, eventId, selected_groups, description);
-            recomendService.CreateRecomendation(userId, eventId, 15, description);
+            recomendService.CreateRecomendation(userId, eventId, selected_groups, description);
 
             /* Do action. */
             String url =
