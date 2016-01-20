@@ -14,7 +14,7 @@
             <asp:BoundField DataField="Name" HeaderText="<%$ Resources:, name %>" />
             <asp:BoundField DataField="NumMembers" HeaderText="<%$ Resources:, members %>" />
             <asp:BoundField DataField="NumRecomendations" HeaderText="<%$ Resources:, recomendations %>" />
-            <asp:TemplateField> 
+            <asp:TemplateField HeaderText="<%$ Resources:, alta %>"> 
                    <ItemTemplate> 
                    </ItemTemplate> 
                </asp:TemplateField> 

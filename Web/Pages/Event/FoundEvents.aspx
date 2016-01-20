@@ -15,16 +15,16 @@
             <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources:, category %>" />
             <asp:HyperLinkField 
                 HeaderText="<%$ Resources:, docomment %>"
-                DataTextField="EventId"
+                Text="<%$ Resources:, docomment %>"
                 DataNavigateUrlFields="EventId"
                 DataNavigateUrlFormatString="~/Pages/Comment/DoComment.aspx?eventId={0}"/>
-            <asp:TemplateField> 
+            <asp:TemplateField HeaderText="<%$ Resources:, comments.Text%>"> 
                    <ItemTemplate> 
                    </ItemTemplate> 
                </asp:TemplateField> 
             <asp:HyperLinkField 
                 HeaderText="<%$ Resources:, recomend %>"
-                DataTextField="EventId"
+                Text="<%$ Resources:, recomend %>"
                 DataNavigateUrlFields="EventId"
                 DataNavigateUrlFormatString="~/Pages/Recomendation/Recomend.aspx?eventId={0}" />
         </Columns>

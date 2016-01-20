@@ -5,16 +5,15 @@
     <br />
     <form runat="server">
     <asp:GridView ID="gvRecomendations" runat="server" CssClass="Grid" GridLines="None"
-        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True">
+        AutoGenerateColumns="False" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" OnRowDataBound="GridView_DataBound">
         <Columns>
             <asp:BoundField DataField="RecomendationId" HeaderText="<%$ Resources:, id %>" />
             <asp:BoundField DataField="Date" HeaderText="<%$ Resources:, date %>" />
             <asp:BoundField DataField="Description" HeaderText="<%$ Resources:, description %>" />
-            <asp:HyperLinkField 
-                HeaderText="<%$ Resources:, event %>"
-                DataTextField="EventName"
-                DataNavigateUrlFields="EventId"
-                DataNavigateUrlFormatString="~/Pages/Comment/SeeComments.aspx?eventId={0}"/>
+            <asp:TemplateField HeaderText="<%$ Resources:, event %>"> 
+                   <ItemTemplate> 
+                   </ItemTemplate> 
+               </asp:TemplateField> 
         </Columns>
     </asp:GridView>
     </form>

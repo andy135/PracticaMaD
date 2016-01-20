@@ -97,5 +97,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recomendation
                 this.lnkNext.Visible = true;
             }
         }
+
+        protected void GridView_DataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                RecomendationInfo r = (RecomendationInfo)e.Row.DataItem;
+                if (r.ExistComments)
+                { 
+                    LinkButton lb = new LinkButton();
+                    lb.Text = r.EventName;
+                    lb.CommandArgument = r.EventId.ToString();
+                    lb.CommandName = "comentarios";
+                    lb.Command += LinkButton_Command;
+                    e.Row.Cells[3].Controls.Add(lb);
+                }
+            }
+        }
+
+        protected void LinkButton_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "comentarios")
+            {
+                String url =
+                    Settings.Default.PracticaMaD_applicationURL +
+                                    "/Pages/Comment/SeeComments.aspx?eventId=" + Convert.ToInt64(e.CommandArgument);
+
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
+        }
     }
 }
