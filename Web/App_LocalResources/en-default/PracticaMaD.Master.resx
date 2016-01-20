@@ -136,21 +136,21 @@
     <value>Logout</value>
   </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Update Profile</value>
+    <value>Update profile</value>
   </data>
   <data name="lnkFindEvents.Text" xml:space="preserve">
-    <value>Find Events</value>
+    <value>Find events</value>
   </data>
   <data name="lnkSeeGroups.Text" xml:space="preserve">
-    <value>See Groups</value>
+    <value>See groups</value>
   </data>
   <data name="lnkSeeMyGroups.Text" xml:space="preserve">
-    <value>My Groups</value>
+    <value>My groups</value>
   </data>
   <data name="lnkCreateGroup.Text" xml:space="preserve">
-    <value>Create Group</value>
+    <value>Create group</value>
   </data>
   <data name="lnkShowRecomendations.Text" xml:space="preserve">
-    <value>Show Recomendations</value>
+    <value>Show recomendations</value>
   </data>
 </root>

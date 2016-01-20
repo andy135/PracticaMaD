@@ -142,13 +142,13 @@
     <value>Buscar eventos</value>
   </data>
   <data name="lnkSeeGroups.Text" xml:space="preserve">
-    <value>Ver Grupos</value>
+    <value>Ver grupos</value>
   </data>
   <data name="lnkSeeMyGroups.Text" xml:space="preserve">
-    <value>Mis Grupos</value>
+    <value>Mis grupos</value>
   </data>
   <data name="lnkCreateGroup.Text" xml:space="preserve">
-    <value>Crear Grupo</value>
+    <value>Crear grupo</value>
   </data>
   <data name="lnkShowRecomendations.Text" xml:space="preserve">
     <value>Mostrar recomendaciones</value>
