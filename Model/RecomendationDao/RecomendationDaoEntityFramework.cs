@@ -65,7 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
             RecomendationInfo ri;
             foreach (Recomendation r in result)
             {
-                ri = new RecomendationInfo(r.recomendationId, r.date, r.description, r.eventId, r.Event.eventName);
+                ri = new RecomendationInfo(r.recomendationId, r.date, r.description, r.eventId, r.Event.eventName,r.Event.Comment.Count>0);
                 recinfo.Add(ri);
             }
 
