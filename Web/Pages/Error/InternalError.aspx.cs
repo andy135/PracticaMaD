@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Error
 {
-    public partial class InternalError : System.Web.UI.Page
+    public partial class InternalError : SpecificCulturePage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

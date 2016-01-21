@@ -2,19 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuWelcome"
     runat="server">
-    &nbsp;
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <br />
     <br />
-    <asp:Label ID="lblErrorTitle" runat="server" meta:resourcekey="lblErrorTitle"></asp:Label>
-    &nbsp;
+    <asp:Label ID="lblErrorTitle" CssClass="errorMessage"  runat="server" meta:resourcekey="lblErrorTitle"></asp:Label>
     <br />
     <br />
-    <asp:Label ID="lblRetryLater" runat="server" meta:resourcekey="lblRetryLater"></asp:Label>
+    <asp:Label ID="lblRetryLater" CssClass="errorMessage" runat="server" meta:resourcekey="lblRetryLater"></asp:Label>
     <br />
     <br />    
 </asp:Content>

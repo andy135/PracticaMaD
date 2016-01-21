@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.RecomendationService;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.RecomendationService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
