@@ -10,11 +10,11 @@
             <asp:BoundField DataField="userName" HeaderText="<%$ Resources:, userName %>" />
             <asp:BoundField DataField="date" HeaderText="<%$ Resources:, date %>" />
             <asp:BoundField DataField="texto" HeaderText="<%$ Resources:, text %>" />
-            <asp:TemplateField> 
+            <asp:TemplateField HeaderText="<%$ Resources:, modify.Text %>"> 
                    <ItemTemplate> 
                    </ItemTemplate> 
                </asp:TemplateField> 
-            <asp:TemplateField> 
+            <asp:TemplateField HeaderText="<%$ Resources:, remove.Text %>"> 
                    <ItemTemplate> 
                    </ItemTemplate> 
                </asp:TemplateField> 

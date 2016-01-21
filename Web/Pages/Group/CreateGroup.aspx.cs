@@ -1,13 +1,8 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserGroupService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
 {
@@ -35,12 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
 
                 groupService.SubscribeUserToGroup(userId, groupId);
 
-                /* Do action. */
-                String url =
-                    Settings.Default.PracticaMaD_applicationURL +
-                                    "Pages/MainPage.aspx";
-
-                Response.Redirect(Response.ApplyAppPathModifier(url));
+                /* Feedback */
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/SuccessfulFeedback.aspx"));
             }
             else
             {
