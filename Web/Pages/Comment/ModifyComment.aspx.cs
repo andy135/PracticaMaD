@@ -26,14 +26,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
             commentService = container.Resolve<ICommentService>();
 
-            CommentInfo c = commentService.GetCommentById(commentId);
-            List<Tag> tags = commentService.GetTagsByCommentId(commentId);
+            if (!IsPostBack)
+            {
+                CommentInfo c = commentService.GetCommentById(commentId);
+                List<Tag> tags = commentService.GetTagsByCommentId(commentId);
 
-            string stags = ParseTags(tags);
+                string stags = ParseTags(tags);
 
-            this.txtComment.Text = c.texto;
-            this.txtTags.Text = stags;
+                this.txtComment.Text = c.texto;
+                this.txtTags.Text = stags;
 
+            }
             if (!SessionManager.IsUserAuthenticated(Context))
             {
                 /* Do action. */
@@ -56,7 +59,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             {
                 s += "#" + t.tagName + " ";
             }
-            return s;
+            return s.Trim();
         }
 
         protected void BtnDoCommentClick(object sender, EventArgs e)
