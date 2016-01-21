@@ -8,7 +8,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
 
-    background-color: #dddde0;
+    background-color: #212121;
 }
 
 /* Links. */
@@ -26,7 +26,7 @@ a:hover {
 /* Window. */
 
 #window {
-	border: #00c853 2px solid;
+	border: #212121 2px solid;
     background-color: #333;
     padding: 5px;
     width: 98%;
@@ -35,7 +35,7 @@ a:hover {
 /* Page title. */
 
 #pageTitle {
-    background-color: #00c853;    
+    background-color: #8BC34A;    
     color: #333;
     text-align: center;
     font-weight: bold;
@@ -53,6 +53,9 @@ a:hover {
 #tagCloud {
     text-align:center;
     height:8%;
+    position: relative;
+    top: 3%;
+
 }
 
 /* Page body. */
@@ -82,7 +85,7 @@ a:hover {
     float: right;    
     text-align: center;
     width: 80%;
-	background-color: #ccc;
+	background-color: #E0E0E0;
 
     height: 85%;
 }
@@ -149,7 +152,7 @@ div.button {
     padding-top: 10px;
 	padding-bottom: 10px;
     width: 100%;
-	background-color: #00c853;  
+	background-color: #8BC34A;  
 	font-weight: bold;
 }
 
@@ -195,7 +198,7 @@ div.button {
   font-weight: normal;
 }
 #cssmenu a:hover {
-  background: #00c853;
+  background: #8BC34A;
   color: #fff;
   padding-bottom: 8px;
 }
@@ -212,13 +215,13 @@ div.button {
   font-family: Arial;
   color: #ffffff;
   font-size: 16px;
-  background: #00c41d;
+  background: #8BC34A;
   padding: 5px 10px 5px 10px;
   text-decoration: none;
 }
 
 .btn:hover {
-  background: #008000;
+  background: #558B2F;
   text-decoration: none;
 }
 
@@ -227,14 +230,14 @@ div.button {
 	border:2px solid #456879;
 	border-radius:8px;
 	height: 20px;
-	background-color : #99FFCC;
+	background-color : #C5E1A5;
 }
 
 select
 {
 	border:2px solid #456879;
 	border-radius:8px;
-	background-color : #99FFCC;
+	background-color : #C5E1A5;
 }
 
 /* Grids*/
@@ -253,13 +256,14 @@ select
 
 .Grid td {
       padding: 2px;
-      border: solid 1px #c1c1c1; }
+      border: solid 1px #c1c1c1;
+}
 .Grid th  {
       padding : 4px 2px;
       color: #fff;
-      background: #363670 url(Images/grid-header.png) repeat-x top;
-      border-left: solid 1px #525252;
-      font-size: 0.9em; }
+      background: #558B2F url(Images/grid-header.png) repeat-x top;
+      border: solid 1px #558B2F;
+      font-size: 1em; }
 .Grid .alt {
       background: #fcfcfc; }
 
@@ -267,31 +271,31 @@ select
 
 .TagSize1
 {
-    font: 12pt Arial;
-    color: #FF0000;
+    font: 10pt Arial;
+    color: #689F38;
 }
  
 .TagSize2
 {
-    font: 15pt Arial;
-    color: #993333;
+    font: 12pt Arial;
+    color: #673AB7;
 }
  
 .TagSize3
 {
-    font: 18pt Arial;
-    color: #0000FF;
+    font: 15pt Arial;
+    color: #2196F3;
 }
  
 .TagSize4
 {
-    font: 21pt Arial;
-    color: #009900;
+    font: 18pt Arial;
+    color: #FF9800;
 }
  
 .TagSize5
 {
-    font: 27pt Arial;
+    font: 21pt Arial;
     color: #9900FF;
 }
 

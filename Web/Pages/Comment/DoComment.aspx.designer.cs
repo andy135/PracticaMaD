@@ -58,15 +58,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         protected global::System.Web.UI.WebControls.TextBox txtTags;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
         /// btnDoComment control.
         /// </summary>
         /// <remarks>

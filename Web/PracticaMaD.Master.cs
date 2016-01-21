@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             IUnityContainer container = (IUnityContainer)HttpContext.Current.Application["unityContainer"];
             ICommentService commentService = container.Resolve<ICommentService>();
 
-            List<Tag> tags = commentService.GetTopNTags(10);
+            List<Tag> tags = commentService.GetTopNTags(2*Settings.Default.PracticaMaD_defaultCount);
 
             tags = ShuffleList(tags);
 
