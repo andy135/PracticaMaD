@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -12,7 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         [Dependency]
         public ICommentDao CommentDao { private get; set; }
 
-		[Dependency]
+        [Dependency]
+        public IUserProfileDao UserProfileDao { private get; set; }
+
+        [Dependency]
 		public ITagDao TagDao { private get; set; }
 
 		public Tag ManageTag(String tag)
@@ -49,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 			Comment comment = new Comment();
 			comment.texto = text;
 			comment.eventId = eventId;
-			comment.usrId = userId;
+            comment.UserProfile = UserProfileDao.Find(userId);
             comment.date = DateTime.Now;
 			CommentDao.Create(comment);
 			if (tags != null) { 
