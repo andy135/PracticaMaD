@@ -54,12 +54,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
             commentService.DoCommentWithTags(userId,eventId,comment, t);
 
-            /* Do action. */
-            String url =
-                Settings.Default.PracticaMaD_applicationURL +
-                                "Pages/MainPage.aspx";
-
-            Response.Redirect(Response.ApplyAppPathModifier(url));
+            /* Feedback */
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/SuccessfulFeedback.aspx"));
 
         }
     }

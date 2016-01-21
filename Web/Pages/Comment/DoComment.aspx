@@ -19,6 +19,12 @@
                 <span class="entry">
                         <asp:TextBox CssClass="textbox" TextMode="multiline" Columns="16" ID="txtTags" runat="server" Width="200px" 
                     meta:resourcekey="txtTagResource"></asp:TextBox>
+                    <asp:RegularExpressionValidator id="RegularExpressionValidator1" runat="server" 
+                    Display="Static"
+                    ErrorMessage="RegularExpressionValidator"
+                    EnableClientScript="True" 
+                    ValidationExpression="^#\w\w*\s" 
+                    ControlToValidate="txtTags" />
             </div>
 
             <div class="button">

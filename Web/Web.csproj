@@ -106,6 +106,7 @@
     <Content Include="Pages\Comment\DoComment.aspx" />
     <Content Include="Pages\Comment\SeeComments.aspx" />
     <Content Include="Pages\Comment\ShowCommentsByTag.aspx" />
+    <Content Include="Pages\Error\InternalError.aspx" />
     <Content Include="Pages\Event\FindEvents.aspx" />
     <Content Include="Pages\Event\FoundEvents.aspx" />
     <Content Include="Pages\Group\CreateGroup.aspx" />
@@ -154,12 +155,25 @@
     </Content>
     <Content Include="Pages\Comment\App_LocalResources\es\ModifyComment.aspx.es.resx" />
     <Content Include="Pages\Comment\App_LocalResources\en-default\ModifyComment.aspx.resx" />
+    <Content Include="Pages\Error\App_LocalResources\en-default\InternalError.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\Error\App_LocalResources\es\InternalError.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\App_LocalResources\en-default\SuccessfulFeedback.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\App_LocalResources\es\SuccessfulFeedback.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <EmbeddedResource Include="Pages\User\App_LocalResources\en-default\UpdateUserProfile.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateUserProfile.aspx.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Content Include="Pages\Recomendation\Recomend.aspx" />
     <Content Include="Pages\Recomendation\ShowRecomendations.aspx" />
+    <Content Include="Pages\SuccessfulFeedback.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\Logout.aspx" />
@@ -236,6 +250,13 @@
     <Compile Include="Pages\Comment\ShowCommentsByTag.aspx.designer.cs">
       <DependentUpon>ShowCommentsByTag.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Error\InternalError.aspx.cs">
+      <DependentUpon>InternalError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Error\InternalError.aspx.designer.cs">
+      <DependentUpon>InternalError.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Event\FindEvents.aspx.cs">
       <DependentUpon>FindEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -292,6 +313,13 @@
     <Compile Include="Pages\Recomendation\ShowRecomendations.aspx.designer.cs">
       <DependentUpon>ShowRecomendations.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SuccessfulFeedback.aspx.cs">
+      <DependentUpon>SuccessfulFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SuccessfulFeedback.aspx.designer.cs">
+      <DependentUpon>SuccessfulFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\Authentication.aspx.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,7 +370,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Error\" />
     <Folder Include="Pages\Recomendation\App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
