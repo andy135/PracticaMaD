@@ -166,6 +166,7 @@
       <DependentUpon>PracticaMaD.edmx</DependentUpon>
       <LastGenOutput>PracticaMaD.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql\InsertsSQLMaD.sql" />
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>

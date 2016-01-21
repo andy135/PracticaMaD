@@ -68,7 +68,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             string tags = this.txtTags.Text;
 
             //Parsea los tags y elimina los espacios sobrantes
-            List<String> t = tags.Split('#').ToList();
+            List<String> t = tags.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             foreach(String s in t)
             {
                 s.Trim();
