@@ -50,8 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
                  from g in r.UserGroup
                  from u in g.UserProfile
                  where u.usrId == userId
-                 orderby r.date descending
-                 select r).Skip(startIndex).Take(count).Distinct().ToList();
+                 select r).Distinct().OrderByDescending(x => x.date).Skip(startIndex).Take(count).ToList();
 
             List<RecomendationInfo> recinfo = new List<RecomendationInfo>();
             RecomendationInfo ri;
