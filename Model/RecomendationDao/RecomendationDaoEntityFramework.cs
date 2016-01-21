@@ -34,17 +34,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
 			Recomendation r = new Recomendation();
 			r.description = description;
 			r.eventId = eventId;
-            //r.UserGroup = listgroups;
-            /*
-    	    foreach(UserGroup group in listgroups)
-            { 
-			    r.UserGroup.Add(group);
-			}
-            */
+            r.UserGroup = listgroups;
             r.date = DateTime.Now;
             Create(r);
-            r.UserGroup = listgroups;
-            Update(r);
 
             return r.recomendationId;
 		}
@@ -58,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
                  from g in r.UserGroup
                  from u in g.UserProfile
                  where u.usrId == userId
-                 orderby r.date
+                 orderby r.date descending
                  select r).Skip(startIndex).Take(count).Distinct().ToList();
 
             List<RecomendationInfo> recinfo = new List<RecomendationInfo>();

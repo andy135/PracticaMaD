@@ -63,12 +63,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recomendation
 
             recomendService.CreateRecomendation(userId, eventId, selected_groups, description);
 
-            /* Do action. */
-            String url =
-                Settings.Default.PracticaMaD_applicationURL +
-                                "Pages/MainPage.aspx";
-
-            Response.Redirect(Response.ApplyAppPathModifier(url));
+            /* Feedback */
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/SuccessfulFeedback.aspx"));
 
         }
     }
