@@ -10,7 +10,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 	class TagDaoEntityFramework :
 		GenericDaoEntityFramework<Tag, Int64>, ITagDao
 	{
-		public Tag FindTagByText(string text)
+
+        /// <exception cref="InstanceNotFoundException"
+        public Tag FindTagByText(string text)
 		{
             Tag tag = null;
 

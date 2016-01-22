@@ -15,11 +15,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecomendationDao
 		{
 			DbSet<UserGroup> groups = Context.Set<UserGroup>();
             List<UserGroup> listgroups = new List<UserGroup>();
-                /*
-				(from g in groups
-				 where groupsId.Contains(g.groupId)
-				 select g).ToList<UserGroup>();
-                 */
 
             foreach(long id in groupsId)
             {

@@ -12,6 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
         List<Tag> GetTagsByCommentId(long commentId);
 
+        /// <exception cref="InstanceNotFoundException"
         Tag FindTagByText(String text);
 	}
 }

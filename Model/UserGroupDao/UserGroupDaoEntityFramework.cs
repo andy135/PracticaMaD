@@ -11,6 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
 	class UserGroupDaoEntityFramework :
         GenericDaoEntityFramework<UserGroup, Int64>, IUserGroupDao
     {
+        /// <exception cref="InstanceNotFoundException"
         public List<GroupInfo> FindGroupsByUserId(long userId, int startIndex, int count)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
@@ -89,6 +90,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
             return false;
         }
 
+        /// <exception cref="InstanceNotFoundException"
         public void SubscribeUserInGroup(long userId, long groupId)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();
@@ -129,6 +131,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupDao
 
         }
 
+        /// <exception cref="InstanceNotFoundException"
         public void UnsubscribeUserInGroup(long userId, long groupId)
         {
             DbSet<UserGroup> groups = Context.Set<UserGroup>();

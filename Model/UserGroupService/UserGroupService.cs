@@ -41,6 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
 
         }
 
+        /// <exception cref="InstanceNotFoundException"
         public GroupBlock GetGroupsByUser(long userId, int startIndex, int count)
         {
             List<GroupInfo> groups = UserGroupDao.FindGroupsByUserId(userId ,startIndex, count + 1);
@@ -58,11 +59,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserGroupService
             return UserGroupDao.isMember(userId, groupId);
         }
 
+        /// <exception cref="InstanceNotFoundException"
         public void SubscribeUserToGroup(long userId, long groupId)
         {
             UserGroupDao.SubscribeUserInGroup(userId, groupId);
         }
 
+        /// <exception cref="InstanceNotFoundException"
         public void UnsubscribeUserToGroup(long userId, long groupId)
         {
             UserGroupDao.UnsubscribeUserInGroup(userId, groupId);
